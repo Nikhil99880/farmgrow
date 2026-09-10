@@ -41,6 +41,7 @@ from exceptions import (
     InvalidMimeTypeError,
     PathTraversalError,
     PermissionDeniedError,
+    StorageError,
     StorageFullError,
 )
 from schemas import (
@@ -254,7 +255,7 @@ class StorageService:
                         )
                     await out.write(file_content)
                 else:
-                    raise ValueError(
+                    raise StorageError(
                         "Either 'file_content' or 'read_chunk' must be provided."
                     )
         except PermissionError as exc:
