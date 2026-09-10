@@ -1,0 +1,333 @@
+<!DOCTYPE html><html lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Krishi Sahayak - Book Slot</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "inverse-primary": "#94d3c1",
+                      "on-secondary": "#ffffff",
+                      "tertiary": "#253028",
+                      "on-secondary-fixed-variant": "#544600",
+                      "surface-container-low": "#f6f3f2",
+                      "tertiary-fixed": "#d9e6da",
+                      "on-surface-variant": "#3f4945",
+                      "on-tertiary-fixed": "#131e17",
+                      "surface-container-lowest": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "outline": "#707975",
+                      "secondary": "#705d00",
+                      "secondary-fixed-dim": "#e9c400",
+                      "tertiary-fixed-dim": "#bdcabe",
+                      "surface": "#fcf9f8",
+                      "primary-fixed": "#afefdd",
+                      "on-tertiary-fixed-variant": "#3e4a41",
+                      "surface-container-high": "#ebe7e7",
+                      "background": "#fcf9f8",
+                      "outline-variant": "#bfc9c4",
+                      "error": "#ba1a1a",
+                      "inverse-on-surface": "#f3f0ef",
+                      "on-tertiary-container": "#a7b4a9",
+                      "on-background": "#1c1b1b",
+                      "surface-bright": "#fcf9f8",
+                      "surface-container-highest": "#e5e2e1",
+                      "on-secondary-fixed": "#221b00",
+                      "on-error": "#ffffff",
+                      "surface-container": "#f0edec",
+                      "surface-tint": "#29695b",
+                      "surface-variant": "#e5e2e1",
+                      "on-error-container": "#93000a",
+                      "on-primary-fixed": "#00201a",
+                      "on-secondary-container": "#6f5c00",
+                      "on-surface": "#1c1b1b",
+                      "on-primary": "#ffffff",
+                      "surface-dim": "#dcd9d9",
+                      "primary-fixed-dim": "#94d3c1",
+                      "inverse-surface": "#313030",
+                      "primary": "#00342b",
+                      "primary-container": "#004d40",
+                      "secondary-container": "#fdd400",
+                      "on-primary-container": "#7ebdac",
+                      "tertiary-container": "#3b463e",
+                      "secondary-fixed": "#ffe170",
+                      "on-tertiary": "#ffffff",
+                      "on-primary-fixed-variant": "#065043"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "unit": "8px",
+                      "margin-mobile": "20px",
+                      "stack-gap-md": "16px",
+                      "gutter-mobile": "16px",
+                      "stack-gap-lg": "24px",
+                      "touch-target-min": "56px"
+              },
+              "fontFamily": {
+                      "headline-sm": ["Be Vietnam Pro"],
+                      "label-lg": ["Be Vietnam Pro"],
+                      "body-lg": ["Noto Sans"],
+                      "body-md": ["Noto Sans"],
+                      "label-md": ["Be Vietnam Pro"],
+                      "headline-md": ["Be Vietnam Pro"],
+                      "headline-lg": ["Be Vietnam Pro"]
+              },
+              "fontSize": {
+                      "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                      "label-lg": ["16px", {"lineHeight": "20px", "letterSpacing": "0.5px", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "500"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "label-md": ["14px", {"lineHeight": "16px", "fontWeight": "500"}],
+                      "headline-md": ["22px", {"lineHeight": "28px", "fontWeight": "700"}],
+                      "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                      "headline-sm-mobile": ["16px", {"lineHeight": "22px", "fontWeight": "600"}],
+                      "label-lg-mobile": ["14px", {"lineHeight": "18px", "letterSpacing": "0.5px", "fontWeight": "600"}],
+                      "headline-md-mobile": ["20px", {"lineHeight": "26px", "fontWeight": "700"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+            font-family: 'Noto Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface-dim w-full top-0 border-b border-outline-variant flat no shadows flex items-center px-margin-mobile h-touch-target-min z-40 sticky">
+<button class="text-primary mr-4 p-2 -ml-2 rounded-full hover:bg-surface-variant transition-colors duration-200">
+<span class="material-symbols-outlined text-2xl" data-icon="arrow_back" data-weight="fill">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md-mobile font-bold text-primary truncate">
+            Book Slot / स्लॉट बुक करें
+        </h1>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow w-full max-w-2xl mx-auto px-margin-mobile py-stack-gap-lg pb-32">
+<!-- Procurement Center Selection -->
+<section class="mb-stack-gap-lg">
+<label class="block font-headline-sm text-headline-sm-mobile text-primary-container mb-unit">
+                1. Select Center / केंद्र चुनें
+            </label>
+<div class="flex items-center gap-2 mb-2 bg-primary-container/10 w-fit px-3 py-1 rounded-full border border-primary-container/20"><span class="material-symbols-outlined text-primary-container text-sm">timer</span><span class="font-label-md text-xs text-primary-container">Recommended (Shortest Queue) / अनुशंसित (सबसे छोटी कतार)</span></div><div class="relative">
+<select class="w-full h-touch-target-min bg-surface-container-lowest border-2 border-outline-variant rounded-lg px-4 appearance-none font-body-lg text-on-surface focus:border-primary-container focus:ring-0 focus:outline-none shadow-sm cursor-pointer">
+<option disabled="" selected="" value="">Choose nearest center / निकटतम केंद्र चुनें...</option>
+<option value="mandi_1">Sonipat Main Mandi (Shortest Queue / सबसे छोटी कतार)</option>
+<option value="mandi_2">Panipat North Hub</option>
+<option value="mandi_3">Rohtak Central</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 transform -translate-y-1/2 text-outline-variant pointer-events-none">
+                    expand_more
+                </span>
+</div>
+<p class="font-label-md text-label-md text-on-surface-variant mt-2">
+                Ensure you select a center within 50km radius.
+            </p>
+</section>
+<!-- Date Selection (Calendar View) -->
+<section class="mb-stack-gap-lg">
+<label class="block font-headline-sm text-headline-sm-mobile text-primary-container mb-unit">
+                2. Select Date / तिथि चुनें
+            </label>
+<div class="bg-surface-container-lowest border-2 border-outline-variant rounded-lg p-4 shadow-sm">
+<div class="flex justify-between items-center mb-4">
+<button class="p-2 rounded-full hover:bg-surface-variant text-on-surface-variant">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<span class="font-label-lg text-label-lg-mobile text-on-surface">October 2023 / अक्टूबर</span>
+<button class="p-2 rounded-full hover:bg-surface-variant text-on-surface-variant">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+<div class="grid grid-cols-7 gap-2 mb-2 text-center font-label-md text-label-md text-on-surface-variant">
+<div class="">S</div><div class="">M</div><div class="">T</div><div class="">W</div><div class="">T</div><div class="">F</div><div class="">S</div>
+</div>
+<div class="grid grid-cols-7 gap-2 text-center font-body-md text-body-md"><div class="text-outline-variant py-2">28</div><div class="text-outline-variant py-2">29</div><div class="text-outline-variant py-2">30</div><button class="py-2 rounded-full hover:bg-surface-variant flex flex-col items-center justify-center">1<div class="w-1.5 h-1.5 rounded-full bg-primary mt-0.5"></div></button><button class="py-2 rounded-full hover:bg-surface-variant flex flex-col items-center justify-center">2<div class="w-1.5 h-1.5 rounded-full bg-primary mt-0.5"></div></button><button class="py-2 rounded-full hover:bg-surface-variant flex flex-col items-center justify-center">3<div class="w-1.5 h-1.5 rounded-full bg-primary mt-0.5"></div></button><button class="py-2 rounded-full hover:bg-surface-variant flex flex-col items-center justify-center">4<div class="w-1.5 h-1.5 rounded-full bg-primary mt-0.5"></div></button><button class="py-2 rounded-full hover:bg-surface-variant flex flex-col items-center justify-center">5<div class="w-1.5 h-1.5 rounded-full bg-primary mt-0.5"></div></button><button class="py-2 rounded-full hover:bg-surface-variant flex flex-col items-center justify-center">6<div class="w-1.5 h-1.5 rounded-full bg-primary mt-0.5"></div></button><button class="py-2 rounded-full hover:bg-surface-variant flex flex-col items-center justify-center">7<div class="w-1.5 h-1.5 rounded-full bg-primary mt-0.5"></div></button><button class="py-2 rounded-full hover:bg-surface-variant flex flex-col items-center justify-center">8<div class="w-1.5 h-1.5 rounded-full bg-primary mt-0.5"></div></button><button class="py-2 rounded-full hover:bg-surface-variant flex flex-col items-center justify-center">9<div class="w-1.5 h-1.5 rounded-full bg-primary mt-0.5"></div></button><button class="py-2 rounded-full hover:bg-surface-variant flex flex-col items-center justify-center">10<div class="w-1.5 h-1.5 rounded-full bg-primary mt-0.5"></div></button><button class="py-2 rounded-full hover:bg-surface-variant flex flex-col items-center justify-center">11<div class="w-1.5 h-1.5 rounded-full bg-primary mt-0.5"></div></button><button class="py-2 rounded-full hover:bg-surface-variant flex flex-col items-center justify-center font-bold">12<div class="w-1.5 h-1.5 rounded-full bg-primary mt-0.5"></div></button><button class="py-2 rounded-full hover:bg-surface-variant flex flex-col items-center justify-center">13<div class="w-1.5 h-1.5 rounded-full bg-primary mt-0.5"></div></button><button class="py-2 rounded-full hover:bg-surface-variant flex flex-col items-center justify-center">14<div class="w-1.5 h-1.5 rounded-full bg-primary mt-0.5"></div></button><button class="py-2 rounded-full hover:bg-surface-variant flex flex-col items-center justify-center">15<div class="w-1.5 h-1.5 rounded-full bg-primary mt-0.5"></div></button><button class="py-2 rounded-full hover:bg-surface-variant flex flex-col items-center justify-center">16<div class="w-1.5 h-1.5 rounded-full bg-primary mt-0.5"></div></button><button class="py-2 rounded-full hover:bg-surface-variant flex flex-col items-center justify-center">17<div class="w-1.5 h-1.5 rounded-full bg-primary mt-0.5"></div></button><button class="py-2 rounded-full hover:bg-surface-variant flex flex-col items-center justify-center">18<div class="w-1.5 h-1.5 rounded-full bg-primary mt-0.5"></div></button><button class="py-2 rounded-full hover:bg-surface-variant text-error font-medium flex flex-col items-center justify-center">19<div class="w-1.5 h-1.5 rounded-full bg-error mt-0.5"></div></button><button class="py-2 rounded-full hover:bg-surface-variant text-error font-medium flex flex-col items-center justify-center">20<div class="w-1.5 h-1.5 rounded-full bg-error mt-0.5"></div></button><button class="py-2 rounded-full hover:bg-surface-variant flex flex-col items-center justify-center">21<div class="w-1.5 h-1.5 rounded-full bg-primary mt-0.5"></div></button><button class="py-2 rounded-full hover:bg-surface-variant flex flex-col items-center justify-center">22<div class="w-1.5 h-1.5 rounded-full bg-primary mt-0.5"></div></button><button class="py-2 rounded-full hover:bg-surface-variant flex flex-col items-center justify-center">23<div class="w-1.5 h-1.5 rounded-full bg-primary mt-0.5"></div></button><button class="py-2 rounded-full hover:bg-surface-variant flex flex-col items-center justify-center">24<div class="w-1.5 h-1.5 rounded-full bg-secondary mt-0.5"></div></button><button class="py-2 rounded-full hover:bg-surface-variant flex flex-col items-center justify-center">25<div class="w-1.5 h-1.5 rounded-full bg-secondary mt-0.5"></div></button></div>
+</div>
+<!-- Legend -->
+<div class="flex items-center gap-4 mt-3 font-label-md text-label-md text-on-surface-variant"><div class="flex items-center gap-1"><div class="w-3 h-3 rounded-full bg-primary"></div><span class="">Available / उपलब्ध</span></div><div class="flex items-center gap-1"><div class="w-3 h-3 rounded-full bg-error"></div><span class="">Full / पूर्ण</span></div><div class="flex items-center gap-1"><div class="w-3 h-3 rounded-full bg-secondary"></div><span class="">Filling Fast / तेजी से भर रहे हैं</span></div></div>
+</section>
+<!-- Crop & Quantity Selection -->
+<section class="mb-stack-gap-lg">
+<div class="flex items-center gap-2 mb-4">
+<div class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-md text-xs font-bold">1</div>
+<h2 class="font-headline-sm text-primary-container">Select Crop &amp; Estimated Quantity</h2>
+</div>
+<div class="flex overflow-x-auto no-scrollbar gap-4 pb-2 mb-6">
+<!-- Wheat -->
+<button class="flex-none w-40 flex flex-col items-center justify-center p-4 rounded-xl border-2 border-primary bg-[#E8F5E9] shadow-sm transition-transform active:scale-95">
+<span class="material-symbols-outlined text-4xl text-primary mb-2">grass</span>
+<span class="font-label-lg text-primary text-center">Wheat (गेहूँ)</span>
+<span class="font-label-md text-primary mt-1">MSP: ₹2,425/Qtl</span>
+</button>
+<!-- Paddy -->
+<button class="flex-none w-40 flex flex-col items-center justify-center p-4 rounded-xl border border-outline-variant bg-surface-container-lowest shadow-sm hover:bg-surface-variant transition-transform active:scale-95">
+<span class="material-symbols-outlined text-4xl text-primary mb-2">eco</span>
+<span class="font-label-lg text-on-surface text-center">Paddy / Rice (धान)</span>
+<span class="font-label-md text-primary mt-1">MSP: ₹2,320/Qtl</span>
+</button>
+<!-- Mustard -->
+<button class="flex-none w-40 flex flex-col items-center justify-center p-4 rounded-xl border border-outline-variant bg-surface-container-lowest shadow-sm hover:bg-surface-variant transition-transform active:scale-95">
+<span class="material-symbols-outlined text-4xl text-primary mb-2">spa</span>
+<span class="font-label-lg text-on-surface text-center">Mustard (सरसों)</span>
+<span class="font-label-md text-primary mt-1">MSP: ₹5,950/Qtl</span>
+</button>
+<!-- Gram -->
+<button class="flex-none w-40 flex flex-col items-center justify-center p-4 rounded-xl border border-outline-variant bg-surface-container-lowest shadow-sm hover:bg-surface-variant transition-transform active:scale-95">
+<span class="material-symbols-outlined text-4xl text-primary mb-2">hive</span>
+<span class="font-label-lg text-on-surface text-center">Gram / Chana (चना)</span>
+<span class="font-label-md text-primary mt-1">MSP: ₹5,650/Qtl</span>
+</button>
+<!-- Mustard -->
+<button class="flex-none w-40 flex flex-col items-center justify-center p-4 rounded-xl border border-outline-variant bg-surface-container-lowest shadow-sm hover:bg-surface-variant transition-transform active:scale-95">
+<span class="material-symbols-outlined text-4xl text-primary mb-2">spa</span>
+<span class="font-label-lg text-on-surface text-center">Mustard (सरसों)</span>
+<span class="font-label-md text-primary mt-1">MSP: ₹5,950/Qtl</span>
+</button>
+<!-- Gram -->
+<button class="flex-none w-40 flex flex-col items-center justify-center p-4 rounded-xl border border-outline-variant bg-surface-container-lowest shadow-sm hover:bg-surface-variant transition-transform active:scale-95">
+<span class="material-symbols-outlined text-4xl text-primary mb-2">hive</span>
+<span class="font-label-lg text-on-surface text-center">Gram / Chana (चना)</span>
+<span class="font-label-md text-primary mt-1">MSP: ₹5,650/Qtl</span>
+</button><button class="flex-none w-40 flex flex-col items-center justify-center p-4 rounded-xl border border-outline-variant bg-surface-container-lowest shadow-sm hover:bg-surface-variant transition-transform active:scale-95">
+<span class="material-symbols-outlined text-4xl text-primary mb-2">potted_plant</span>
+<span class="font-label-lg text-on-surface text-center">Sugarcane (गन्ना)</span>
+<span class="font-label-md text-primary mt-1">MSP: ₹3,150/Ton</span>
+</button><button class="flex-none w-40 flex flex-col items-center justify-center p-4 rounded-xl border border-outline-variant bg-surface-container-lowest shadow-sm hover:bg-surface-variant transition-transform active:scale-95"><span class="material-symbols-outlined text-4xl text-primary mb-2">spa</span><span class="font-label-lg text-on-surface text-center">Mustard (सरसों)</span><span class="font-label-md text-primary mt-1">MSP: ₹5,950/Qtl</span></button><button class="flex-none w-40 flex flex-col items-center justify-center p-4 rounded-xl border border-outline-variant bg-surface-container-lowest shadow-sm hover:bg-surface-variant transition-transform active:scale-95"><span class="material-symbols-outlined text-4xl text-primary mb-2">hive</span><span class="font-label-lg text-on-surface text-center">Gram / Chana (चना)</span><span class="font-label-md text-primary mt-1">MSP: ₹5,650/Qtl</span></button><button class="flex-none w-40 flex flex-col items-center justify-center p-4 rounded-xl border border-outline-variant bg-surface-container-lowest shadow-sm hover:bg-surface-variant transition-transform active:scale-95"><span class="material-symbols-outlined text-4xl text-primary mb-2">potted_plant</span><span class="font-label-lg text-on-surface text-center">Sugarcane (गन्ना)</span><span class="font-label-md text-primary mt-1">MSP: ₹340/Qtl</span></button><!-- Mustard -->
+<button class="flex-none w-40 flex flex-col items-center justify-center p-4 rounded-xl border border-outline-variant bg-surface-container-lowest shadow-sm hover:bg-surface-variant transition-transform active:scale-95">
+<span class="material-symbols-outlined text-4xl text-primary mb-2">spa</span>
+<span class="font-label-lg text-on-surface text-center">Mustard (सरसों)</span>
+<span class="font-label-md text-primary mt-1">MSP: ₹5,950/Qtl</span>
+</button>
+<!-- Gram -->
+<button class="flex-none w-40 flex flex-col items-center justify-center p-4 rounded-xl border border-outline-variant bg-surface-container-lowest shadow-sm hover:bg-surface-variant transition-transform active:scale-95">
+<span class="material-symbols-outlined text-4xl text-primary mb-2">grain</span>
+<span class="font-label-lg text-on-surface text-center">Gram / Chana (चना)</span>
+<span class="font-label-md text-primary mt-1">MSP: ₹5,650/Qtl</span>
+</button><!-- Sugarcane -->
+<button class="flex-none w-40 flex flex-col items-center justify-center p-4 rounded-xl border border-outline-variant bg-surface-container-lowest shadow-sm hover:bg-surface-variant transition-transform active:scale-95">
+<span class="material-symbols-outlined text-4xl text-primary mb-2">grass</span>
+<span class="font-label-lg text-on-surface text-center">Sugarcane (गन्ना)</span>
+<span class="font-label-md text-primary mt-1">MSP: ₹315/Qtl</span>
+</button>
+<!-- Cotton -->
+<button class="flex-none w-40 flex flex-col items-center justify-center p-4 rounded-xl border border-outline-variant bg-surface-container-lowest shadow-sm hover:bg-surface-variant transition-transform active:scale-95">
+<span class="material-symbols-outlined text-4xl text-primary mb-2">cloud</span>
+<span class="font-label-lg text-on-surface text-center">Cotton (कपास)</span>
+<span class="font-label-md text-primary mt-1">MSP: ₹6,620/Qtl</span>
+</button>
+<!-- Maize -->
+<button class="flex-none w-40 flex flex-col items-center justify-center p-4 rounded-xl border border-outline-variant bg-surface-container-lowest shadow-sm hover:bg-surface-variant transition-transform active:scale-95">
+<span class="material-symbols-outlined text-4xl text-primary mb-2">agriculture</span>
+<span class="font-label-lg text-on-surface text-center">Maize (मक्का)</span>
+<span class="font-label-md text-primary mt-1">MSP: ₹2,090/Qtl</span>
+</button></div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block font-label-lg text-on-surface mb-2">
+            Quantity (in Quintals) <span class="text-error">*</span>
+</label>
+<div class="flex rounded-lg border-2 border-outline-variant overflow-hidden bg-surface-container-lowest">
+<input class="flex-grow px-4 py-3 border-none focus:ring-0 text-on-surface font-body-lg" type="number" value="50">
+<div class="bg-surface-container px-4 py-3 border-l-2 border-outline-variant flex items-center justify-center">
+<span class="font-label-md text-on-surface-variant">Quintals</span>
+</div>
+</div>
+<p class="font-label-md text-on-surface-variant mt-2 text-xs">1 Quintal = 100 Kilograms (Max 500 Qtl/slot)</p>
+</div>
+<div>
+<label class="block font-label-lg text-on-surface mb-2">
+            Estimated Government MSP Payout
+        </label>
+<div class="bg-[#E8F5E9] border border-[#C8E6C9] rounded-lg p-4 flex items-center justify-between">
+<span class="font-headline-md text-primary font-bold">₹ 1,21,250.00</span>
+<span class="bg-primary text-on-primary px-3 py-1 rounded-full font-label-md text-xs whitespace-nowrap">100% DBT to Bank</span>
+</div>
+</div>
+</div>
+<hr class="border-outline-variant my-8">
+</section>
+<!-- Time Slot Selection -->
+<section class="mb-stack-gap-lg">
+<label class="block font-headline-sm text-headline-sm-mobile text-primary-container mb-unit">
+                3. Select Time / समय चुनें
+            </label>
+<div class="grid grid-cols-2 gap-gutter-mobile">
+<!-- Morning Slot (Selected) -->
+<button class="flex flex-col items-center justify-center p-4 min-h-[100px] rounded-xl border-2 border-secondary bg-[#E8F5E9] shadow-sm transition-transform active:scale-95 relative overflow-hidden">
+<div class="absolute top-0 right-0 bg-secondary text-on-secondary px-2 py-1 rounded-bl-lg font-label-md text-[10px]">FAST</div>
+<span class="material-symbols-outlined text-4xl text-primary-container mb-2" data-icon="light_mode" data-weight="fill">light_mode</span>
+<span class="font-label-lg text-label-lg-mobile text-primary-container">Morning / सुबह</span>
+<span class="font-body-md text-body-md text-on-surface-variant">08:00 AM - 12:00 PM</span>
+</button>
+<!-- Evening Slot -->
+<button class="flex flex-col items-center justify-center p-4 min-h-[100px] rounded-xl border-2 border-outline-variant bg-surface-container-lowest shadow-sm hover:bg-surface-variant transition-transform active:scale-95">
+<span class="material-symbols-outlined text-4xl text-outline-variant mb-2" data-icon="dark_mode" data-weight="fill">dark_mode</span>
+<span class="font-label-lg text-label-lg-mobile text-on-surface">Evening / शाम</span>
+<span class="font-body-md text-body-md text-on-surface-variant">02:00 PM - 06:00 PM</span>
+</button>
+</div>
+</section>
+<!-- Commodity Estimation (Optional Details) -->
+<section class="mb-stack-gap-lg">
+<div class="bg-tertiary-fixed rounded-xl p-4 border border-outline-variant">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary-container mt-1" data-icon="info" data-weight="fill">info</span>
+<div>
+<h4 class="font-label-lg text-label-lg-mobile text-on-tertiary-fixed mb-1">Estimated Load / अनुमानित भार</h4>
+<p class="font-body-md text-body-md text-on-tertiary-fixed-variant">
+                            Please ensure your vehicle arrives 30 minutes before the slot time. Expected wait time is ~45 mins.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Action Area (Sticky) -->
+<div class="fixed bottom-0 w-full bg-surface-container-lowest border-t-2 border-primary-container p-margin-mobile pb-6 z-50">
+<button class="w-full h-touch-target-min bg-primary-container hover:bg-primary text-on-primary rounded-xl font-headline-sm text-headline-sm-mobile flex items-center justify-center gap-2 shadow-lg transition-transform active:scale-95">
+<span class="material-symbols-outlined" data-icon="check_circle" data-weight="fill">check_circle</span>
+            Confirm Booking / बुकिंग की पुष्टि करें
+        </button>
+</div>
+
+
+
+
+
+
+
+
+</body></html>

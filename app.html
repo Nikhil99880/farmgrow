@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Kisan Setu | किसान सेतु</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&family=Noto+Sans:wght@400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    body { font-family: 'Noto Sans', sans-serif; background-color: #0A0F1D; color: #FFFFFF; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Be Vietnam Pro', sans-serif; }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    .material-symbols-outlined.fill { font-variation-settings: 'FILL' 1; }
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    @media (min-width: 768px) {
+      .phone-frame {
+        box-shadow: 0 25px 60px -15px rgba(0, 230, 118, 0.25), 0 0 0 12px #1E293B, 0 0 0 14px #334155;
+        border-radius: 44px;
+      }
+    }
+  </style>
+</head>
+<body class="h-full flex items-center justify-center p-0 md:p-6 bg-[#070B14] text-white">
+
+  <!-- Strictly Single-Screen Mobile Frame (No Sidebar, No Switcher) -->
+  <div class="phone-frame w-full max-w-[430px] h-full md:h-[880px] bg-[#121212] text-white flex flex-col relative overflow-hidden shadow-2xl">
+
+    <!-- Top Status / Header Bar -->
+    <header class="bg-[#181F2C] border-b border-[#2A364F] px-6 py-4 flex items-center justify-between z-10 shrink-0">
+      <div class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-full bg-[#00E676]/20 border border-[#00E676] flex items-center justify-center text-[#00E676]">
+          <span class="material-symbols-outlined text-lg fill">agriculture</span>
+        </div>
+        <div>
+          <h1 class="font-extrabold text-sm text-[#00E676] tracking-wide">KISAN SETU</h1>
+          <p class="text-[10px] text-slate-400">Step 1 of 8: Registration</p>
+        </div>
+      </div>
+      <!-- Language Toggle -->
+      <button onclick="toggleLang()" class="px-3 py-1 rounded-full bg-[#1E293B] border border-[#00E676]/40 text-[#00E676] text-xs font-bold hover:bg-[#00E676]/10 transition-all">
+        <span id="lang-btn-text">EN ⇄ हि</span>
+      </button>
+    </header>
+
+    <!-- Main Mobile Content Area (Centered Card UI - Eliminating All Blank White Spaces) -->
+    <main class="flex-1 flex flex-col justify-between p-6 overflow-y-auto hide-scrollbar">
+      
+      <!-- Top Branding & Greeting Banner -->
+      <div class="text-center pt-2">
+        <div class="w-24 h-24 mx-auto rounded-full bg-[#1E293B] border-2 border-[#00E676] flex items-center justify-center shadow-[0_0_25px_rgba(0,230,118,0.3)] mb-4">
+          <span class="material-symbols-outlined text-5xl text-[#00E676] fill">lock_open</span>
+        </div>
+        <h2 class="text-2xl font-black text-white tracking-tight" id="login-title">Farmer Login</h2>
+        <p class="text-xs text-slate-400 mt-1" id="login-subtitle">Enter your registered 10-digit mobile number</p>
+      </div>
+
+      <!-- Centered Modern Dark Input Form Card -->
+      <div class="bg-[#1A2232] border border-[#2D3B55] rounded-3xl p-6 shadow-xl my-auto space-y-4">
+        
+        <div class="flex items-center gap-2 text-[#00E676] font-bold text-xs">
+          <span class="material-symbols-outlined text-base">phone_iphone</span>
+          <span id="phone-label">MOBILE NUMBER (मोबाइल नंबर)</span>
+        </div>
+
+        <div class="relative flex items-center">
+          <div class="absolute left-3.5 flex items-center gap-1 text-sm font-black text-slate-300 border-r border-slate-600 pr-2.5">
+            <span>🇮🇳</span>
+            <span>+91</span>
+          </div>
+          <input 
+            type="tel" 
+            id="phone-input" 
+            value="9876543210" 
+            maxlength="10" 
+            placeholder="98765 43210"
+            class="w-full h-14 pl-20 pr-4 bg-[#0F1623] border-2 border-[#2D3B55] rounded-2xl font-black text-lg tracking-wider text-[#00E676] focus:border-[#00E676] focus:outline-none focus:shadow-[0_0_15px_rgba(0,230,118,0.2)] transition-all">
+        </div>
+
+        <div class="bg-[#121927] p-3 rounded-xl border border-slate-800 flex items-start gap-2.5">
+          <span class="material-symbols-outlined text-[#00E676] text-base mt-0.5">verified_user</span>
+          <p class="text-[11px] text-slate-400 leading-snug" id="security-note">
+            A 6-digit OTP will be dispatched via SMS for high-speed authentication.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Trust Badge -->
+      <div class="text-center pb-2">
+        <p class="text-[11px] font-bold text-slate-500 flex items-center justify-center gap-1.5">
+          <span class="material-symbols-outlined text-sm text-[#00E676]">shield</span>
+          Government DBT & Mandi Secured Platform
+        </p>
+      </div>
+
+    </main>
+
+    <!-- Giant Primary Sticky Bottom Button (Blinkit Style Linear Progression) -->
+    <footer class="p-5 bg-[#181F2C] border-t border-[#2A364F] shrink-0">
+      <button 
+        onclick="handleProceed()" 
+        class="w-full h-16 bg-[#00E676] hover:bg-[#00C853] text-[#0A0F1D] rounded-2xl font-black text-base flex items-center justify-center gap-3 shadow-[0_0_20px_rgba(0,230,118,0.4)] active:scale-98 transition-all cursor-pointer">
+        <span id="btn-text">PROCEED TO OTP VERIFICATION</span>
+        <span class="material-symbols-outlined text-2xl font-bold">arrow_forward</span>
+      </button>
+    </footer>
+
+  </div>
+
+  <script>
+    let isHindi = false;
+
+    function toggleLang() {
+      isHindi = !isHindi;
+      document.getElementById('lang-btn-text').innerText = isHindi ? 'हि ⇄ EN' : 'EN ⇄ हि';
+      document.getElementById('login-title').innerText = isHindi ? 'किसान लॉगिन' : 'Farmer Login';
+      document.getElementById('login-subtitle').innerText = isHindi ? 'अपना 10 अंकों का पंजीकृत मोबाइल नंबर दर्ज करें' : 'Enter your registered 10-digit mobile number';
+      document.getElementById('phone-label').innerText = isHindi ? 'मोबाइल नंबर (10 अंक)' : 'MOBILE NUMBER (मोबाइल नंबर)';
+      document.getElementById('security-note').innerText = isHindi ? 'सुरक्षित प्रमाणीकरण के लिए 6 अंकों का ओटीपी एसएमएस भेजा जाएगा।' : 'A 6-digit OTP will be dispatched via SMS for high-speed authentication.';
+      document.getElementById('btn-text').innerText = isHindi ? 'ओटीपी सत्यापन के लिए आगे बढ़ें' : 'PROCEED TO OTP VERIFICATION';
+    }
+
+    function handleProceed() {
+      const phone = document.getElementById('phone-input').value;
+      if (phone.length === 10) {
+        alert('Proceeding to Screen 2: OTP Verification (+91 ' + phone + ')');
+      } else {
+        alert('Please enter a valid 10-digit number');
+      }
+    }
+  </script>
+</body>
+</html>

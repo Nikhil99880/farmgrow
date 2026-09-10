@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Kisan Setu - Rural Agriculture & Mandi Portal</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  
+  <!-- Google Fonts: Be Vietnam Pro & Noto Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#00342b",
+            "primary-container": "#004d40",
+            "on-primary": "#ffffff",
+            "on-primary-container": "#7ebdac",
+            "primary-fixed": "#afefdd",
+            "primary-fixed-dim": "#94d3c1",
+            secondary: "#705d00",
+            "secondary-container": "#fdd400",
+            "on-secondary-container": "#6f5c00",
+            "secondary-fixed": "#ffe170",
+            "secondary-fixed-dim": "#e9c400",
+            tertiary: "#253028",
+            "tertiary-fixed": "#d9e6da",
+            "tertiary-fixed-dim": "#bdcabe",
+            "on-tertiary-fixed": "#131e17",
+            "on-tertiary-fixed-variant": "#3e4a41",
+            surface: "#fcf9f8",
+            "surface-bright": "#fcf9f8",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f6f3f2",
+            "surface-container": "#f0edec",
+            "surface-container-high": "#ebe7e7",
+            "surface-container-highest": "#e5e2e1",
+            "on-surface": "#1c1b1b",
+            "on-surface-variant": "#3f4945",
+            outline: "#707975",
+            "outline-variant": "#bfc9c4",
+            error: "#ba1a1a",
+            "error-container": "#ffdad6",
+            "on-error": "#ffffff",
+            "mint-card": "#E8F5E9",
+            "mint-border": "#C8E6C9"
+          },
+          fontFamily: {
+            headline: ["'Be Vietnam Pro'", "sans-serif"],
+            body: ["'Noto Sans'", "sans-serif"],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Noto Sans', sans-serif;
+      background-color: #fcf9f8;
+      color: #1c1b1b;
+      -webkit-tap-highlight-color: transparent;
+    }
+    h1, h2, h3, h4, h5, h6, .brand-font {
+      font-family: 'Be Vietnam Pro', sans-serif;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .icon-fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    /* Hide scrollbars for carousels */
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* Screen transition animations */
+    .screen-view {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.2s ease-in-out;
+    }
+    .screen-view.active {
+      display: block;
+      opacity: 1;
+    }
+  </style>
+</head>
+<body class="h-full flex flex-col items-center justify-start bg-slate-100 antialiased selection:bg-primary selection:text-white">
+
+  <!-- Mobile Frame Container -->
+  <div id="app-frame" class="w-full max-w-md min-h-screen bg-surface flex flex-col relative shadow-2xl md:my-4 md:rounded-3xl md:border-4 md:border-primary md:min-h-[860px] overflow-hidden">
+
+    <!-- Top App Bar (Dynamic) -->
+    <header id="top-bar" class="sticky top-0 z-40 bg-surface/95 backdrop-blur-sm border-b border-outline-variant px-4 h-16 flex items-center justify-between transition-all">
+      <div class="flex items-center gap-2">
+        <button id="nav-drawer-btn" onclick="toggleDrawer()" class="p-2 -ml-2 rounded-full hover:bg-surface-container text-primary transition-colors">
+          <span class="material-symbols-outlined text-2xl">menu</span>
+        </button>
+        <button id="nav-back-btn" onclick="goBack()" class="hidden p-2 -ml-2 rounded-full hover:bg-surface-container text-primary transition-colors">
+          <span class="material-symbols-outlined text-2xl">arrow_back</span>
+        </button>
+        <h1 id="bar-title" class="brand-font font-bold text-lg text-primary truncate">Kisan Setu</h1>
+      </div>
+      
+      <div class="flex items-center gap-2">
+        <!-- Voice Guide Button -->
+        <button id="voice-guide-btn" onclick="toggleVoiceGuide()" class="flex items-center gap-1 px-3 py-1.5 rounded-full bg-secondary-container text-on-secondary-container hover:bg-secondary-fixed transition-transform active:scale-95 shadow-sm border border-secondary">
+          <span class="material-symbols-outlined text-base">record_voice_over</span>
+          <span class="text-xs font-bold font-headline">Voice Guide</span>
+        </button>
+        
+        <!-- Language Switcher -->
+        <button onclick="cycleLanguage()" class="flex items-center gap-1 px-2.5 py-1.5 rounded-full border border-outline text-primary hover:bg-surface-container transition-colors text-xs font-semibold">
+          <span class="material-symbols-outlined text-sm">language</span>
+          <span id="lang-indicator">EN / हिंदी</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Side Navigation Drawer -->
+    <div id="drawer-overlay" onclick="toggleDrawer()" class="fixed inset-0 bg-black/60 z-50 hidden opacity-0 transition-opacity duration-300"></div>
+    <div id="drawer-menu" class="fixed top-0 left-0 bottom-0 w-72 bg-surface z-50 -translate-x-full transition-transform duration-300 shadow-2xl flex flex-col">
+      <div class="p-5 bg-surface-container-low border-b border-outline-variant">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-headline font-bold text-lg border-2 border-primary">
+            RS
+          </div>
+          <div>
+            <h3 class="font-headline font-bold text-primary text-base">Ram Singh</h3>
+            <p class="text-xs text-on-surface-variant">ID: 482910 | Village: Sonipat</p>
+          </div>
+        </div>
+      </div>
+      <div class="flex-1 py-4 px-2 space-y-1">
+        <button onclick="navigateTo('dashboard'); toggleDrawer();" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-surface-container text-left text-sm font-semibold text-primary">
+          <span class="material-symbols-outlined text-xl">home</span> Home / मुख्य पृष्ठ
+        </button>
+        <button onclick="navigateTo('book_slot'); toggleDrawer();" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-surface-container text-left text-sm font-semibold text-primary">
+          <span class="material-symbols-outlined text-xl">calendar_add_on</span> Book Slot / स्लॉट बुक
+        </button>
+        <button onclick="navigateTo('quality_check'); toggleDrawer();" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-surface-container text-left text-sm font-semibold text-primary">
+          <span class="material-symbols-outlined text-xl">analytics</span> Track Order / ट्रैकिंग
+        </button>
+        <button onclick="navigateTo('my_payments'); toggleDrawer();" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-surface-container text-left text-sm font-semibold text-primary">
+          <span class="material-symbols-outlined text-xl">payments</span> My Payments / भुगतान
+        </button>
+        <button onclick="navigateTo('help_center'); toggleDrawer();" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-surface-container text-left text-sm font-semibold text-primary">
+          <span class="material-symbols-outlined text-xl">support_agent</span> Help Center / सहायता
+        </button>
+      </div>
+      <div class="p-4 border-t border-outline-variant">
+        <button onclick="navigateTo('login'); toggleDrawer();" class="w-full py-2.5 border-2 border-error text-error rounded-xl font-bold text-sm flex items-center justify-center gap-2 hover:bg-error-container/20">
+          <span class="material-symbols-outlined text-lg">logout</span> Logout / लॉगआउट
+        </button>
+      </div>
+    </div>
+
+    <!-- MAIN VIEW CONTAINER (Contains all 10 screen templates) -->
+    <main class="flex-1 overflow-y-auto pb-24">
+
+      <!-- SCREEN 1: LOGIN -->
+      <section id="view-login" class="screen-view active p-5 flex flex-col justify-center min-h-[calc(100vh-140px)]">
+        <div class="bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant shadow-sm my-auto">
+          <!-- Agriculture Avatar -->
+          <div class="flex justify-center mb-6">
+            <div class="w-20 h-20 bg-tertiary-fixed rounded-full flex items-center justify-center border-4 border-primary-container">
+              <span class="material-symbols-outlined text-4xl text-primary icon-fill">agriculture</span>
+            </div>
+          </div>
+          <div class="text-center mb-6">
+            <h2 class="font-headline font-bold text-xl text-primary mb-1">Welcome Back / स्वागत है</h2>
+            <p class="text-xs text-on-surface-variant leading-relaxed">Enter your 10-digit mobile number to login.<br>लॉगिन करने के लिए अपना 10 अंकों का मोबाइल नंबर दर्ज करें।</p>
+          </div>
+
+          <form onsubmit="handleSendOtp(event)" class="space-y-4">
+            <div>
+              <label class="block font-headline font-semibold text-xs text-on-surface mb-1.5" for="login-mobile">Mobile Number / मोबाइल नंबर</label>
+              <div class="relative flex items-center">
+                <span class="absolute left-3.5 text-sm font-bold text-on-surface-variant">+91</span>
+                <input id="login-mobile" type="tel" pattern="[0-9]{10}" maxlength="10" required value="9876543210" class="w-full h-12 pl-12 pr-4 bg-surface border-2 border-outline rounded-xl font-semibold text-on-surface focus:border-primary focus:ring-0 outline-none text-base" placeholder="00000 00000">
+              </div>
+              <p class="text-[11px] text-on-surface-variant mt-1.5">We will send an OTP for verification.</p>
+            </div>
+
+            <button type="submit" class="w-full h-12 bg-primary-container hover:bg-primary text-on-primary font-headline font-bold text-sm rounded-xl flex items-center justify-center gap-2 transition-transform active:scale-95 shadow-sm">
+              <span>Send OTP / ओटीपी भेजें</span>
+              <span class="material-symbols-outlined text-lg">arrow_forward</span>
+            </button>
+          </form>
+
+          <div class="mt-6 pt-4 border-t border-outline-variant text-center">
+            <button onclick="navigateTo('link_aadhaar')" class="text-xs font-semibold text-primary underline underline-offset-4">
+              First time registration? Setup Aadhaar / नया खाता बनाएं
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCREEN 2: OTP VERIFICATION -->
+      <section id="view-verify_otp" class="screen-view p-5 flex flex-col justify-center min-h-[calc(100vh-140px)]">
+        <div class="bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant shadow-sm my-auto text-center">
+          <div class="w-16 h-16 bg-primary-container text-on-primary-container rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="material-symbols-outlined text-3xl">lock_open</span>
+          </div>
+          <h2 class="font-headline font-bold text-2xl text-primary mb-1">Verify OTP</h2>
+          <p class="text-xs text-on-surface-variant">We have sent an OTP to</p>
+          <p id="otp-phone-display" class="font-headline font-bold text-base text-on-surface mt-1">+91 98765 43210</p>
+
+          <!-- 6-digit boxes -->
+          <div class="flex justify-between gap-1.5 my-6 max-w-[280px] mx-auto">
+            <input type="text" maxlength="1" value="1" class="otp-box w-10 h-12 text-center font-headline font-bold text-xl bg-surface border-2 border-outline rounded-lg focus:border-secondary-container focus:outline-none">
+            <input type="text" maxlength="1" value="2" class="otp-box w-10 h-12 text-center font-headline font-bold text-xl bg-surface border-2 border-outline rounded-lg focus:border-secondary-container focus:outline-none">
+            <input type="text" maxlength="1" value="3" class="otp-box w-10 h-12 text-center font-headline font-bold text-xl bg-surface border-2 border-outline rounded-lg focus:border-secondary-container focus:outline-none">
+            <input type="text" maxlength="1" value="4" class="otp-box w-10 h-12 text-center font-headline font-bold text-xl bg-surface border-2 border-outline rounded-lg focus:border-secondary-container focus:outline-none">
+            <input type="text" maxlength="1" value="5" class="otp-box w-10 h-12 text-center font-headline font-bold text-xl bg-surface border-2 border-outline rounded-lg focus:border-secondary-container focus:outline-none">
+            <input type="text" maxlength="1" value="6" class="otp-box w-10 h-12 text-center font-headline font-bold text-xl bg-surface border-2 border-outline rounded-lg focus:border-secondary-container focus:outline-none">
+          </div>
+
+          <div class="text-xs text-on-surface-variant mb-6">
+            Didn't receive the code?<br>
+            <button onclick="resendOtp()" id="otp-resend-btn" class="font-bold text-primary underline mt-1">Resend OTP (00:30)</button>
+          </div>
+
+          <button onclick="navigateTo('dashboard')" class="w-full h-12 bg-primary-container hover:bg-primary text-on-primary font-headline font-bold text-sm rounded-xl flex items-center justify-center gap-2 transition-transform active:scale-95 shadow-sm">
+            <span>Verify & Login / पुष्टि करें</span>
+            <span class="material-symbols-outlined text-lg">check_circle</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- SCREEN 3: LINK AADHAAR -->
+      <section id="view-link_aadhaar" class="screen-view p-5 space-y-5">
+        <div>
+          <h2 class="font-headline font-bold text-xl text-primary mb-1">Getting Started / शुरू करें</h2>
+          <p class="text-xs text-on-surface-variant">Complete these steps to access government procurement services.</p>
+        </div>
+
+        <!-- Stepper -->
+        <div class="bg-surface-container-low p-4 rounded-xl border border-outline-variant space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-7 h-7 rounded-full bg-primary text-white flex items-center justify-center font-bold text-xs"><span class="material-symbols-outlined text-base">check</span></div>
+            <div><p class="font-headline font-bold text-xs text-primary">1. Profile Setup</p><p class="text-[10px] text-on-surface-variant">Completed</p></div>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="w-7 h-7 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold text-xs border border-secondary">2</div>
+            <div><p class="font-headline font-bold text-xs text-on-surface">2. Aadhaar Linking</p><p class="text-[10px] text-secondary font-bold">Current Step</p></div>
+          </div>
+          <div class="flex items-center gap-3 opacity-60">
+            <div class="w-7 h-7 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center font-bold text-xs">3</div>
+            <p class="font-headline font-semibold text-xs text-on-surface-variant">3. Land Details</p>
+          </div>
+          <div class="flex items-center gap-3 opacity-60">
+            <div class="w-7 h-7 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center font-bold text-xs">4</div>
+            <p class="font-headline font-semibold text-xs text-on-surface-variant">4. Bank Account for DBT</p>
+          </div>
+        </div>
+
+        <!-- Aadhaar Card Form -->
+        <div class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden shadow-sm">
+          <div class="bg-primary text-white p-3.5 flex items-center gap-2">
+            <span class="material-symbols-outlined text-xl">fingerprint</span>
+            <h3 class="font-headline font-bold text-sm">Step 2: Link Aadhaar</h3>
+          </div>
+          <div class="p-4 space-y-4">
+            <div>
+              <label class="block font-headline font-semibold text-xs text-on-surface mb-1">12-Digit Aadhaar Number</label>
+              <div class="relative">
+                <input type="text" value="2345 6789 3942" class="w-full h-12 px-3 bg-surface border-2 border-outline rounded-lg font-semibold text-on-surface text-base" placeholder="XXXX XXXX XXXX">
+                <span class="material-symbols-outlined absolute right-3 top-3 text-outline">lock</span>
+              </div>
+              <p class="text-[11px] text-on-surface-variant mt-1">Your data is secured and encrypted.</p>
+            </div>
+            <div class="flex items-start gap-2">
+              <input type="checkbox" checked id="consent" class="mt-0.5 w-4 h-4 rounded text-primary">
+              <label for="consent" class="text-xs text-on-surface-variant leading-tight">
+                I hereby give consent to Kisan Setu to verify my Aadhaar details for Direct Benefit Transfers (DBT).
+              </label>
+            </div>
+            <button onclick="navigateTo('dbt_setup')" class="w-full h-12 bg-primary text-white font-headline font-bold text-sm rounded-xl flex items-center justify-center gap-2 shadow active:scale-95">
+              <span class="material-symbols-outlined text-lg">how_to_reg</span>
+              <span>Verify via Face/OTP / सत्यापित करें</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCREEN 4: DBT SETUP -->
+      <section id="view-dbt_setup" class="screen-view p-5 space-y-5">
+        <div class="bg-mint-card border-l-4 border-primary p-3.5 rounded-lg flex items-start gap-3">
+          <span class="material-symbols-outlined text-primary text-2xl">check_circle</span>
+          <div>
+            <h3 class="font-headline font-bold text-sm text-primary">Aadhaar Verified / आधार सत्यापित</h3>
+            <p class="text-xs text-on-surface-variant mt-0.5">Your Aadhaar ending in **3942 is verified. Confirm your bank details for Direct Benefit Transfer (DBT).</p>
+          </div>
+        </div>
+
+        <div class="bg-surface-container-lowest p-4 rounded-xl border border-outline-variant space-y-3.5 shadow-sm">
+          <h3 class="font-headline font-bold text-sm text-on-surface pb-2 border-b border-outline-variant">Primary Account Details</h3>
+          <div>
+            <label class="block text-xs font-semibold text-on-surface mb-1">Bank Name</label>
+            <input readonly value="State Bank of India" class="w-full h-11 px-3 bg-surface-container-low border border-outline rounded-lg text-sm text-on-surface-variant font-medium">
+            <p class="text-[10px] text-on-surface-variant mt-0.5">Fetched automatically via NPCI</p>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-on-surface mb-1">Account Number</label>
+            <input type="password" value="341256789012" class="w-full h-11 px-3 bg-surface border border-outline rounded-lg text-sm font-semibold">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-on-surface mb-1">IFSC Code</label>
+            <input value="SBIN0001234" class="w-full h-11 px-3 bg-surface border border-outline rounded-lg text-sm font-semibold uppercase">
+          </div>
+        </div>
+
+        <div class="bg-surface-container p-4 rounded-xl border border-outline-variant flex items-center justify-between">
+          <div>
+            <h4 class="font-headline font-bold text-xs text-on-surface">Enable DBT Link / डीबीटी सक्षम करें</h4>
+            <p class="text-[11px] text-on-surface-variant">Receive MSP sales directly to this account</p>
+          </div>
+          <input type="checkbox" checked class="w-5 h-5 rounded text-primary">
+        </div>
+
+        <button onclick="navigateTo('dashboard')" class="w-full h-12 bg-primary-container text-on-primary font-headline font-bold text-sm rounded-xl flex items-center justify-center gap-2 shadow active:scale-95">
+          <span class="material-symbols-outlined text-lg">verified_user</span>
+          <span>Complete Setup / सेटअप पूरा करें</span>
+        </button>
+      </section>
+
+      <!-- SCREEN 5: MAIN DASHBOARD -->
+      <section id="view-dashboard" class="screen-view p-4 space-y-4">
+        <!-- Live Queue Status Card -->
+        <div class="bg-primary text-white p-5 rounded-2xl border border-primary-container relative overflow-hidden shadow-sm">
+          <div class="flex items-center justify-between mb-3">
+            <div>
+              <h3 class="font-headline font-bold text-base text-primary-fixed">Live Queue Status</h3>
+              <p class="text-xs text-primary-fixed-dim">कतार की स्थिति • Sonipat Mandi</p>
+            </div>
+            <span class="material-symbols-outlined text-3xl text-secondary-container">timer</span>
+          </div>
+
+          <div class="bg-white/10 rounded-xl p-3.5 backdrop-blur-sm border border-white/20">
+            <div class="flex justify-between items-end mb-2">
+              <span class="font-headline font-black text-3xl text-secondary-fixed">3</span>
+              <span class="text-xs font-bold text-primary-fixed">people ahead / लोग आगे</span>
+            </div>
+            <!-- Progress Bar -->
+            <div class="w-full bg-primary-container h-3 rounded-full overflow-hidden border border-primary/50">
+              <div class="bg-secondary-container h-full rounded-full" style="width: 70%;"></div>
+            </div>
+            <p class="text-[11px] text-primary-fixed mt-2 text-right font-semibold">Est. Wait: 45 mins / अनुमानित समय</p>
+          </div>
+        </div>
+
+        <!-- 2x2 Quick Action Grid -->
+        <div class="grid grid-cols-2 gap-3">
+          <!-- Book Slot -->
+          <button onclick="navigateTo('book_slot')" class="bg-surface-bright border-2 border-outline-variant hover:border-primary p-3.5 rounded-2xl flex flex-col items-start gap-2 text-left transition-all active:scale-95 shadow-sm">
+            <div class="bg-secondary-container/30 p-2.5 rounded-xl text-primary">
+              <span class="material-symbols-outlined text-2xl">calendar_add_on</span>
+            </div>
+            <div>
+              <p class="font-headline font-bold text-sm text-primary">Book Slot</p>
+              <p class="text-xs font-semibold text-on-surface">स्लॉट बुक करें</p>
+            </div>
+          </button>
+
+          <!-- Track Order -->
+          <button onclick="navigateTo('quality_check')" class="bg-surface-bright border-2 border-outline-variant hover:border-primary p-3.5 rounded-2xl flex flex-col items-start gap-2 text-left transition-all active:scale-95 shadow-sm">
+            <div class="bg-secondary-container/30 p-2.5 rounded-xl text-primary">
+              <span class="material-symbols-outlined text-2xl">local_shipping</span>
+            </div>
+            <div>
+              <p class="font-headline font-bold text-sm text-primary">Track Order</p>
+              <p class="text-xs font-semibold text-on-surface">ऑर्डर ट्रैक करें</p>
+            </div>
+          </button>
+
+          <!-- My Payments -->
+          <button onclick="navigateTo('my_payments')" class="bg-surface-bright border-2 border-outline-variant hover:border-primary p-3.5 rounded-2xl flex flex-col items-start gap-2 text-left transition-all active:scale-95 shadow-sm">
+            <div class="bg-secondary-container/30 p-2.5 rounded-xl text-primary">
+              <span class="material-symbols-outlined text-2xl">account_balance_wallet</span>
+            </div>
+            <div>
+              <p class="font-headline font-bold text-sm text-primary">My Payments</p>
+              <p class="text-xs font-semibold text-on-surface">मेरे भुगतान</p>
+            </div>
+          </button>
+
+          <!-- Queue History / Token -->
+          <button onclick="navigateTo('mandi_token')" class="bg-surface-bright border-2 border-outline-variant hover:border-primary p-3.5 rounded-2xl flex flex-col items-start gap-2 text-left transition-all active:scale-95 shadow-sm">
+            <div class="bg-secondary-container/30 p-2.5 rounded-xl text-primary">
+              <span class="material-symbols-outlined text-2xl">groups</span>
+            </div>
+            <div>
+              <p class="font-headline font-bold text-sm text-primary">Mandi Token</p>
+              <p class="text-xs font-semibold text-on-surface">मंडी टोकन</p>
+            </div>
+          </button>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="space-y-2 pt-1">
+          <h4 class="font-headline font-bold text-xs text-primary border-l-4 border-secondary-container pl-2">Recent Activity / हाल की गतिविधि</h4>
+          <div class="bg-mint-card border border-mint-border rounded-xl p-3.5 flex justify-between items-center shadow-sm">
+            <div class="flex items-center gap-3">
+              <div class="bg-primary text-white p-1.5 rounded-full">
+                <span class="material-symbols-outlined text-sm">check_circle</span>
+              </div>
+              <div>
+                <p class="font-headline font-bold text-xs text-on-tertiary-fixed-variant">Wheat Sale Complete</p>
+                <p class="text-[11px] text-on-tertiary-fixed-variant opacity-80">Today, 10:30 AM • Ref: #8901B</p>
+              </div>
+            </div>
+            <span class="font-headline font-bold text-primary text-sm">₹15,400</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCREEN 6: BOOK SLOT -->
+      <section id="view-book_slot" class="screen-view p-4 space-y-4">
+        <!-- 1. Center Selection -->
+        <div class="space-y-1.5">
+          <label class="block font-headline font-bold text-sm text-primary-container">1. Select Center / केंद्र चुनें</label>
+          <div class="inline-flex items-center gap-1 bg-primary-container/10 px-2.5 py-1 rounded-full border border-primary-container/20 text-[11px] text-primary-container font-semibold">
+            <span class="material-symbols-outlined text-xs">timer</span> Shortest Queue / सबसे छोटी कतार
+          </div>
+          <select id="mandi-center-select" class="w-full h-11 bg-surface-container-lowest border-2 border-outline-variant rounded-xl px-3 font-semibold text-xs text-on-surface focus:ring-0">
+            <option>Sonipat Main Mandi (Shortest Queue)</option>
+            <option>Panipat North Hub</option>
+            <option>Rohtak Central</option>
+          </select>
+        </div>
+
+        <!-- 2. Date Picker -->
+        <div class="bg-surface-container-lowest p-3.5 rounded-xl border-2 border-outline-variant space-y-2">
+          <div class="flex justify-between items-center text-xs font-bold text-primary">
+            <button class="p-1 hover:bg-surface-container rounded"><span class="material-symbols-outlined text-sm">chevron_left</span></button>
+            <span>October 2023 / अक्टूबर</span>
+            <button class="p-1 hover:bg-surface-container rounded"><span class="material-symbols-outlined text-sm">chevron_right</span></button>
+          </div>
+          <div class="grid grid-cols-7 gap-1 text-center text-[10px] font-bold text-on-surface-variant">
+            <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+          </div>
+          <div class="grid grid-cols-7 gap-1 text-center text-xs" id="calendar-days">
+            <button onclick="selectDate(10)" class="cal-day py-1 rounded-lg hover:bg-surface-container">10</button>
+            <button onclick="selectDate(11)" class="cal-day py-1 rounded-lg hover:bg-surface-container">11</button>
+            <button onclick="selectDate(12)" class="cal-day py-1 rounded-lg bg-secondary-container border border-secondary font-bold text-on-secondary-container">12</button>
+            <button onclick="selectDate(13)" class="cal-day py-1 rounded-lg hover:bg-surface-container">13</button>
+            <button onclick="selectDate(14)" class="cal-day py-1 rounded-lg hover:bg-surface-container">14</button>
+            <button onclick="selectDate(15)" class="cal-day py-1 rounded-lg hover:bg-surface-container">15</button>
+            <button onclick="selectDate(16)" class="cal-day py-1 rounded-lg hover:bg-surface-container">16</button>
+          </div>
+          <div class="flex justify-around text-[10px] text-on-surface-variant pt-2 border-t border-outline-variant">
+            <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-primary"></span> Available</span>
+            <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-error"></span> Full</span>
+            <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-secondary"></span> Fast</span>
+          </div>
+        </div>
+
+        <!-- 3. Crop Selection -->
+        <div class="space-y-2">
+          <label class="block font-headline font-bold text-sm text-primary-container">3. Select Crop & Quantity / फसल व मात्रा</label>
+          <div class="flex gap-2 overflow-x-auto no-scrollbar pb-1">
+            <button onclick="selectCrop('Wheat (गेहूँ)', 2425)" class="crop-pill flex-none w-28 p-2.5 rounded-xl border-2 border-primary bg-mint-card text-left transition-all">
+              <span class="material-symbols-outlined text-2xl text-primary">grass</span>
+              <p class="font-headline font-bold text-xs text-primary mt-1">Wheat (गेहूँ)</p>
+              <p class="text-[10px] text-primary">MSP: ₹2,425</p>
+            </button>
+            <button onclick="selectCrop('Mustard (सरसों)', 5950)" class="crop-pill flex-none w-28 p-2.5 rounded-xl border border-outline-variant bg-surface-container-lowest text-left transition-all">
+              <span class="material-symbols-outlined text-2xl text-primary">spa</span>
+              <p class="font-headline font-bold text-xs text-on-surface mt-1">Mustard (सरसों)</p>
+              <p class="text-[10px] text-primary">MSP: ₹5,950</p>
+            </button>
+            <button onclick="selectCrop('Paddy (धान)', 2320)" class="crop-pill flex-none w-28 p-2.5 rounded-xl border border-outline-variant bg-surface-container-lowest text-left transition-all">
+              <span class="material-symbols-outlined text-2xl text-primary">eco</span>
+              <p class="font-headline font-bold text-xs text-on-surface mt-1">Paddy (धान)</p>
+              <p class="text-[10px] text-primary">MSP: ₹2,320</p>
+            </button>
+            <button onclick="selectCrop('Gram (चना)', 5650)" class="crop-pill flex-none w-28 p-2.5 rounded-xl border border-outline-variant bg-surface-container-lowest text-left transition-all">
+              <span class="material-symbols-outlined text-2xl text-primary">grain</span>
+              <p class="font-headline font-bold text-xs text-on-surface mt-1">Gram (चना)</p>
+              <p class="text-[10px] text-primary">MSP: ₹5,650</p>
+            </button>
+          </div>
+
+          <!-- Quantity Input & Live MSP Payout -->
+          <div class="grid grid-cols-2 gap-2.5 pt-1">
+            <div>
+              <label class="block text-xs font-semibold text-on-surface mb-1">Quantity (Quintals)</label>
+              <div class="flex rounded-xl border-2 border-outline-variant overflow-hidden bg-surface-container-lowest">
+                <input id="book-qty" type="number" value="50" oninput="updatePayout()" class="w-full px-3 py-2 text-sm font-bold text-on-surface border-none focus:ring-0">
+                <span class="bg-surface-container px-2 py-2 text-xs font-semibold text-on-surface-variant flex items-center">Qtl</span>
+              </div>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-on-surface mb-1">Est. MSP Payout</label>
+              <div class="bg-mint-card border border-mint-border rounded-xl p-2 flex flex-col justify-center">
+                <span id="payout-amount" class="font-headline font-bold text-sm text-primary">₹ 1,21,250</span>
+                <span class="text-[9px] font-bold text-primary">100% DBT to Bank</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Time Slot -->
+        <div class="space-y-1.5">
+          <label class="block font-headline font-bold text-sm text-primary-container">4. Select Time Slot / समय चुनें</label>
+          <div class="grid grid-cols-2 gap-2.5">
+            <button onclick="selectSlot('morning')" id="slot-morning" class="p-3 rounded-xl border-2 border-secondary bg-mint-card text-left relative transition-all">
+              <span class="absolute top-1.5 right-1.5 bg-secondary text-white text-[9px] font-bold px-1.5 py-0.5 rounded">FAST</span>
+              <span class="material-symbols-outlined text-primary text-xl">light_mode</span>
+              <p class="font-headline font-bold text-xs text-primary mt-1">Morning / सुबह</p>
+              <p class="text-[10px] text-on-surface-variant">08:00 AM - 12:00 PM</p>
+            </button>
+            <button onclick="selectSlot('evening')" id="slot-evening" class="p-3 rounded-xl border-2 border-outline-variant bg-surface-container-lowest text-left transition-all">
+              <span class="material-symbols-outlined text-outline text-xl">dark_mode</span>
+              <p class="font-headline font-bold text-xs text-on-surface mt-1">Evening / शाम</p>
+              <p class="text-[10px] text-on-surface-variant">02:00 PM - 06:00 PM</p>
+            </button>
+          </div>
+        </div>
+
+        <!-- Submit -->
+        <button onclick="navigateTo('mandi_token')" class="w-full h-12 bg-primary-container hover:bg-primary text-on-primary font-headline font-bold text-sm rounded-xl flex items-center justify-center gap-2 shadow-lg active:scale-95">
+          <span class="material-symbols-outlined text-lg">check_circle</span>
+          <span>Confirm Booking / बुकिंग की पुष्टि करें</span>
+        </button>
+      </section>
+
+      <!-- SCREEN 7: MANDI TOKEN (Confirmation) -->
+      <section id="view-mandi_token" class="screen-view p-5 space-y-4">
+        <div class="text-center">
+          <div class="w-12 h-12 bg-primary-container text-white rounded-full flex items-center justify-center mx-auto mb-2">
+            <span class="material-symbols-outlined text-2xl">check_circle</span>
+          </div>
+          <h2 class="font-headline font-bold text-xl text-primary">Booking Confirmed</h2>
+          <p class="text-xs text-on-surface-variant">बुकिंग पक्की हो गई</p>
+        </div>
+
+        <!-- Token Ticket -->
+        <div class="bg-surface-container-lowest rounded-2xl border border-outline-variant overflow-hidden shadow-sm">
+          <div class="bg-primary p-3.5 text-center text-white">
+            <p class="text-[10px] uppercase tracking-widest font-bold text-primary-fixed">Token Number / टोकन नंबर</p>
+            <div class="font-headline font-black text-4xl mt-1 text-secondary-fixed">#42</div>
+          </div>
+          <div class="p-4 flex flex-col items-center">
+            <!-- Simulated QR Code SVG -->
+            <div class="w-40 h-40 bg-surface border-2 border-outline-variant rounded-xl p-2.5 flex items-center justify-center mb-3">
+              <svg class="w-full h-full text-primary" viewBox="0 0 100 100" fill="currentColor">
+                <rect x="5" y="5" width="25" height="25" fill="currentColor"/>
+                <rect x="10" y="10" width="15" height="15" fill="#ffffff"/>
+                <rect x="13" y="13" width="9" height="9" fill="currentColor"/>
+                <rect x="70" y="5" width="25" height="25" fill="currentColor"/>
+                <rect x="75" y="10" width="15" height="15" fill="#ffffff"/>
+                <rect x="78" y="13" width="9" height="9" fill="currentColor"/>
+                <rect x="5" y="70" width="25" height="25" fill="currentColor"/>
+                <rect x="10" y="75" width="15" height="15" fill="#ffffff"/>
+                <rect x="13" y="78" width="9" height="9" fill="currentColor"/>
+                <!-- Matrix noise -->
+                <rect x="35" y="10" width="8" height="8"/><rect x="48" y="10" width="8" height="8"/>
+                <rect x="35" y="25" width="8" height="8"/><rect x="55" y="25" width="8" height="8"/>
+                <rect x="10" y="45" width="8" height="8"/><rect x="25" y="45" width="8" height="8"/><rect x="45" y="45" width="15" height="8"/>
+                <rect x="70" y="45" width="8" height="8"/><rect x="85" y="45" width="8" height="8"/>
+                <rect x="35" y="65" width="8" height="8"/><rect x="50" y="65" width="12" height="8"/><rect x="75" y="65" width="8" height="8"/>
+                <rect x="40" y="80" width="8" height="8"/><rect x="55" y="80" width="8" height="8"/><rect x="70" y="80" width="15" height="8"/>
+              </svg>
+            </div>
+            <p class="text-xs text-on-surface-variant font-medium text-center mb-4">Scan at Mandi Gate / मंडी गेट पर स्कैन करें</p>
+
+            <div class="w-full space-y-2 text-xs">
+              <div class="flex justify-between py-1 border-b border-outline-variant">
+                <span class="text-on-surface-variant">Farmer Name / नाम</span>
+                <span class="font-bold text-primary">Ram Singh</span>
+              </div>
+              <div class="flex justify-between py-1 border-b border-outline-variant">
+                <span class="text-on-surface-variant">Mandi / मंडी</span>
+                <span class="font-bold text-primary">Sonipat Main Mandi</span>
+              </div>
+              <div class="flex justify-between py-1 border-b border-outline-variant">
+                <span class="text-on-surface-variant">Date / तारीख</span>
+                <span class="font-bold text-primary">12 Oct 2023</span>
+              </div>
+              <div class="flex justify-between py-1">
+                <span class="text-on-surface-variant">Time Slot / समय</span>
+                <span class="font-bold text-primary">08:00 AM - 12:00 PM</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Offline Banner -->
+        <div class="bg-secondary-container text-on-secondary-container p-3 rounded-xl flex items-center gap-3 border-2 border-secondary">
+          <span class="material-symbols-outlined text-2xl">wifi_off</span>
+          <div>
+            <p class="text-xs font-bold">This token works without internet.</p>
+            <p class="text-[10px]">यह टोकन बिना इंटरनेट के भी काम करेगा।</p>
+          </div>
+        </div>
+
+        <button onclick="downloadTokenPdf()" class="w-full h-11 bg-primary text-white font-headline font-bold text-xs rounded-xl flex items-center justify-center gap-2 shadow active:scale-95">
+          <span class="material-symbols-outlined text-base">download</span>
+          <span>Download Token / टोकन डाउनलोड करें</span>
+        </button>
+        <button onclick="navigateTo('dashboard')" class="w-full h-11 border-2 border-primary text-primary font-headline font-bold text-xs rounded-xl hover:bg-surface-container active:scale-95">
+          Back to Dashboard / मुख्य पृष्ठ
+        </button>
+      </section>
+
+      <!-- SCREEN 8: QUALITY CHECK LIFECYCLE -->
+      <section id="view-quality_check" class="screen-view p-4 space-y-4">
+        <div>
+          <h2 class="font-headline font-bold text-xl text-on-surface">Track Lot #8902A</h2>
+          <p class="text-xs text-on-surface-variant">Wheat Procurement • Center: Sonipat-Mandi</p>
+        </div>
+
+        <!-- Active Stage Card -->
+        <div class="bg-surface-bright rounded-2xl border border-primary/20 overflow-hidden shadow-sm">
+          <div class="bg-secondary-container text-on-secondary-container p-3.5 flex items-center justify-between border-b-2 border-secondary">
+            <div class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-2xl icon-fill">science</span>
+              <div>
+                <h3 class="font-headline font-bold text-xs">Moisture & Quality Test / गुणवत्ता जांच</h3>
+                <p class="text-[10px] opacity-90">Testing in Progress / जांच चल रही है</p>
+              </div>
+            </div>
+            <span class="bg-white/40 px-2 py-0.5 rounded-full text-[10px] font-bold">Active</span>
+          </div>
+
+          <div class="p-3.5 space-y-3">
+            <div class="grid grid-cols-2 gap-2.5">
+              <div class="p-2.5 bg-surface-container-low rounded-xl border border-outline-variant">
+                <p class="text-[10px] text-on-surface-variant">Moisture Level</p>
+                <p class="font-headline font-bold text-base text-primary">12.5%</p>
+                <p class="text-[9px] text-secondary font-bold">Target: &lt;14%</p>
+              </div>
+              <div class="p-2.5 bg-surface-container-low rounded-xl border border-outline-variant">
+                <p class="text-[10px] text-on-surface-variant">Foreign Matter</p>
+                <p class="font-headline font-bold text-base text-primary">0.8%</p>
+                <p class="text-[9px] text-secondary font-bold">Target: &lt;2%</p>
+              </div>
+            </div>
+            <p class="text-xs text-on-surface bg-surface-container-low p-2.5 rounded-xl leading-relaxed">
+              Your crop is currently being tested for moisture and foreign matter content.<br>
+              <span class="text-[11px] text-on-surface-variant">आपकी फसल की गुणवत्ता जांच की जा रही है।</span>
+            </p>
+            <button onclick="showReportModal()" class="w-full py-2.5 border-2 border-primary text-primary rounded-xl font-bold text-xs flex items-center justify-center gap-2 hover:bg-primary/5">
+              <span class="material-symbols-outlined text-base">description</span>
+              <span>View Quality Report / रिपोर्ट देखें</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 6-Stage Stepper -->
+        <div class="bg-surface-bright p-4 rounded-2xl border border-outline-variant space-y-4 shadow-sm">
+          <h3 class="font-headline font-bold text-sm text-on-surface">Crop Lifecycle / फसल चक्र</h3>
+          <div class="space-y-4 pl-2">
+            <div class="flex items-start gap-3">
+              <div class="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center text-xs"><span class="material-symbols-outlined text-xs">check</span></div>
+              <div><p class="font-headline font-bold text-xs text-on-surface">Slot Booked / स्लॉट बुक</p><p class="text-[10px] text-on-surface-variant">Completed • 08:15 AM</p></div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center text-xs"><span class="material-symbols-outlined text-xs">check</span></div>
+              <div><p class="font-headline font-bold text-xs text-on-surface">Gate Entry / गेट एंट्री</p><p class="text-[10px] text-on-surface-variant">Completed • Token #42 Scanned</p></div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-6 h-6 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center text-xs border border-secondary font-bold"><span class="material-symbols-outlined text-xs">science</span></div>
+              <div><p class="font-headline font-bold text-xs text-on-surface">Quality Check / गुणवत्ता जांच</p><p class="text-[10px] text-secondary font-bold">In Progress</p></div>
+            </div>
+            <div class="flex items-start gap-3 opacity-60">
+              <div class="w-6 h-6 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center text-xs"><span class="material-symbols-outlined text-xs">scale</span></div>
+              <div><p class="font-headline font-semibold text-xs text-on-surface-variant">Weighing & Bagging / वजन</p><p class="text-[10px] text-outline">Pending</p></div>
+            </div>
+            <div class="flex items-start gap-3 opacity-60">
+              <div class="w-6 h-6 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center text-xs"><span class="material-symbols-outlined text-xs">receipt_long</span></div>
+              <div><p class="font-headline font-semibold text-xs text-on-surface-variant">Receipt Generation / रसीद</p><p class="text-[10px] text-outline">Pending</p></div>
+            </div>
+            <div class="flex items-start gap-3 opacity-60">
+              <div class="w-6 h-6 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center text-xs"><span class="material-symbols-outlined text-xs">payments</span></div>
+              <div><p class="font-headline font-semibold text-xs text-on-surface-variant">Payment Disbursement / भुगतान</p><p class="text-[10px] text-outline">Pending 100% DBT</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCREEN 9: MY PAYMENTS -->
+      <section id="view-my_payments" class="screen-view p-4 space-y-4">
+        <div>
+          <h2 class="font-headline font-bold text-xl text-on-surface">My Payments / मेरे भुगतान</h2>
+          <p class="text-xs text-on-surface-variant">Track crop sales and government disbursements.</p>
+        </div>
+
+        <!-- Summary Bento Cards -->
+        <div class="grid grid-cols-2 gap-2.5">
+          <div class="bg-primary-container text-white p-3.5 rounded-2xl">
+            <p class="text-[9px] uppercase font-bold text-primary-fixed tracking-wider">Total Received</p>
+            <p class="font-headline font-black text-xl mt-1">₹ 1,45,000</p>
+            <p class="text-[9px] text-primary-fixed-dim mt-0.5">कुल प्राप्त राशि</p>
+          </div>
+          <div class="bg-secondary-container text-on-secondary-container p-3.5 rounded-2xl border-2 border-secondary shadow-[2px_2px_0px_#705d00]">
+            <p class="text-[9px] uppercase font-bold text-secondary tracking-wider">Pending</p>
+            <p class="font-headline font-black text-xl mt-1">₹ 32,500</p>
+            <p class="text-[9px] text-secondary mt-0.5">प्रक्रिया में (लंबित)</p>
+          </div>
+        </div>
+
+        <!-- Transaction Feed -->
+        <div class="space-y-2.5">
+          <h3 class="font-headline font-bold text-xs text-on-surface">Recent Transactions / हाल के लेनदेन</h3>
+          
+          <!-- Item 1 -->
+          <div class="bg-surface-container-lowest border-2 border-outline-variant p-3 rounded-xl flex items-center justify-between border-l-4 border-l-primary shadow-sm">
+            <div class="flex items-center gap-2.5">
+              <div class="w-10 h-10 rounded-full bg-mint-card text-primary flex items-center justify-center">
+                <span class="material-symbols-outlined text-xl">grass</span>
+              </div>
+              <div>
+                <p class="font-headline font-bold text-xs text-on-surface">Wheat Sale (Mandi)</p>
+                <p class="text-[10px] text-on-surface-variant">12 May 2024 • Qty: 20 Qtl</p>
+              </div>
+            </div>
+            <div class="text-right">
+              <p class="font-headline font-bold text-primary text-sm">₹ 45,000</p>
+              <span class="inline-block bg-mint-card text-primary text-[9px] font-bold px-2 py-0.5 rounded-full">Completed</span>
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="bg-surface-container-lowest border-2 border-secondary p-3 rounded-xl flex items-center justify-between border-l-4 border-l-secondary shadow-sm">
+            <div class="flex items-center gap-2.5">
+              <div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center">
+                <span class="material-symbols-outlined text-xl">inventory_2</span>
+              </div>
+              <div>
+                <p class="font-headline font-bold text-xs text-on-surface">Paddy Procurement</p>
+                <p class="text-[10px] text-on-surface-variant">10 May 2024 • Qty: 15 Qtl</p>
+              </div>
+            </div>
+            <div class="text-right">
+              <p class="font-headline font-bold text-on-surface text-sm">₹ 32,500</p>
+              <span class="inline-block bg-secondary-container text-on-secondary-container text-[9px] font-bold px-2 py-0.5 rounded-full">Pending</span>
+            </div>
+          </div>
+
+          <!-- Item 3: Action Required -->
+          <div class="bg-error-container/40 border-2 border-error p-3 rounded-xl space-y-2 border-l-4 border-l-error shadow-sm">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2.5">
+                <div class="w-10 h-10 rounded-full bg-white text-error flex items-center justify-center">
+                  <span class="material-symbols-outlined text-xl">account_balance</span>
+                </div>
+                <div>
+                  <p class="font-headline font-bold text-xs text-on-surface">Subsidy Deposit</p>
+                  <p class="text-[10px] text-on-surface-variant">05 May 2024 • Ref: GOV-SUB-44</p>
+                </div>
+              </div>
+              <p class="font-headline font-bold text-error text-sm">₹ 5,000</p>
+            </div>
+            <p class="text-[11px] text-error font-semibold">Action: Please update IFSC code / कृपया IFSC कोड अपडेट करें</p>
+            <button onclick="navigateTo('dbt_setup')" class="w-full py-1.5 bg-error text-white font-bold text-xs rounded-lg shadow-sm">Update Bank Details</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCREEN 10: HELP CENTER -->
+      <section id="view-help_center" class="screen-view p-4 space-y-4">
+        <!-- Voice Assistant Banner -->
+        <button onclick="toggleVoiceGuide()" class="w-full p-4 bg-primary-container text-white rounded-2xl flex items-center gap-3.5 text-left shadow-sm active:scale-95 transition-transform">
+          <span class="material-symbols-outlined text-3xl text-secondary-container">volume_up</span>
+          <div>
+            <h3 class="font-headline font-bold text-sm">Start Voice Guide</h3>
+            <p class="text-xs text-primary-fixed-dim">वॉइस गाइड शुरू करें (Tap to listen)</p>
+          </div>
+        </button>
+
+        <!-- Change Language Grid -->
+        <div class="space-y-2">
+          <h3 class="font-headline font-bold text-xs text-on-surface">Change Language / भाषा बदलें</h3>
+          <div class="grid grid-cols-2 gap-2">
+            <button onclick="setLang('English')" class="h-10 rounded-xl border-2 border-primary-container bg-surface text-primary font-bold text-xs">English</button>
+            <button onclick="setLang('हिंदी')" class="h-10 rounded-xl border-2 border-secondary-container bg-secondary-container text-on-secondary-container font-bold text-xs">हिंदी</button>
+            <button onclick="setLang('ਪੰਜਾਬੀ')" class="h-10 rounded-xl border-2 border-outline-variant bg-surface text-on-surface font-medium text-xs">ਪੰਜਾਬੀ</button>
+            <button onclick="setLang('मराठी')" class="h-10 rounded-xl border-2 border-outline-variant bg-surface text-on-surface font-medium text-xs">मराठी</button>
+          </div>
+        </div>
+
+        <!-- FAQ Categories -->
+        <div class="space-y-2">
+          <h3 class="font-headline font-bold text-xs text-on-surface">Common Issues / सामान्य समस्याएं</h3>
+          <div class="space-y-2">
+            <button onclick="alert('Booking Help: You can reschedule slots up to 4 hours before the appointment.')" class="w-full p-3 rounded-xl bg-mint-card border border-mint-border flex items-center gap-3 text-left">
+              <span class="material-symbols-outlined text-primary text-2xl">calendar_month</span>
+              <div>
+                <p class="font-headline font-bold text-xs text-on-surface">Booking Help / बुकिंग सहायता</p>
+                <p class="text-[10px] text-on-surface-variant">Slot booking and rescheduling</p>
+              </div>
+            </button>
+            <button onclick="alert('Payment Help: Direct Benefit Transfers are processed within 24-48 hours after quality approval.')" class="w-full p-3 rounded-xl bg-mint-card border border-mint-border flex items-center gap-3 text-left">
+              <span class="material-symbols-outlined text-primary text-2xl">payments</span>
+              <div>
+                <p class="font-headline font-bold text-xs text-on-surface">Payment Issues / भुगतान समस्याएं</p>
+                <p class="text-[10px] text-on-surface-variant">DBT bank account and timing</p>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Contact Support -->
+        <div class="space-y-2 pt-2">
+          <button onclick="alert('Calling Toll-Free Helpline: 1800-180-1551...')" class="w-full p-3.5 bg-secondary-container text-on-secondary-container rounded-2xl flex items-center gap-3 border-2 border-secondary font-bold text-xs">
+            <span class="material-symbols-outlined text-2xl">call</span>
+            <div class="text-left">
+              <p class="font-headline font-bold text-sm">Call Helpline (1800-180-1551)</p>
+              <p class="text-[10px]">टोल-फ्री हेल्पलाइन</p>
+            </div>
+          </button>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- BOTTOM NAVIGATION BAR -->
+    <nav id="bottom-nav" class="sticky bottom-0 z-40 bg-surface border-t-2 border-primary-container h-16 flex justify-around items-center px-2">
+      <button onclick="navigateTo('dashboard')" id="tab-home" class="nav-tab flex flex-col items-center justify-center flex-1 py-1 text-primary">
+        <span class="material-symbols-outlined text-xl">home</span>
+        <span class="text-[10px] font-bold mt-0.5">Home</span>
+      </button>
+      <button onclick="navigateTo('quality_check')" id="tab-track" class="nav-tab flex flex-col items-center justify-center flex-1 py-1 text-on-surface-variant">
+        <span class="material-symbols-outlined text-xl">analytics</span>
+        <span class="text-[10px] font-medium mt-0.5">Track</span>
+      </button>
+      <button onclick="navigateTo('my_payments')" id="tab-payments" class="nav-tab flex flex-col items-center justify-center flex-1 py-1 text-on-surface-variant">
+        <span class="material-symbols-outlined text-xl">payments</span>
+        <span class="text-[10px] font-medium mt-0.5">Payments</span>
+      </button>
+      <button onclick="navigateTo('help_center')" id="tab-help" class="nav-tab flex flex-col items-center justify-center flex-1 py-1 text-on-surface-variant">
+        <span class="material-symbols-outlined text-xl">support_agent</span>
+        <span class="text-[10px] font-medium mt-0.5">Support</span>
+      </button>
+    </nav>
+
+  </div>
+
+  <!-- Quality Report Modal -->
+  <div id="report-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-end justify-center p-0">
+    <div class="bg-surface-container-lowest w-full max-w-md rounded-t-3xl p-5 space-y-4 animate-in slide-in-from-bottom">
+      <div class="flex justify-between items-center pb-2 border-b border-outline-variant">
+        <h3 class="font-headline font-bold text-base text-primary">Quality Test Report (Lab 2)</h3>
+        <button onclick="hideReportModal()" class="p-1 hover:bg-surface-container rounded-full"><span class="material-symbols-outlined">close</span></button>
+      </div>
+      <div class="space-y-2 text-xs">
+        <div class="flex justify-between py-1 border-b border-outline-variant"><span>Crop Sample:</span><span class="font-bold text-primary">Sharbati Wheat (Grade A)</span></div>
+        <div class="flex justify-between py-1 border-b border-outline-variant"><span>Moisture Content:</span><span class="font-bold text-primary">12.5% (PASS &lt; 14%)</span></div>
+        <div class="flex justify-between py-1 border-b border-outline-variant"><span>Foreign Matter:</span><span class="font-bold text-primary">0.8% (PASS &lt; 2%)</span></div>
+        <div class="flex justify-between py-1 border-b border-outline-variant"><span>Damaged Grain:</span><span class="font-bold text-primary">1.1% (PASS &lt; 3%)</span></div>
+        <div class="flex justify-between py-1"><span>Certification:</span><span class="font-bold text-primary">APPROVED FOR MSP PURCHASE</span></div>
+      </div>
+      <button onclick="hideReportModal()" class="w-full py-2.5 bg-primary text-white font-bold text-xs rounded-xl">Close / बंद करें</button>
+    </div>
+  </div>
+
+  <script>
+    // State
+    let currentScreen = 'dashboard';
+    let historyStack = ['dashboard'];
+    let selectedMspRate = 2425;
+    let voiceActive = false;
+
+    const titles = {
+      login: 'Kisan Setu - Login',
+      verify_otp: 'Verify OTP / ओटीपी',
+      link_aadhaar: 'Link Aadhaar / आधार',
+      dbt_setup: 'Bank Details / बैंक विवरण',
+      dashboard: 'Kisan Setu',
+      book_slot: 'Book Slot / स्लॉट बुक करें',
+      mandi_token: 'Confirmation / पुष्टि',
+      quality_check: 'Track Order / ट्रैकिंग',
+      my_payments: 'My Payments / मेरे भुगतान',
+      help_center: 'Help Center / सहायता'
+    };
+
+    function navigateTo(screenId) {
+      if (currentScreen !== screenId) {
+        historyStack.push(screenId);
+      }
+      currentScreen = screenId;
+
+      // Update views
+      document.querySelectorAll('.screen-view').forEach(el => el.classList.remove('active'));
+      const target = document.getElementById('view-' + screenId);
+      if (target) target.classList.add('active');
+
+      // Update Top Bar
+      document.getElementById('bar-title').innerText = titles[screenId] || 'Kisan Setu';
+
+      const showBack = screenId !== 'dashboard' && screenId !== 'login';
+      document.getElementById('nav-back-btn').classList.toggle('hidden', !showBack);
+      document.getElementById('nav-drawer-btn').classList.toggle('hidden', showBack);
+
+      // Hide Bottom nav on Login/OTP
+      const hideNav = screenId === 'login' || screenId === 'verify_otp';
+      document.getElementById('bottom-nav').style.display = hideNav ? 'none' : 'flex';
+
+      // Update active tabs
+      document.querySelectorAll('.nav-tab').forEach(t => {
+        t.classList.remove('text-primary');
+        t.classList.add('text-on-surface-variant');
+      });
+      if (screenId === 'dashboard') document.getElementById('tab-home').classList.add('text-primary');
+      if (screenId === 'quality_check') document.getElementById('tab-track').classList.add('text-primary');
+      if (screenId === 'my_payments') document.getElementById('tab-payments').classList.add('text-primary');
+      if (screenId === 'help_center') document.getElementById('tab-help').classList.add('text-primary');
+
+      window.scrollTo(0, 0);
+    }
+
+    function goBack() {
+      if (historyStack.length > 1) {
+        historyStack.pop();
+        const prev = historyStack[historyStack.length - 1];
+        navigateTo(prev);
+      } else {
+        navigateTo('dashboard');
+      }
+    }
+
+    function toggleDrawer() {
+      const drawer = document.getElementById('drawer-menu');
+      const overlay = document.getElementById('drawer-overlay');
+      const isOpen = !drawer.classList.contains('-translate-x-full');
+
+      if (isOpen) {
+        drawer.classList.add('-translate-x-full');
+        overlay.classList.add('opacity-0');
+        setTimeout(() => overlay.classList.add('hidden'), 300);
+      } else {
+        overlay.classList.remove('hidden');
+        setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+        drawer.classList.remove('-translate-x-full');
+      }
+    }
+
+    function handleSendOtp(e) {
+      e.preventDefault();
+      const mobile = document.getElementById('login-mobile').value;
+      document.getElementById('otp-phone-display').innerText = '+91 ' + mobile;
+      navigateTo('verify_otp');
+    }
+
+    function resendOtp() {
+      alert('New OTP sent: 123456');
+    }
+
+    function selectDate(day) {
+      document.querySelectorAll('.cal-day').forEach(el => {
+        el.className = 'cal-day py-1 rounded-lg hover:bg-surface-container';
+      });
+      event.target.className = 'cal-day py-1 rounded-lg bg-secondary-container border border-secondary font-bold text-on-secondary-container';
+    }
+
+    function selectCrop(name, msp) {
+      selectedMspRate = msp;
+      document.querySelectorAll('.crop-pill').forEach(el => {
+        el.className = 'crop-pill flex-none w-28 p-2.5 rounded-xl border border-outline-variant bg-surface-container-lowest text-left transition-all';
+      });
+      event.currentTarget.className = 'crop-pill flex-none w-28 p-2.5 rounded-xl border-2 border-primary bg-mint-card text-left transition-all';
+      updatePayout();
+    }
+
+    function updatePayout() {
+      const qty = parseFloat(document.getElementById('book-qty').value) || 0;
+      const total = qty * selectedMspRate;
+      document.getElementById('payout-amount').innerText = '₹ ' + total.toLocaleString('en-IN');
+    }
+
+    function selectSlot(type) {
+      document.getElementById('slot-morning').className = 'p-3 rounded-xl border-2 border-outline-variant bg-surface-container-lowest text-left transition-all';
+      document.getElementById('slot-evening').className = 'p-3 rounded-xl border-2 border-outline-variant bg-surface-container-lowest text-left transition-all';
+      document.getElementById('slot-' + type).className = 'p-3 rounded-xl border-2 border-secondary bg-mint-card text-left relative transition-all';
+    }
+
+    function showReportModal() {
+      document.getElementById('report-modal').classList.remove('hidden');
+    }
+    function hideReportModal() {
+      document.getElementById('report-modal').classList.add('hidden');
+    }
+
+    function downloadTokenPdf() {
+      alert('Token #42 Pass downloaded successfully as PDF!');
+    }
+
+    function toggleVoiceGuide() {
+      voiceActive = !voiceActive;
+      const btn = document.getElementById('voice-guide-btn');
+      if (voiceActive) {
+        btn.classList.replace('bg-secondary-container', 'bg-primary');
+        btn.classList.replace('text-on-secondary-container', 'text-white');
+        speakText("Namaste Ram Singh ji! Welcome to Kisan Setu. Your queue has three people ahead at Sonipat Mandi.");
+      } else {
+        btn.classList.replace('bg-primary', 'bg-secondary-container');
+        btn.classList.replace('text-white', 'text-on-secondary-container');
+        if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+      }
+    }
+
+    function speakText(msg) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(msg);
+        utterance.rate = 0.95;
+        window.speechSynthesis.speak(utterance);
+      }
+    }
+
+    function cycleLanguage() {
+      const langs = ['EN / हिंदी', 'हिंदी / ਪੰਜਾਬੀ', 'ਪੰਜਾਬੀ / ગુજ', 'English'];
+      const ind = document.getElementById('lang-indicator');
+      let cur = langs.indexOf(ind.innerText);
+      ind.innerText = langs[(cur + 1) % langs.length];
+    }
+
+    function setLang(l) {
+      document.getElementById('lang-indicator').innerText = l;
+      alert('Language switched to ' + l);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>OTP Verification - Krishi Sahayak</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@500;600;700&amp;family=Noto+Sans:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-fixed": "#131e17",
+                      "surface-bright": "#fcf9f8",
+                      "on-surface": "#1c1b1b",
+                      "surface": "#fcf9f8",
+                      "primary": "#00342b",
+                      "on-primary-fixed-variant": "#065043",
+                      "surface-variant": "#e5e2e1",
+                      "secondary-container": "#fdd400",
+                      "on-primary-fixed": "#00201a",
+                      "on-primary-container": "#7ebdac",
+                      "primary-container": "#004d40",
+                      "inverse-surface": "#313030",
+                      "background": "#fcf9f8",
+                      "outline": "#707975",
+                      "on-background": "#1c1b1b",
+                      "on-tertiary-container": "#a7b4a9",
+                      "on-tertiary": "#ffffff",
+                      "tertiary-container": "#3b463e",
+                      "inverse-on-surface": "#f3f0ef",
+                      "on-secondary-container": "#6f5c00",
+                      "on-error": "#ffffff",
+                      "tertiary-fixed-dim": "#bdcabe",
+                      "on-secondary-fixed": "#221b00",
+                      "tertiary-fixed": "#d9e6da",
+                      "error": "#ba1a1a",
+                      "surface-container-low": "#f6f3f2",
+                      "surface-container": "#f0edec",
+                      "primary-fixed": "#afefdd",
+                      "secondary": "#705d00",
+                      "error-container": "#ffdad6",
+                      "on-tertiary-fixed-variant": "#3e4a41",
+                      "secondary-fixed": "#ffe170",
+                      "tertiary": "#253028",
+                      "outline-variant": "#bfc9c4",
+                      "inverse-primary": "#94d3c1",
+                      "on-primary": "#ffffff",
+                      "surface-container-highest": "#e5e2e1",
+                      "surface-tint": "#29695b",
+                      "on-secondary": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "primary-fixed-dim": "#94d3c1",
+                      "surface-container-high": "#ebe7e7",
+                      "on-secondary-fixed-variant": "#544600",
+                      "secondary-fixed-dim": "#e9c400",
+                      "surface-dim": "#dcd9d9",
+                      "surface-container-lowest": "#ffffff",
+                      "on-surface-variant": "#3f4945"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "unit": "8px",
+                      "gutter-mobile": "16px",
+                      "touch-target-min": "56px",
+                      "stack-gap-md": "16px",
+                      "margin-mobile": "20px",
+                      "stack-gap-lg": "24px"
+              },
+              "fontFamily": {
+                      "headline-sm": [
+                              "Be Vietnam Pro"
+                      ],
+                      "headline-md": [
+                              "Be Vietnam Pro"
+                      ],
+                      "label-md": [
+                              "Be Vietnam Pro"
+                      ],
+                      "body-lg": [
+                              "Noto Sans"
+                      ],
+                      "body-md": [
+                              "Noto Sans"
+                      ],
+                      "headline-lg": [
+                              "Be Vietnam Pro"
+                      ],
+                      "label-lg": [
+                              "Be Vietnam Pro"
+                      ]
+              },
+              "fontSize": {
+                      "headline-sm": [
+                              "18px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "22px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "26px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "28px",
+                              {
+                                      "lineHeight": "36px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.5px",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        /* Custom styles for OTP inputs to hide number arrows */
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
+        }
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+      </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md">
+<!-- Top App Bar (Transactional, so minimal) -->
+<header class="bg-surface border-b border-outline-variant w-full top-0 flex items-center px-margin-mobile fixed z-40 transition-colors duration-200 py-2"><button aria-label="Go back" class="text-primary mr-4 flex items-center justify-center w-touch-target-min h-touch-target-min hover:bg-surface-variant transition-colors duration-200 rounded-full" type="button"><span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span></button><h1 class="font-headline-md text-headline-md font-bold text-primary flex-1">Kisan Setu | किसान सेतु</h1><button aria-label="Profile" class="flex items-center justify-center h-10 w-10 rounded-full bg-secondary-container text-on-secondary-container hover:bg-secondary-fixed transition-colors active:scale-95 mr-2 shadow-sm"><span class="material-symbols-outlined" data-icon="person">person</span></button><button aria-label="Select Language" class="flex items-center gap-2 px-3 py-1 rounded-full border border-outline text-primary hover:bg-surface-container-low transition-colors active:scale-95"><span class="material-symbols-outlined text-body-md-mobile" data-icon="language">language</span><span class="font-label-md text-xs">EN/हिन्दी</span></button></header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col items-center justify-center px-margin-mobile pt-[80px] pb-margin-mobile max-w-md mx-auto w-full">
+<div class="w-full text-center mb-stack-gap-lg"><p class="font-label-md text-primary mb-2">Step 2 of 3</p>
+<div class="inline-flex items-center justify-center w-24 h-24 bg-primary-container text-on-primary-container rounded-full mb-6 mx-auto">
+<span class="material-symbols-outlined text-5xl" data-icon="lock_open">lock_open</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-2">Verify OTP</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Please enter the 6-digit verification code sent to</p>
+<p class="font-headline-sm text-headline-sm text-on-surface font-bold mt-1">+91 98765 43210</p>
+</div>
+<form class="w-full flex flex-col items-center gap-stack-gap-lg">
+<!-- OTP Input Grid -->
+<div class="flex justify-between w-full gap-2 max-w-[320px]">
+<input aria-label="OTP Digit 1" class="w-12 h-14 sm:w-14 sm:h-16 text-center font-headline-lg text-headline-lg bg-surface border-2 border-outline rounded-lg focus:border-secondary-container focus:ring-0 focus:outline-none transition-colors shadow-sm" inputmode="numeric" maxlength="1" pattern="[0-9]*" type="number">
+<input aria-label="OTP Digit 2" class="w-12 h-14 sm:w-14 sm:h-16 text-center font-headline-lg text-headline-lg bg-surface border-2 border-outline rounded-lg focus:border-secondary-container focus:ring-0 focus:outline-none transition-colors shadow-sm" inputmode="numeric" maxlength="1" pattern="[0-9]*" type="number">
+<input aria-label="OTP Digit 3" class="w-12 h-14 sm:w-14 sm:h-16 text-center font-headline-lg text-headline-lg bg-surface border-2 border-outline rounded-lg focus:border-secondary-container focus:ring-0 focus:outline-none transition-colors shadow-sm" inputmode="numeric" maxlength="1" pattern="[0-9]*" type="number">
+<input aria-label="OTP Digit 4" class="w-12 h-14 sm:w-14 sm:h-16 text-center font-headline-lg text-headline-lg bg-surface border-2 border-outline rounded-lg focus:border-secondary-container focus:ring-0 focus:outline-none transition-colors shadow-sm" inputmode="numeric" maxlength="1" pattern="[0-9]*" type="number">
+<input aria-label="OTP Digit 5" class="w-12 h-14 sm:w-14 sm:h-16 text-center font-headline-lg text-headline-lg bg-surface border-2 border-outline rounded-lg focus:border-secondary-container focus:ring-0 focus:outline-none transition-colors shadow-sm" inputmode="numeric" maxlength="1" pattern="[0-9]*" type="number">
+<input aria-label="OTP Digit 6" class="w-12 h-14 sm:w-14 sm:h-16 text-center font-headline-lg text-headline-lg bg-surface border-2 border-outline rounded-lg focus:border-secondary-container focus:ring-0 focus:outline-none transition-colors shadow-sm" inputmode="numeric" maxlength="1" pattern="[0-9]*" type="number">
+</div>
+<!-- Resend Section -->
+<div class="text-center w-full mt-4">
+<p class="font-body-md text-body-md text-on-surface-variant mb-2">Didn't receive the code?</p>
+<button class="font-label-lg text-label-lg text-primary hover:text-primary-container underline underline-offset-4 decoration-2 transition-colors min-h-[44px] px-4" type="button">
+                    Resend OTP <span class="text-outline" id="timer">(00:30)</span>
+</button>
+</div>
+<!-- Primary Action -->
+<button class="mt-8 w-full bg-primary-container text-on-primary-container font-label-lg text-label-lg h-touch-target-min rounded-xl flex items-center justify-center gap-2 hover:bg-primary transition-colors shadow-sm active:scale-[0.98]" type="button">
+<span class="">Verify &amp; Login</span>
+<span class="material-symbols-outlined" data-icon="verified">verified</span>
+</button>
+</form>
+</main>
+<script>
+        // Simple auto-advance for OTP inputs
+        const inputs = document.querySelectorAll('input[type="number"]');
+        inputs.forEach((input, index) => {
+            input.addEventListener('input', function() {
+                if (this.value.length === 1) {
+                    if (index < inputs.length - 1) {
+                        inputs[index + 1].focus();
+                    }
+                }
+            });
+            
+            input.addEventListener('keydown', function(e) {
+                if (e.key === 'Backspace' && this.value.length === 0) {
+                    if (index > 0) {
+                        inputs[index - 1].focus();
+                    }
+                }
+            });
+        });
+        
+        // Focus first input on load
+        window.onload = () => {
+            if(inputs.length > 0) inputs[0].focus();
+        }
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>

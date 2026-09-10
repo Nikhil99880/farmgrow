@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Procurement Tracking</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@500;600;700&amp;family=Noto+Sans:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-fixed": "#131e17",
+                      "surface-bright": "#fcf9f8",
+                      "on-surface": "#1c1b1b",
+                      "surface": "#fcf9f8",
+                      "primary": "#00342b",
+                      "on-primary-fixed-variant": "#065043",
+                      "surface-variant": "#e5e2e1",
+                      "secondary-container": "#fdd400",
+                      "on-primary-fixed": "#00201a",
+                      "on-primary-container": "#7ebdac",
+                      "primary-container": "#004d40",
+                      "inverse-surface": "#313030",
+                      "background": "#fcf9f8",
+                      "outline": "#707975",
+                      "on-background": "#1c1b1b",
+                      "on-tertiary-container": "#a7b4a9",
+                      "on-tertiary": "#ffffff",
+                      "tertiary-container": "#3b463e",
+                      "inverse-on-surface": "#f3f0ef",
+                      "on-secondary-container": "#6f5c00",
+                      "on-error": "#ffffff",
+                      "tertiary-fixed-dim": "#bdcabe",
+                      "on-secondary-fixed": "#221b00",
+                      "tertiary-fixed": "#d9e6da",
+                      "error": "#ba1a1a",
+                      "surface-container-low": "#f6f3f2",
+                      "surface-container": "#f0edec",
+                      "primary-fixed": "#afefdd",
+                      "secondary": "#705d00",
+                      "error-container": "#ffdad6",
+                      "on-tertiary-fixed-variant": "#3e4a41",
+                      "secondary-fixed": "#ffe170",
+                      "tertiary": "#253028",
+                      "outline-variant": "#bfc9c4",
+                      "inverse-primary": "#94d3c1",
+                      "on-primary": "#ffffff",
+                      "surface-container-highest": "#e5e2e1",
+                      "surface-tint": "#29695b",
+                      "on-secondary": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "primary-fixed-dim": "#94d3c1",
+                      "surface-container-high": "#ebe7e7",
+                      "on-secondary-fixed-variant": "#544600",
+                      "secondary-fixed-dim": "#e9c400",
+                      "surface-dim": "#dcd9d9",
+                      "surface-container-lowest": "#ffffff",
+                      "on-surface-variant": "#3f4945"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "unit": "8px",
+                      "gutter-mobile": "16px",
+                      "touch-target-min": "56px",
+                      "stack-gap-md": "16px",
+                      "margin-mobile": "20px",
+                      "stack-gap-lg": "24px"
+              },
+              "fontFamily": {
+                      "headline-sm": ["Be Vietnam Pro"],
+                      "headline-md": ["Be Vietnam Pro"],
+                      "label-md": ["Be Vietnam Pro"],
+                      "body-lg": ["Noto Sans"],
+                      "body-md": ["Noto Sans"],
+                      "headline-lg": ["Be Vietnam Pro"],
+                      "label-lg": ["Be Vietnam Pro"]
+              },
+              "fontSize": {
+                      "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                      "headline-md": ["22px", {"lineHeight": "28px", "fontWeight": "700"}],
+                      "label-md": ["14px", {"lineHeight": "16px", "fontWeight": "500"}],
+                      "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "500"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                      "label-lg": ["16px", {"lineHeight": "20px", "letterSpacing": "0.5px", "fontWeight": "600"}],
+                      "headline-sm-mobile": ["16px", {"lineHeight": "22px", "fontWeight": "600"}],
+                      "headline-md-mobile": ["20px", {"lineHeight": "26px", "fontWeight": "700"}],
+                      "label-md-mobile": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                      "body-lg-mobile": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                      "body-md-mobile": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                      "label-lg-mobile": ["14px", {"lineHeight": "18px", "letterSpacing": "0.5px", "fontWeight": "600"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background min-h-screen pb-[100px] md:pb-0">
+<!-- TopAppBar -->
+<header class="w-full top-0 border-b border-outline-variant bg-surface text-primary font-headline-md text-headline-md-mobile flex items-center px-margin-mobile h-touch-target-min fixed z-50 shadow-sm md:shadow-none">
+<button class="mr-4 hover:bg-surface-variant rounded-full p-2 transition-colors duration-200">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-bold">Kisan Setu</h1>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-[72px] px-margin-mobile max-w-4xl mx-auto md:flex md:gap-stack-gap-lg">
+<!-- Navigation Drawer (Hidden on Mobile) -->
+<nav class="hidden md:flex bg-surface-container-low text-primary-fixed h-[calc(100vh-72px)] w-80 rounded-r-xl shadow-lg flex-col py-stack-gap-lg fixed top-[72px] left-0">
+<div class="px-margin-mobile mb-6 flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-headline-md font-bold">
+                    RS
+                </div>
+<div>
+<div class="font-headline-sm text-on-surface">Ram Singh</div>
+<div class="font-label-md text-on-surface-variant">ID: 482910 | Village: Sonipat</div>
+</div>
+</div>
+<a class="text-on-surface-variant px-4 py-3 hover:bg-surface-container-high transition-all duration-300 flex items-center gap-3" href="#">
+<span class="material-symbols-outlined" data-icon="agriculture">agriculture</span>
+<span class="font-label-lg">My Farm</span>
+</a>
+<a class="bg-primary-container text-on-primary-container font-bold rounded-full mx-2 px-4 py-3 flex items-center gap-3 transition-all duration-300" href="#">
+<span class="material-symbols-outlined icon-fill" data-icon="analytics" data-weight="fill">analytics</span>
+<span class="font-label-lg">Track</span>
+</a>
+<a class="text-on-surface-variant px-4 py-3 hover:bg-surface-container-high transition-all duration-300 flex items-center gap-3" href="#">
+<span class="material-symbols-outlined" data-icon="cloud">cloud</span>
+<span class="font-label-lg">Weather</span>
+</a>
+<a class="text-on-surface-variant px-4 py-3 hover:bg-surface-container-high transition-all duration-300 flex items-center gap-3" href="#">
+<span class="material-symbols-outlined" data-icon="trending_up">trending_up</span>
+<span class="font-label-lg">Market Rates</span>
+</a>
+<a class="text-on-surface-variant px-4 py-3 hover:bg-surface-container-high transition-all duration-300 flex items-center gap-3" href="#">
+<span class="material-symbols-outlined" data-icon="support_agent">support_agent</span>
+<span class="font-label-lg">Support</span>
+</a>
+<a class="text-on-surface-variant px-4 py-3 hover:bg-surface-container-high transition-all duration-300 flex items-center gap-3 mt-auto" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-lg">Settings</span>
+</a>
+</nav>
+<div class="md:ml-[340px] flex-1 mt-stack-gap-lg">
+<!-- Page Title Area -->
+<div class="mb-stack-gap-lg">
+<h2 class="font-headline-lg text-headline-lg-mobile text-on-surface mb-2">Track Lot #8902A</h2>
+<p class="font-body-md text-body-md-mobile text-on-surface-variant">Wheat Procurement • Center: Sonipat-Mandi</p>
+</div>
+<!-- Current Stage Detail Card -->
+<div class="bg-surface-bright rounded-xl border border-primary/20 shadow-sm mb-stack-gap-lg overflow-hidden"><div class="bg-secondary-container text-on-secondary-container px-margin-mobile py-4 flex items-center justify-between border-b-2 border-secondary"><div class="flex items-center gap-3"><span class="material-symbols-outlined icon-fill text-[32px]" data-icon="science">science</span><div><h3 class="font-headline-sm text-headline-sm-mobile">Moisture &amp; Quality Test / गुणवत्ता जांच</h3><p class="font-label-md text-label-md-mobile opacity-90">Testing in Progress / जांच चल रही है</p></div></div><div class="bg-surface-bright/30 px-3 py-1 rounded-full flex items-center gap-2"><span class="w-2 h-2 bg-secondary rounded-full animate-pulse"></span><span class="font-label-md text-label-md-mobile">Active</span></div></div><div class="p-margin-mobile flex flex-col gap-4"><div class="grid grid-cols-2 gap-4"><div class="p-3 bg-surface-container-low rounded-lg border border-outline-variant"><p class="font-label-md text-on-surface-variant mb-1">Moisture Level</p><p class="font-headline-sm text-primary">12.5%</p><p class="text-[12px] text-secondary">Target: &lt;14%</p></div><div class="p-3 bg-surface-container-low rounded-lg border border-outline-variant"><p class="font-label-md text-on-surface-variant mb-1">Foreign Matter</p><p class="font-headline-sm text-primary">0.8%</p><p class="text-[12px] text-secondary">Target: &lt;2%</p></div></div><div class="mt-2 bg-surface-container-low p-4 rounded-lg flex items-start gap-3"><span class="material-symbols-outlined text-secondary" data-icon="info">info</span><p class="font-body-md text-body-md-mobile text-on-surface">Your crop is currently being tested for moisture and foreign matter content. / आपकी फसल की नमी और बाहरी तत्वों की जांच की जा रही है।</p></div><button class="w-full mt-2 py-3 border-2 border-primary text-primary rounded-xl font-label-lg flex items-center justify-center gap-2 hover:bg-primary/5 transition-colors"><span class="material-symbols-outlined" data-icon="description">description</span>View Quality Report / रिपोर्ट देखें</button></div></div>
+<!-- Vertical Stepper -->
+<div class="bg-surface-bright rounded-xl p-margin-mobile border border-surface-variant shadow-sm mb-stack-gap-lg"><h3 class="font-headline-sm text-headline-sm-mobile text-on-surface mb-6">Crop Lifecycle / फसल चक्र</h3><div class="relative pl-6 border-l-4 border-surface-variant ml-4 space-y-8"><div class="relative"><div class="absolute -left-[38px] top-0 w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center border-4 border-surface-bright z-10"><span class="material-symbols-outlined text-[16px] icon-fill" data-icon="check">check</span></div><div class="absolute -left-[38px] top-8 bottom-[-32px] w-1 bg-primary-container z-0"></div><div><h4 class="font-label-lg text-label-lg-mobile text-on-surface">Slot Booked / स्लॉट बुक</h4><p class="font-body-md text-body-md-mobile text-on-surface-variant">Completed</p></div></div><div class="relative"><div class="absolute -left-[38px] top-0 w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center border-4 border-surface-bright z-10"><span class="material-symbols-outlined text-[16px] icon-fill" data-icon="check">check</span></div><div class="absolute -left-[38px] top-8 bottom-[-32px] w-1 bg-primary-container z-0"></div><div><h4 class="font-label-lg text-label-lg-mobile text-on-surface">Gate Entry / गेट एंट्री</h4><p class="font-body-md text-body-md-mobile text-on-surface-variant">Completed</p></div></div><div class="relative"><div class="absolute -left-[40px] top-0 w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center border-4 border-surface-bright shadow-sm z-10"><span class="material-symbols-outlined text-[20px] icon-fill animate-pulse" data-icon="science">science</span></div><div class="pt-1"><h4 class="font-headline-sm text-headline-sm-mobile text-on-surface">Quality Check &amp; Lab Testing / गुणवत्ता जांच</h4><p class="font-label-md text-label-md-mobile text-secondary mt-1 flex items-center gap-1"><span class="material-symbols-outlined text-[16px]" data-icon="pending">pending</span>In Progress</p></div></div><div class="relative"><div class="absolute -left-[38px] top-0 w-8 h-8 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center border-4 border-surface-bright z-10"><span class="material-symbols-outlined text-[16px]" data-icon="scale">scale</span></div><div><h4 class="font-body-lg text-body-lg-mobile text-on-surface-variant">Weighing &amp; Bagging / वजन और भराई</h4><p class="font-body-md text-body-md-mobile text-outline">Pending</p></div></div><div class="relative"><div class="absolute -left-[38px] top-0 w-8 h-8 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center border-4 border-surface-bright z-10"><span class="material-symbols-outlined text-[16px]" data-icon="receipt_long">receipt_long</span></div><div><h4 class="font-body-lg text-body-lg-mobile text-on-surface-variant">Receipt Generation / रसीद</h4><p class="font-body-md text-body-md-mobile text-outline">Pending</p></div></div><div class="relative"><div class="absolute -left-[38px] top-0 w-8 h-8 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center border-4 border-surface-bright z-10"><span class="material-symbols-outlined text-[16px]" data-icon="payments">payments</span></div><div><h4 class="font-body-lg text-body-lg-mobile text-on-surface-variant">Payment Disbursement / भुगतान</h4><p class="font-body-md text-body-md-mobile text-outline">Pending</p></div></div></div></div>
+<!-- Action Area -->
+<div class="mt-8 mb-12">
+<button class="w-full h-touch-target-min bg-surface text-primary border-2 border-outline-variant hover:bg-surface-variant hover:border-primary active:scale-[0.98] transition-all rounded-xl font-label-lg flex items-center justify-center gap-3">
+<span class="material-symbols-outlined" data-icon="call">call</span>
+                    Call Center Support
+                </button>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 border-t-2 border-primary-container bg-surface flex justify-around items-center h-[80px] px-2 pb-2">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest active:scale-95 transition-transform w-1/4 h-full rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-lg text-label-lg-mobile mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-xl px-4 py-1 active:scale-95 transition-transform w-1/4 h-[90%]" href="#">
+<span class="material-symbols-outlined icon-fill" data-icon="analytics" data-weight="fill">analytics</span>
+<span class="font-label-lg text-label-lg-mobile mt-1 font-bold">Track</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest active:scale-95 transition-transform w-1/4 h-full rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-label-lg text-label-lg-mobile mt-1">Payments</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest active:scale-95 transition-transform w-1/4 h-full rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-lg text-label-lg-mobile mt-1">Profile</span>
+</a>
+</nav>
+</body></html>

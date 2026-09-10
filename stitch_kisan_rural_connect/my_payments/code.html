@@ -1,0 +1,378 @@
+<!DOCTYPE html><html lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Krishi Sahayak - My Payments</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-primary": "#94d3c1",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#253028",
+                        "on-secondary-fixed-variant": "#544600",
+                        "surface-container-low": "#f6f3f2",
+                        "tertiary-fixed": "#d9e6da",
+                        "on-surface-variant": "#3f4945",
+                        "on-tertiary-fixed": "#131e17",
+                        "surface-container-lowest": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "outline": "#707975",
+                        "secondary": "#705d00",
+                        "secondary-fixed-dim": "#e9c400",
+                        "tertiary-fixed-dim": "#bdcabe",
+                        "surface": "#fcf9f8",
+                        "primary-fixed": "#afefdd",
+                        "on-tertiary-fixed-variant": "#3e4a41",
+                        "surface-container-high": "#ebe7e7",
+                        "background": "#fcf9f8",
+                        "outline-variant": "#bfc9c4",
+                        "error": "#ba1a1a",
+                        "inverse-on-surface": "#f3f0ef",
+                        "on-tertiary-container": "#a7b4a9",
+                        "on-background": "#1c1b1b",
+                        "surface-bright": "#fcf9f8",
+                        "surface-container-highest": "#e5e2e1",
+                        "on-secondary-fixed": "#221b00",
+                        "on-error": "#ffffff",
+                        "surface-container": "#f0edec",
+                        "surface-tint": "#29695b",
+                        "surface-variant": "#e5e2e1",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed": "#00201a",
+                        "on-secondary-container": "#6f5c00",
+                        "on-surface": "#1c1b1b",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#dcd9d9",
+                        "primary-fixed-dim": "#94d3c1",
+                        "inverse-surface": "#313030",
+                        "primary": "#00342b",
+                        "primary-container": "#004d40",
+                        "secondary-container": "#fdd400",
+                        "on-primary-container": "#7ebdac",
+                        "tertiary-container": "#3b463e",
+                        "secondary-fixed": "#ffe170",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed-variant": "#065043"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "margin-mobile": "20px",
+                        "stack-gap-md": "16px",
+                        "gutter-mobile": "16px",
+                        "stack-gap-lg": "24px",
+                        "touch-target-min": "56px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Be Vietnam Pro"],
+                        "label-lg": ["Be Vietnam Pro"],
+                        "body-lg": ["Noto Sans"],
+                        "body-md": ["Noto Sans"],
+                        "label-md": ["Be Vietnam Pro"],
+                        "headline-md": ["Be Vietnam Pro"],
+                        "headline-lg": ["Be Vietnam Pro"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "label-lg": ["16px", { "lineHeight": "20px", "letterSpacing": "0.5px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "26px", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "headline-md": ["22px", { "lineHeight": "28px", "fontWeight": "700" }],
+                        "headline-md-mobile": ["20px", { "lineHeight": "26px", "fontWeight": "700" }],
+                        "headline-lg": ["28px", { "lineHeight": "36px", "fontWeight": "700" }],
+                        "label-lg-mobile": ["14px", { "lineHeight": "18px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        /* Custom scrollbar for better visibility */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fcf9f8; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #707975; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00342b; 
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col antialiased">
+<!-- Navigation Drawer (Desktop/Tablet) -->
+<div class="hidden md:flex fixed inset-y-0 left-0 z-40 bg-surface h-full w-80 rounded-r-xl shadow-lg flex-col py-stack-gap-lg">
+<div class="px-4 mb-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-headline-md">
+                    R
+                </div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary">Ram Singh</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">ID: 482910</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Village: Sonipat</p>
+</div>
+</div>
+</div>
+<nav class="flex-1">
+<ul class="space-y-2">
+<li class="">
+<a class="flex items-center gap-4 text-on-surface-variant px-4 py-3 hover:bg-surface-container-high transition-all duration-300" href="#">
+<span class="material-symbols-outlined">agriculture</span>
+<span class="font-label-lg text-label-lg">My Farm</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-4 text-on-surface-variant px-4 py-3 hover:bg-surface-container-high transition-all duration-300" href="#">
+<span class="material-symbols-outlined">cloud</span>
+<span class="font-label-lg text-label-lg">Weather</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-4 text-on-surface-variant px-4 py-3 hover:bg-surface-container-high transition-all duration-300" href="#">
+<span class="material-symbols-outlined">trending_up</span>
+<span class="font-label-lg text-label-lg">Market Rates</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-4 text-on-surface-variant px-4 py-3 hover:bg-surface-container-high transition-all duration-300" href="#">
+<span class="material-symbols-outlined">support_agent</span>
+<span class="font-label-lg text-label-lg">Support</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-4 text-on-surface-variant px-4 py-3 hover:bg-surface-container-high transition-all duration-300" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-lg text-label-lg">Settings</span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col md:ml-80 pb-[80px] md:pb-0">
+<!-- TopAppBar -->
+<header class="bg-surface-container-lowest border-b border-outline-variant w-full top-0 flex items-center px-margin-mobile fixed z-40 py-2">
+  <div class="flex items-center gap-2 flex-1">
+    <span class="material-symbols-outlined text-primary">agriculture</span>
+    <h1 class="font-headline-md text-headline-md-mobile font-bold text-primary">Kisan Setu | किसान सेतु</h1>
+  </div>
+  <div class="flex items-center gap-2">
+    <button aria-label="Profile" class="flex items-center justify-center h-10 w-10 rounded-full bg-secondary-container text-on-secondary-container hover:bg-secondary-fixed transition-colors active:scale-95 shadow-sm">
+      <span class="material-symbols-outlined">person</span>
+    </button>
+    <button aria-label="Select Language" class="flex items-center gap-2 px-3 py-1 rounded-full border border-outline text-primary hover:bg-surface-container-low transition-colors active:scale-95">
+      <span class="material-symbols-outlined text-body-md-mobile">language</span>
+      <span class="font-label-md text-xs">EN/हिन्दी</span>
+    </button>
+  </div>
+</header>
+<!-- Page Content -->
+<main class="flex-1 p-margin-mobile max-w-4xl w-full mx-auto">
+<div class="mb-stack-gap-lg">
+<h1 class="font-headline-lg text-headline-lg text-on-background mb-2">My Payments / मेरे भुगतान</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Track your recent crop sales and government disbursements.</p>
+</div>
+<!-- Summary Cards (Bento style) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-gap-md mb-stack-gap-lg">
+<div class="bg-primary-container text-on-primary-container p-4 rounded-xl relative overflow-hidden">
+<div class="absolute inset-0 opacity-10" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, #ffffff 10px, #ffffff 20px);"></div>
+<div class="relative z-10">
+<p class="font-label-md text-xs mb-1 uppercase tracking-wider">Total Received (This Season)</p>
+<h2 class="font-headline-md text-headline-md font-bold truncate min-w-0">₹ 1,45,000</h2>
+<p class="font-body-md text-sm mt-1 opacity-90">कुल प्राप्त राशि (इस मौसम में)</p>
+</div>
+</div>
+<div class="bg-secondary-container text-on-secondary-container p-4 rounded-xl border-2 border-secondary shadow-[4px_4px_0px_#705d00] relative overflow-hidden">
+<div class="relative z-10">
+<p class="font-label-md text-xs mb-1 uppercase tracking-wider text-secondary">Pending Processing</p>
+<h2 class="font-headline-md text-headline-md font-bold truncate min-w-0">₹ 32,500</h2>
+<p class="font-body-md text-sm mt-1 text-secondary">प्रक्रिया में (लंबित)</p>
+</div>
+</div>
+</div>
+<!-- Transaction List -->
+<div class="space-y-4">
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-4">Recent Transactions / हाल के लेनदेन</h3>
+<!-- Transaction Card: Completed -->
+<div class="bg-surface-container-lowest border-2 border-outline-variant p-4 rounded-xl hover:border-primary transition-colors flex flex-col sm:flex-row gap-4 items-start sm:items-center relative">
+<!-- Decorative high-contrast left border indicator -->
+<div class="absolute left-0 top-0 bottom-0 w-2 bg-[#004d40] rounded-l-xl"></div>
+<div class="flex-shrink-0 w-12 h-12 bg-[#E8F5E9] border border-[#004d40] rounded-full flex items-center justify-center text-[#004d40]">
+<span class="material-symbols-outlined fill">grass</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1"><h4 class="font-label-lg text-label-lg truncate mr-2">Wheat Sale (Mandi) / गेहूं की बिक्री</h4>
+<span class="font-headline-sm text-[18px] font-bold text-primary flex-shrink-0">₹ 45,000</span></div>
+<div class="flex flex-wrap gap-2 text-sm text-on-surface-variant font-body-md text-body-md">
+<span class="">12 May 2024</span>
+<span class="hidden sm:inline">•</span>
+<span class="">Ref: TXN-89234</span>
+<span class="hidden sm:inline">•</span>
+<span class="">Qty: 20 Quintal</span>
+</div>
+</div>
+<div class="flex flex-col sm:items-end gap-2 mt-2 sm:mt-0 w-full sm:w-auto">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-[#E8F5E9] text-[#004d40] font-label-md text-label-md font-bold border border-[#004d40]">
+<span class="material-symbols-outlined text-[16px] mr-1">check_circle</span> Completed
+                        </span>
+<button class="text-primary font-label-md text-label-md flex items-center hover:underline h-touch-target-min sm:h-auto">
+<span class="material-symbols-outlined text-[18px] mr-1">download</span> Receipt
+                        </button>
+</div>
+</div>
+<!-- Transaction Card: Pending -->
+<div class="bg-surface-container-lowest border-2 border-secondary p-4 rounded-xl hover:border-secondary-container transition-colors flex flex-col sm:flex-row gap-4 items-start sm:items-center relative">
+<!-- Decorative high-contrast left border indicator -->
+<div class="absolute left-0 top-0 bottom-0 w-2 bg-secondary rounded-l-xl"></div>
+<div class="flex-shrink-0 w-12 h-12 bg-secondary-container border border-secondary rounded-full flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined fill">inventory_2</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1"><h4 class="font-label-lg text-label-lg truncate mr-2">Paddy Procurement / धान की खरीद</h4>
+<span class="font-headline-sm text-[18px] font-bold text-on-background flex-shrink-0">₹ 32,500</span></div>
+<div class="flex flex-wrap gap-2 text-sm text-on-surface-variant font-body-md text-body-md">
+<span class="">10 May 2024</span>
+<span class="hidden sm:inline">•</span>
+<span class="">Ref: PRQ-1109</span>
+<span class="hidden sm:inline">•</span>
+<span class="">Qty: 15 Quintal</span>
+</div>
+</div>
+<div class="flex flex-col sm:items-end gap-2 mt-2 sm:mt-0 w-full sm:w-auto">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-label-md font-bold border border-secondary">
+<span class="material-symbols-outlined text-[16px] mr-1">schedule</span> Pending
+                        </span>
+<span class="text-on-surface-variant font-body-md text-body-md text-sm italic">Bank processing</span>
+</div>
+</div>
+<!-- Transaction Card: Initiated (Action Required) -->
+<div class="bg-error-container border-2 border-error p-4 rounded-xl flex flex-col sm:flex-row gap-4 items-start sm:items-center relative">
+<!-- Decorative high-contrast left border indicator -->
+<div class="absolute left-0 top-0 bottom-0 w-2 bg-error rounded-l-xl"></div>
+<div class="flex-shrink-0 w-12 h-12 bg-surface border border-error rounded-full flex items-center justify-center text-error">
+<span class="material-symbols-outlined fill">account_balance</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1"><h4 class="font-label-lg text-label-lg truncate text-on-error-container mr-2">Subsidy Deposit / सब्सिडी जमा</h4>
+<span class="font-headline-sm text-[18px] font-bold text-error flex-shrink-0">₹ 5,000</span></div>
+<div class="flex flex-wrap gap-2 text-sm text-on-error-container font-body-md text-body-md">
+<span class="">05 May 2024</span>
+<span class="hidden sm:inline">•</span>
+<span class="">Ref: GOV-SUB-44</span>
+</div>
+<p class="text-error font-body-md text-body-md text-sm mt-1"><strong>Action:</strong> Please update IFSC code / कृपया IFSC कोड अपडेट करें</p>
+</div>
+<div class="flex flex-col sm:items-end gap-2 mt-2 sm:mt-0 w-full sm:w-auto">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-error text-on-error font-label-md text-label-md font-bold">
+<span class="material-symbols-outlined text-[16px] mr-1">error</span> Action Required
+                        </span>
+<button class="bg-[#004d40] text-on-primary px-4 py-2 rounded font-label-md text-label-md h-touch-target-min flex items-center justify-center w-full sm:w-auto mt-2 active:scale-95 transition-transform">Update Bank Details</button>
+</div>
+</div>
+<!-- Transaction Card: Completed -->
+<div class="bg-surface-container-lowest border-2 border-outline-variant p-4 rounded-xl hover:border-primary transition-colors flex flex-col sm:flex-row gap-4 items-start sm:items-center relative">
+<div class="absolute left-0 top-0 bottom-0 w-2 bg-[#004d40] rounded-l-xl"></div>
+<div class="flex-shrink-0 w-12 h-12 bg-[#E8F5E9] border border-[#004d40] rounded-full flex items-center justify-center text-[#004d40]">
+<span class="material-symbols-outlined fill">compost</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1"><h4 class="font-label-lg text-label-lg truncate mr-2">Fertilizer Subsidy / उर्वरक सब्सिडी</h4>
+<span class="font-headline-sm text-[18px] font-bold text-primary flex-shrink-0">₹ 12,500</span></div>
+<div class="flex flex-wrap gap-2 text-sm text-on-surface-variant font-body-md text-body-md">
+<span class="">20 Apr 2024</span>
+<span class="hidden sm:inline">•</span>
+<span class="">Ref: FERT-889</span>
+</div>
+</div>
+<div class="flex flex-col sm:items-end gap-2 mt-2 sm:mt-0 w-full sm:w-auto">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-[#E8F5E9] text-[#004d40] font-label-md text-label-md font-bold border border-[#004d40]">
+<span class="material-symbols-outlined text-[16px] mr-1">check_circle</span> Completed
+                        </span>
+<button class="text-primary font-label-md text-label-md flex items-center hover:underline h-touch-target-min sm:h-auto">
+<span class="material-symbols-outlined text-[18px] mr-1">download</span> Receipt
+                        </button>
+</div>
+</div>
+</div>
+<!-- Load More Button -->
+<div class="mt-stack-gap-lg flex justify-center">
+<button class="border-2 border-primary text-primary font-label-lg text-label-lg px-8 py-3 rounded-xl hover:bg-surface-variant transition-colors h-touch-target-min w-full md:w-auto flex items-center justify-center">
+                    Load More Transactions
+                </button>
+</div>
+</main>
+</div>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden bg-surface-container-lowest fixed bottom-0 w-full z-50 border-t border-outline-variant flex justify-around items-center h-[80px] px-2 pb-2">
+  <a class="flex flex-col items-center justify-center text-on-surface-variant flex-1 h-full pt-2" href="#">
+    <span class="material-symbols-outlined mb-1 text-2xl">home</span>
+    <span class="text-xs font-label-md font-['Be_Vietnam_Pro']">Home</span>
+  </a>
+  <a class="flex flex-col items-center justify-center text-on-surface-variant flex-1 h-full pt-2" href="#">
+    <span class="material-symbols-outlined mb-1 text-2xl">local_shipping</span>
+    <span class="text-xs font-label-md font-['Be_Vietnam_Pro']">Track</span>
+  </a>
+  <a class="flex flex-col items-center justify-center text-on-surface-variant flex-1 h-full pt-2" href="#">
+    <span class="material-symbols-outlined mb-1 text-2xl">location_on</span>
+    <span class="text-xs font-label-md font-['Be_Vietnam_Pro']">Mandis</span>
+  </a>
+  <a class="flex flex-col items-center justify-center text-on-surface-variant flex-1 h-full pt-2" href="#">
+    <span class="material-symbols-outlined mb-1 text-2xl">high_quality</span>
+    <span class="text-xs font-label-md font-['Be_Vietnam_Pro']">Quality</span>
+  </a>
+  <a class="flex flex-col items-center justify-center text-primary flex-1 h-full pt-2" href="#">
+    <span class="material-symbols-outlined fill mb-1 text-2xl">payments</span>
+    <span class="text-xs font-bold font-label-md font-['Be_Vietnam_Pro']">Payments</span>
+  </a>
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>

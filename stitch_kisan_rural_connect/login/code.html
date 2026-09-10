@@ -1,0 +1,174 @@
+<!DOCTYPE html><html class="h-full" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Authentication - Kisan Setu</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-fixed": "#131e17",
+                      "surface-bright": "#fcf9f8",
+                      "on-surface": "#1c1b1b",
+                      "surface": "#fcf9f8",
+                      "primary": "#00342b",
+                      "on-primary-fixed-variant": "#065043",
+                      "surface-variant": "#e5e2e1",
+                      "secondary-container": "#fdd400",
+                      "on-primary-fixed": "#00201a",
+                      "on-primary-container": "#7ebdac",
+                      "primary-container": "#004d40",
+                      "inverse-surface": "#313030",
+                      "background": "#fcf9f8",
+                      "outline": "#707975",
+                      "on-background": "#1c1b1b",
+                      "on-tertiary-container": "#a7b4a9",
+                      "on-tertiary": "#ffffff",
+                      "tertiary-container": "#3b463e",
+                      "inverse-on-surface": "#f3f0ef",
+                      "on-secondary-container": "#6f5c00",
+                      "on-error": "#ffffff",
+                      "tertiary-fixed-dim": "#bdcabe",
+                      "on-secondary-fixed": "#221b00",
+                      "tertiary-fixed": "#d9e6da",
+                      "error": "#ba1a1a",
+                      "surface-container-low": "#f6f3f2",
+                      "surface-container": "#f0edec",
+                      "primary-fixed": "#afefdd",
+                      "secondary": "#705d00",
+                      "error-container": "#ffdad6",
+                      "on-tertiary-fixed-variant": "#3e4a41",
+                      "secondary-fixed": "#ffe170",
+                      "tertiary": "#253028",
+                      "outline-variant": "#bfc9c4",
+                      "inverse-primary": "#94d3c1",
+                      "on-primary": "#ffffff",
+                      "surface-container-highest": "#e5e2e1",
+                      "surface-tint": "#29695b",
+                      "on-secondary": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "primary-fixed-dim": "#94d3c1",
+                      "surface-container-high": "#ebe7e7",
+                      "on-secondary-fixed-variant": "#544600",
+                      "secondary-fixed-dim": "#e9c400",
+                      "surface-dim": "#dcd9d9",
+                      "surface-container-lowest": "#ffffff",
+                      "on-surface-variant": "#3f4945"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "unit": "8px",
+                      "gutter-mobile": "16px",
+                      "touch-target-min": "56px",
+                      "stack-gap-md": "16px",
+                      "margin-mobile": "20px",
+                      "stack-gap-lg": "24px"
+              },
+              "fontFamily": {
+                      "headline-sm": ["Be Vietnam Pro"],
+                      "headline-md": ["Be Vietnam Pro"],
+                      "label-md": ["Be Vietnam Pro"],
+                      "body-lg": ["Noto Sans"],
+                      "body-md": ["Noto Sans"],
+                      "headline-lg": ["Be Vietnam Pro"],
+                      "label-lg": ["Be Vietnam Pro"]
+              },
+              "fontSize": {
+                      "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                      "headline-md": ["22px", {"lineHeight": "28px", "fontWeight": "700"}],
+                      "label-md": ["14px", {"lineHeight": "16px", "fontWeight": "500"}],
+                      "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "500"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-lg": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                      "label-lg": ["16px", {"lineHeight": "20px", "letterSpacing": "0.5px", "fontWeight": "600"}]
+              }
+            }
+          }
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined[data-weight="fill"] {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #fcf9f8; /* surface */
+            color: #1c1b1b; /* on-surface */
+        }
+      </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="h-full w-full font-body-md antialiased flex flex-col justify-center items-center bg-surface px-margin-mobile">
+<!-- Top Navigation for Language Selection (Not using the full top app bar as this is a transactional screen, but keeping a header element) -->
+<header class="bg-surface border-b border-outline-variant w-full top-0 flex items-center px-margin-mobile fixed z-40 transition-colors duration-200 py-2"><div class="flex items-center justify-between w-full h-14">
+  <div class="flex items-center gap-2">
+    <span class="material-symbols-outlined text-primary" data-icon="agriculture">agriculture</span>
+    <h1 class="font-headline-md text-primary">Kisan Setu | किसान सेतु</h1>
+  </div>
+  <div class="flex items-center gap-2">
+    <button aria-label="Select Language" class="flex items-center gap-1 px-3 py-1 rounded-full border border-outline text-primary hover:bg-surface-container-low transition-colors"><span class="material-symbols-outlined text-body-md" data-icon="language">language</span><span class="font-label-md text-xs">EN/हि</span></button>
+    <button class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+      <span class="material-symbols-outlined" data-icon="person">person</span>
+    </button>
+  </div>
+</div></header>
+<main class="w-full max-w-md bg-surface-container-lowest p-stack-gap-lg rounded-xl border border-outline-variant shadow-sm mt-8">
+<!-- Branding / Hero Graphic -->
+<div class="flex justify-center mb-stack-gap-lg">
+<div class="w-24 h-24 bg-tertiary-fixed rounded-full flex items-center justify-center border-4 border-primary-container">
+<span class="material-symbols-outlined text-[48px] text-primary" data-icon="agriculture" data-weight="fill">agriculture</span>
+</div>
+</div>
+<div class="text-center mb-stack-gap-lg">
+<h1 class="font-headline-lg text-headline-lg text-primary mb-2">Welcome Back / स्वागत है</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Enter your 10-digit mobile number to login.<br class="">लॉगिन करने के लिए अपना 10 अंकों का मोबाइल नंबर दर्ज करें।</p>
+</div>
+<form class="flex flex-col gap-stack-gap-md" onsubmit="event.preventDefault();">
+<div class="flex flex-col gap-1">
+<label class="font-label-lg text-label-lg text-on-surface" for="mobile-number">Mobile Number</label>
+<div class="relative flex items-center">
+<span class="absolute left-4 font-body-lg text-body-lg text-on-surface-variant">+91</span>
+<input class="w-full h-touch-target-min pl-14 pr-4 bg-surface-bright border-2 border-outline rounded-lg font-body-lg text-body-lg text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors duration-200" id="mobile-number" name="mobile-number" pattern="[0-9]{10}" placeholder="00000 00000" required="" type="tel">
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant mt-1">We will send an OTP for verification.</span>
+</div>
+<button class="w-full h-touch-target-min mt-4 bg-primary-container hover:bg-on-primary-fixed-variant text-on-primary-container font-label-lg text-label-lg rounded-lg flex items-center justify-center gap-2 transition-colors duration-200 active:scale-95" type="submit">
+                Send OTP
+                <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</form>
+
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>

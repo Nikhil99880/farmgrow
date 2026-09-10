@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kisan Suvidha | किसान सुविधा - Design System & Schemes</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@500;600;700&family=Noto+Sans:wght@400;500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Noto Sans', sans-serif; }
+    h1, h2, h3, h4, .brand-font { font-family: 'Be Vietnam Pro', sans-serif; }
+  </style>
+</head>
+<body class="bg-[#FCF9F8] text-[#1C1B1B] min-h-screen pb-24">
+  <!-- Top App Bar -->
+  <header class="bg-[#FCF9F8] border-b border-[#BFC9C4] w-full top-0 flex items-center px-4 fixed z-40 py-2">
+    <a href="../dashboard_bilingual/code.html" class="mr-3 text-[#00342B] p-2 rounded-full hover:bg-[#E5E2E1] flex items-center justify-center">
+      <span class="material-symbols-outlined">arrow_back</span>
+    </a>
+    <h1 class="font-bold text-lg text-[#00342B] flex-1">Kisan Suvidha | किसान सुविधा</h1>
+    <a href="../help_center/code.html" class="flex items-center gap-1 px-3 py-1 rounded-full border border-[#707975] text-[#00342B] text-xs font-semibold">
+      <span class="material-symbols-outlined text-sm">language</span> EN/हि
+    </a>
+  </header>
+
+  <main class="pt-[76px] px-4 max-w-2xl mx-auto space-y-6">
+    <!-- Hero Banner -->
+    <div class="bg-[#00342B] text-white p-6 rounded-2xl shadow-sm relative overflow-hidden">
+      <div class="relative z-10">
+        <span class="bg-[#FDD400] text-[#00342B] text-xs font-bold px-3 py-1 rounded-full mb-3 inline-block">GOVERNMENT OF INDIA</span>
+        <h2 class="text-xl font-bold">Kisan Suvidha Services | किसान सुविधा</h2>
+        <p class="text-sm text-[#AFEFDD] mt-1">Direct access to MSP schemes, weather alerts, fertilizer subsidies, and mandi queue management.</p>
+      </div>
+    </div>
+
+    <!-- Scheme Cards -->
+    <div class="grid grid-cols-1 gap-4">
+      <a href="../book_slot_fixed_clean/code.html" class="bg-[#E8F5E9] border-2 border-[#004D40] p-4 rounded-xl flex items-center gap-4 hover:shadow-md transition-all">
+        <div class="w-12 h-12 rounded-xl bg-[#004D40] text-white flex items-center justify-center shrink-0">
+          <span class="material-symbols-outlined text-2xl">calendar_add_on</span>
+        </div>
+        <div class="flex-1">
+          <h3 class="font-bold text-[#00342B]">MSP Procurement Slot Booking</h3>
+          <p class="text-xs text-[#3F4945]">स्लॉट बुकिंग - गेहूं, धान, सरसों व अन्य फसलें</p>
+        </div>
+        <span class="material-symbols-outlined text-[#004D40]">chevron_right</span>
+      </a>
+
+      <a href="../nearby_mandis_updated_icons/code.html" class="bg-white border border-[#BFC9C4] p-4 rounded-xl flex items-center gap-4 hover:border-[#00342B] hover:shadow-md transition-all">
+        <div class="w-12 h-12 rounded-xl bg-[#FDD400] text-[#00342B] flex items-center justify-center shrink-0">
+          <span class="material-symbols-outlined text-2xl">storefront</span>
+        </div>
+        <div class="flex-1">
+          <h3 class="font-bold text-[#00342B]">Nearby Mandis & Real-Time Traffic</h3>
+          <p class="text-xs text-[#707975]">नज़दीकी अनाज मंडियां व प्रतीक्षा समय</p>
+        </div>
+        <span class="material-symbols-outlined text-[#004D40]">chevron_right</span>
+      </a>
+
+      <a href="../my_payments/code.html" class="bg-white border border-[#BFC9C4] p-4 rounded-xl flex items-center gap-4 hover:border-[#00342B] hover:shadow-md transition-all">
+        <div class="w-12 h-12 rounded-xl bg-[#E8F5E9] text-[#004D40] flex items-center justify-center shrink-0">
+          <span class="material-symbols-outlined text-2xl">payments</span>
+        </div>
+        <div class="flex-1">
+          <h3 class="font-bold text-[#00342B]">Direct Benefit Transfer (DBT) Tracker</h3>
+          <p class="text-xs text-[#707975]">बैंक खाता भुगतान स्थिति व रसीदें</p>
+        </div>
+        <span class="material-symbols-outlined text-[#004D40]">chevron_right</span>
+      </a>
+
+      <a href="../live_tracker/code.html" class="bg-white border border-[#BFC9C4] p-4 rounded-xl flex items-center gap-4 hover:border-[#00342B] hover:shadow-md transition-all">
+        <div class="w-12 h-12 rounded-xl bg-[#E5E2E1] text-[#00342B] flex items-center justify-center shrink-0">
+          <span class="material-symbols-outlined text-2xl">local_shipping</span>
+        </div>
+        <div class="flex-1">
+          <h3 class="font-bold text-[#00342B]">Live Gate Entry & Queue Status</h3>
+          <p class="text-xs text-[#707975]">गेट टोकन और लाइव कतार ट्रैकिंग</p>
+        </div>
+        <span class="material-symbols-outlined text-[#004D40]">chevron_right</span>
+      </a>
+    </div>
+  </main>
+
+  <!-- Bottom Navigation Bar -->
+  <nav class="bg-white border-t-2 border-[#004D40] fixed bottom-0 w-full z-50 flex justify-around items-center h-[76px] px-2">
+    <a href="../dashboard_bilingual/code.html" class="flex flex-col items-center justify-center text-[#00342B] flex-1 py-1">
+      <span class="material-symbols-outlined text-[24px]">home</span>
+      <span class="text-[10px] font-semibold">Home</span>
+    </a>
+    <a href="../live_tracker/code.html" class="flex flex-col items-center justify-center text-[#707975] flex-1 py-1">
+      <span class="material-symbols-outlined text-[24px]">local_shipping</span>
+      <span class="text-[10px]">Track</span>
+    </a>
+    <a href="../nearby_mandis_updated_icons/code.html" class="flex flex-col items-center justify-center text-[#707975] flex-1 py-1">
+      <span class="material-symbols-outlined text-[24px]">location_on</span>
+      <span class="text-[10px]">Mandis</span>
+    </a>
+    <a href="../procurement_details_quality_weighing_fixed/code.html" class="flex flex-col items-center justify-center text-[#707975] flex-1 py-1">
+      <span class="material-symbols-outlined text-[24px]">high_quality</span>
+      <span class="text-[10px]">Quality</span>
+    </a>
+    <a href="../my_payments/code.html" class="flex flex-col items-center justify-center text-[#707975] flex-1 py-1">
+      <span class="material-symbols-outlined text-[24px]">payments</span>
+      <span class="text-[10px]">Payments</span>
+    </a>
+  </nav>
+</body>
+</html>

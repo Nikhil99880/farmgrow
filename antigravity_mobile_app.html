@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#0a0e17">
+  <title>Antigravity Simulation - Mobile Edition</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100dvh;
+      overflow: hidden;
+      background: radial-gradient(circle at center, #111936 0%, #080c18 100%);
+      font-family: 'Outfit', sans-serif;
+      touch-action: none;
+      overscroll-behavior: none;
+    }
+    #canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100dvh;
+      z-index: 1;
+      display: block;
+    }
+    .glass-panel {
+      background: rgba(16, 24, 48, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    .glow-cyan {
+      box-shadow: 0 0 20px rgba(0, 242, 254, 0.35);
+    }
+    .drawer {
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .drawer.collapsed {
+      transform: translateY(calc(100% - 68px));
+    }
+  </style>
+</head>
+<body class="text-white relative">
+  <!-- Interactive Physics Canvas -->
+  <canvas id="canvas"></canvas>
+
+  <!-- Top Mobile HUD / Status Bar -->
+  <div class="fixed top-0 left-0 right-0 z-20 p-4 pt-[max(16px,env(safe-area-inset-top))] flex justify-between items-center pointer-events-none">
+    <div class="glass-panel px-3.5 py-1.5 rounded-full flex items-center gap-2 shadow-lg border border-cyan-500/30 pointer-events-auto">
+      <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping"></span>
+      <span id="hud-gravity-mode" class="text-xs font-bold text-cyan-300 uppercase tracking-wider">ANTIGRAVITY (-1G)</span>
+    </div>
+
+    <div class="flex items-center gap-2 pointer-events-auto">
+      <div class="glass-panel px-3 py-1.5 rounded-full text-xs font-semibold text-slate-300 flex items-center gap-1.5">
+        <span class="material-symbols-outlined text-sm text-cyan-400">bubble_chart</span>
+        <span id="particle-counter">0</span>
+      </div>
+      <button id="btn-clear" class="glass-panel active:scale-90 transition-transform w-9 h-9 rounded-full flex items-center justify-center text-rose-400 border border-rose-500/30">
+        <span class="material-symbols-outlined text-sm">refresh</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Touch Instruction Overlay (Fades out after interaction) -->
+  <div id="gesture-hint" class="fixed inset-0 z-10 flex flex-col items-center justify-center pointer-events-none transition-opacity duration-700">
+    <div class="glass-panel p-5 rounded-2xl text-center max-w-[280px] shadow-2xl border border-cyan-500/40 animate-pulse">
+      <div class="w-12 h-12 mx-auto rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center mb-2">
+        <span class="material-symbols-outlined text-2xl">touch_app</span>
+      </div>
+      <h3 class="text-base font-bold text-white mb-1">Touch & Drag Anywhere</h3>
+      <p class="text-xs text-slate-300 leading-relaxed">Spawn floating particles with momentum or tap the bottom controls to alter gravity!</p>
+    </div>
+  </div>
+
+  <!-- Thumb-Friendly Collapsible Bottom Control Sheet -->
+  <div id="bottom-drawer" class="drawer fixed bottom-0 left-0 right-0 z-30 glass-panel rounded-t-[28px] border-t border-cyan-500/30 shadow-2xl pb-[max(20px,env(safe-area-inset-bottom))]">
+    <!-- Drag Handle Bar -->
+    <div id="drawer-handle" class="w-full py-3 flex flex-col items-center justify-center cursor-pointer select-none">
+      <div class="w-12 h-1.5 rounded-full bg-slate-500/60 mb-1"></div>
+      <div class="flex items-center gap-1.5 text-[11px] font-semibold text-cyan-300 uppercase tracking-widest">
+        <span class="material-symbols-outlined text-xs">tune</span>
+        <span>Gravity Control Deck</span>
+        <span id="drawer-arrow" class="material-symbols-outlined text-xs">expand_more</span>
+      </div>
+    </div>
+
+    <!-- Quick Mode Selectors (1-Tap Thumb Buttons) -->
+    <div class="px-4 pb-4">
+      <div class="grid grid-cols-3 gap-2 mb-4">
+        <!-- Antigravity -->
+        <button data-mode="antigravity" class="gravity-btn active:scale-95 transition-all p-2.5 rounded-xl border border-cyan-400 bg-cyan-500/25 text-cyan-200 flex flex-col items-center justify-center gap-1 glow-cyan">
+          <span class="material-symbols-outlined text-xl">arrow_upward</span>
+          <span class="text-[11px] font-bold">Antigravity</span>
+          <span class="text-[9px] opacity-75">-1.0G</span>
+        </button>
+
+        <!-- Zero-G -->
+        <button data-mode="zerog" class="gravity-btn active:scale-95 transition-all p-2.5 rounded-xl border border-white/10 bg-white/5 text-slate-300 flex flex-col items-center justify-center gap-1">
+          <span class="material-symbols-outlined text-xl">all_inclusive</span>
+          <span class="text-[11px] font-bold">Zero-G</span>
+          <span class="text-[9px] opacity-75">0.0G</span>
+        </button>
+
+        <!-- Earth Normal -->
+        <button data-mode="earth" class="gravity-btn active:scale-95 transition-all p-2.5 rounded-xl border border-white/10 bg-white/5 text-slate-300 flex flex-col items-center justify-center gap-1">
+          <span class="material-symbols-outlined text-xl">arrow_downward</span>
+          <span class="text-[11px] font-bold">Earth Normal</span>
+          <span class="text-[9px] opacity-75">+1.0G</span>
+        </button>
+      </div>
+
+      <!-- Fine Sliders & Modifiers -->
+      <div class="space-y-3 bg-black/30 p-3.5 rounded-2xl border border-white/5">
+        <!-- Force Strength Slider -->
+        <div class="flex flex-col gap-1">
+          <div class="flex justify-between text-xs font-semibold text-slate-300">
+            <span>Force Magnitude:</span>
+            <span id="force-val" class="text-cyan-400 font-mono">-9.8 m/s²</span>
+          </div>
+          <input id="slider-force" type="range" min="-25" max="25" value="-10" step="1" class="w-full accent-cyan-400 cursor-pointer">
+        </div>
+
+        <!-- Bounce / Restitution -->
+        <div class="flex flex-col gap-1">
+          <div class="flex justify-between text-xs font-semibold text-slate-300">
+            <span>Particle Elasticity (Bounce):</span>
+            <span id="bounce-val" class="text-cyan-400 font-mono">85%</span>
+          </div>
+          <input id="slider-bounce" type="range" min="0.1" max="1.1" value="0.85" step="0.05" class="w-full accent-cyan-400 cursor-pointer">
+        </div>
+
+        <!-- Quick Particle Spawner Buttons -->
+        <div class="pt-1 grid grid-cols-2 gap-2">
+          <button id="btn-spawn-burst" class="py-2.5 bg-gradient-to-r from-cyan-500 to-blue-600 active:scale-95 rounded-xl text-xs font-bold text-white shadow-lg flex items-center justify-center gap-1">
+            <span class="material-symbols-outlined text-sm">flare</span>
+            <span>Spawn Burst (+30)</span>
+          </button>
+          <button id="btn-singularity" class="py-2.5 bg-gradient-to-r from-purple-600 to-pink-600 active:scale-95 rounded-xl text-xs font-bold text-white shadow-lg flex items-center justify-center gap-1">
+            <span class="material-symbols-outlined text-sm">vortex</span>
+            <span>Black Hole Node</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Physics Simulation Engine
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    let gravityY = -0.35; // Antigravity default upward
+    let gravityX = 0;
+    let elasticity = 0.85;
+    let friction = 0.992;
+    let particles = [];
+    const colorPalette = ['#00F2FE', '#4FACFE', '#FA709A', '#FEE140', '#43E97B', '#38F9D7', '#9B51E0', '#F2994A'];
+
+    class Particle {
+      constructor(x, y, vx, vy, radius, color) {
+        this.x = x;
+        this.y = y;
+        this.vx = vx || (Math.random() - 0.5) * 8;
+        this.vy = vy || (Math.random() - 0.5) * 8;
+        this.radius = radius || Math.random() * 8 + 5;
+        this.color = color || colorPalette[Math.floor(Math.random() * colorPalette.length)];
+        this.mass = this.radius * 0.5;
+        this.glow = Math.random() * 10 + 5;
+        this.trail = [];
+      }
+
+      update() {
+        this.vy += gravityY;
+        this.vx += gravityX;
+
+        this.vx *= friction;
+        this.vy *= friction;
+
+        this.x += this.vx;
+        this.y += this.vy;
+
+        // Boundary Collisions
+        // Ceiling (Antigravity impact)
+        if (this.y - this.radius <= 0) {
+          this.y = this.radius;
+          this.vy = -this.vy * elasticity;
+          this.vx *= 0.95;
+        }
+        // Floor
+        if (this.y + this.radius >= height) {
+          this.y = height - this.radius;
+          this.vy = -this.vy * elasticity;
+          this.vx *= 0.95;
+        }
+        // Left Wall
+        if (this.x - this.radius <= 0) {
+          this.x = this.radius;
+          this.vx = -this.vx * elasticity;
+        }
+        // Right Wall
+        if (this.x + this.radius >= width) {
+          this.x = width - this.radius;
+          this.vx = -this.vx * elasticity;
+        }
+
+        // Trail record
+        this.trail.push({ x: this.x, y: this.y });
+        if (this.trail.length > 5) this.trail.shift();
+      }
+
+      draw() {
+        // Draw Particle Glow
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.shadowColor = this.color;
+        ctx.shadowBlur = this.glow;
+        ctx.fill();
+        ctx.restore();
+
+        // Inner Core
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius * 0.4, 0, Math.PI * 2);
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fill();
+      }
+    }
+
+    // Initial Burst
+    function initParticles(count = 45) {
+      for (let i = 0; i < count; i++) {
+        particles.push(new Particle(
+          Math.random() * (width - 40) + 20,
+          Math.random() * (height - 200) + 100,
+          (Math.random() - 0.5) * 6,
+          (Math.random() - 0.5) * 6
+        ));
+      }
+      updateCounter();
+    }
+    initParticles();
+
+    function updateCounter() {
+      document.getElementById('particle-counter').innerText = particles.length;
+    }
+
+    // Animation Loop
+    function animate() {
+      ctx.fillStyle = 'rgba(8, 12, 24, 0.28)';
+      ctx.fillRect(0, 0, width, height);
+
+      // Particle update & collisions
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].draw();
+
+        // Inter-particle elastic collisions
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[j].x - particles[i].x;
+          const dy = particles[j].y - particles[i].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const minDist = particles[i].radius + particles[j].radius;
+
+          if (dist < minDist) {
+            const angle = Math.atan2(dy, dx);
+            const sin = Math.sin(angle);
+            const cos = Math.cos(angle);
+
+            // Separate
+            const overlap = (minDist - dist) * 0.5;
+            particles[i].x -= cos * overlap;
+            particles[i].y -= sin * overlap;
+            particles[j].x += cos * overlap;
+            particles[j].y += sin * overlap;
+
+            // Velocity swap
+            const vx1 = particles[i].vx;
+            const vy1 = particles[i].vy;
+            particles[i].vx = particles[j].vx * elasticity;
+            particles[i].vy = particles[j].vy * elasticity;
+            particles[j].vx = vx1 * elasticity;
+            particles[j].vy = vy1 * elasticity;
+          }
+        }
+      }
+
+      requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
+
+    // Touch & Mouse Gestures
+    let isTouching = false;
+    let lastX = 0;
+    let lastY = 0;
+    const gestureHint = document.getElementById('gesture-hint');
+
+    function spawnAt(x, y, vx = 0, vy = 0) {
+      if (particles.length > 250) particles.shift();
+      particles.push(new Particle(x, y, vx, vy));
+      updateCounter();
+      if (gestureHint) gestureHint.style.opacity = '0';
+    }
+
+    // Pointer Events (Touch + Mouse Seamless Support)
+    window.addEventListener('pointerdown', (e) => {
+      if (e.target.closest('#bottom-drawer') || e.target.closest('button')) return;
+      isTouching = true;
+      lastX = e.clientX;
+      lastY = e.clientY;
+      spawnAt(e.clientX, e.clientY);
+    });
+
+    window.addEventListener('pointermove', (e) => {
+      if (!isTouching) return;
+      if (e.target.closest('#bottom-drawer')) return;
+      const vx = (e.clientX - lastX) * 0.75;
+      const vy = (e.clientY - lastY) * 0.75;
+      spawnAt(e.clientX, e.clientY, vx, vy);
+      lastX = e.clientX;
+      lastY = e.clientY;
+    });
+
+    window.addEventListener('pointerup', () => { isTouching = false; });
+    window.addEventListener('pointercancel', () => { isTouching = false; });
+
+    // Gyroscope / Device Tilt Integration
+    if (window.DeviceOrientationEvent) {
+      window.addEventListener('deviceorientation', (e) => {
+        if (e.gamma !== null && e.beta !== null) {
+          gravityX = (e.gamma / 45) * 0.35;
+        }
+      });
+    }
+
+    // Drawer Collapsing Logic
+    const drawer = document.getElementById('bottom-drawer');
+    const drawerHandle = document.getElementById('drawer-handle');
+    const drawerArrow = document.getElementById('drawer-arrow');
+
+    drawerHandle.addEventListener('click', () => {
+      drawer.classList.toggle('collapsed');
+      drawerArrow.innerText = drawer.classList.contains('collapsed') ? 'expand_less' : 'expand_more';
+    });
+
+    // Control Deck Buttons
+    const hudMode = document.getElementById('hud-gravity-mode');
+    const gravityBtns = document.querySelectorAll('.gravity-btn');
+    const forceSlider = document.getElementById('slider-force');
+    const forceVal = document.getElementById('force-val');
+    const bounceSlider = document.getElementById('slider-bounce');
+    const bounceVal = document.getElementById('bounce-val');
+
+    gravityBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        gravityBtns.forEach(b => {
+          b.className = 'gravity-btn active:scale-95 transition-all p-2.5 rounded-xl border border-white/10 bg-white/5 text-slate-300 flex flex-col items-center justify-center gap-1';
+        });
+        btn.className = 'gravity-btn active:scale-95 transition-all p-2.5 rounded-xl border border-cyan-400 bg-cyan-500/25 text-cyan-200 flex flex-col items-center justify-center gap-1 glow-cyan';
+
+        const mode = btn.getAttribute('data-mode');
+        if (mode === 'antigravity') {
+          gravityY = -0.35;
+          hudMode.innerText = 'ANTIGRAVITY (-1G)';
+          forceSlider.value = -10;
+          forceVal.innerText = '-9.8 m/s²';
+        } else if (mode === 'zerog') {
+          gravityY = 0;
+          hudMode.innerText = 'ZERO-GRAVITY (0G)';
+          forceSlider.value = 0;
+          forceVal.innerText = '0.0 m/s²';
+        } else if (mode === 'earth') {
+          gravityY = 0.35;
+          hudMode.innerText = 'EARTH NORMAL (+1G)';
+          forceSlider.value = 10;
+          forceVal.innerText = '+9.8 m/s²';
+        }
+      });
+    });
+
+    forceSlider.addEventListener('input', (e) => {
+      const val = parseFloat(e.target.value);
+      gravityY = (val / 10) * 0.35;
+      forceVal.innerText = (val * 0.98).toFixed(1) + ' m/s²';
+      hudMode.innerText = val < 0 ? 'ANTIGRAVITY' : (val === 0 ? 'ZERO-G' : 'DOWNWARD GRAVITY');
+    });
+
+    bounceSlider.addEventListener('input', (e) => {
+      elasticity = parseFloat(e.target.value);
+      bounceVal.innerText = Math.round(elasticity * 100) + '%';
+    });
+
+    document.getElementById('btn-clear').addEventListener('click', () => {
+      particles = [];
+      updateCounter();
+    });
+
+    document.getElementById('btn-spawn-burst').addEventListener('click', () => {
+      initParticles(30);
+    });
+
+    document.getElementById('btn-singularity').addEventListener('click', () => {
+      // Pull particles to center in a vortex burst
+      particles.forEach(p => {
+        const dx = width / 2 - p.x;
+        const dy = height / 3 - p.y;
+        p.vx = dx * 0.12;
+        p.vy = dy * 0.12;
+      });
+    });
+  </script>
+</body>
+</html>

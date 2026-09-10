@@ -1,0 +1,301 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>Kisan Setu - Live Tracker</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@500;600;700&amp;family=Noto+Sans:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "inverse-surface": "#313030",
+                      "on-primary": "#ffffff",
+                      "secondary-fixed-dim": "#e9c400",
+                      "on-error-container": "#93000a",
+                      "surface-tint": "#29695b",
+                      "error-container": "#ffdad6",
+                      "surface-dim": "#dcd9d9",
+                      "on-surface": "#1c1b1b",
+                      "surface-container-highest": "#e5e2e1",
+                      "on-background": "#1c1b1b",
+                      "surface-variant": "#e5e2e1",
+                      "on-tertiary-fixed": "#131e17",
+                      "tertiary": "#253028",
+                      "primary-fixed-dim": "#94d3c1",
+                      "on-primary-fixed-variant": "#065043",
+                      "on-surface-variant": "#3f4945",
+                      "on-primary-fixed": "#00201a",
+                      "surface-container": "#f0edec",
+                      "on-secondary-fixed-variant": "#544600",
+                      "tertiary-container": "#3b463e",
+                      "secondary": "#705d00",
+                      "surface-bright": "#fcf9f8",
+                      "outline": "#707975",
+                      "background": "#fcf9f8",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary-container": "#fdd400",
+                      "on-tertiary": "#ffffff",
+                      "surface-container-low": "#f6f3f2",
+                      "secondary-fixed": "#ffe170",
+                      "surface-container-high": "#ebe7e7",
+                      "primary": "#00342b",
+                      "inverse-primary": "#94d3c1",
+                      "error": "#ba1a1a",
+                      "surface": "#fcf9f8",
+                      "on-secondary-fixed": "#221b00",
+                      "primary-fixed": "#afefdd",
+                      "primary-container": "#004d40",
+                      "on-tertiary-fixed-variant": "#3e4a41",
+                      "on-secondary-container": "#6f5c00",
+                      "on-secondary": "#ffffff",
+                      "on-tertiary-container": "#a7b4a9",
+                      "on-error": "#ffffff",
+                      "outline-variant": "#bfc9c4",
+                      "tertiary-fixed": "#d9e6da",
+                      "tertiary-fixed-dim": "#bdcabe",
+                      "on-primary-container": "#7ebdac",
+                      "inverse-on-surface": "#f3f0ef"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter-mobile": "16px",
+                      "stack-gap-lg": "24px",
+                      "margin-mobile": "20px",
+                      "unit": "8px",
+                      "touch-target-min": "56px",
+                      "stack-gap-md": "16px"
+              },
+              "fontFamily": {
+                      "headline-sm": [
+                              "Be Vietnam Pro"
+                      ],
+                      "headline-lg": [
+                              "Be Vietnam Pro"
+                      ],
+                      "headline-md": [
+                              "Be Vietnam Pro"
+                      ],
+                      "label-md": [
+                              "Be Vietnam Pro"
+                      ],
+                      "label-lg": [
+                              "Be Vietnam Pro"
+                      ],
+                      "body-lg": [
+                              "Noto Sans"
+                      ],
+                      "body-md": [
+                              "Noto Sans"
+                      ]
+              },
+              "fontSize": {
+                      "headline-sm": [
+                              "18px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "28px",
+                              {
+                                      "lineHeight": "36px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "22px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "label-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.5px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "26px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased pb-24 md:pb-0">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 border-b-2 flex justify-between items-center px-margin-mobile h-touch-target-min bg-surface text-on-surface border-outline-variant">
+<button aria-label="Menu" class="hover:bg-primary/20 active:scale-95 transition-transform flex items-center justify-center w-touch-target-min h-touch-target-min rounded-full">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-center flex-1">Kisan Setu | <span class="font-medium">किसान सेतु</span></h1>
+<button aria-label="Voice Input" class="hover:bg-primary/20 active:scale-95 transition-transform flex items-center justify-center w-touch-target-min h-touch-target-min rounded-full">
+<span class="material-symbols-outlined" data-icon="record_voice_over">record_voice_over</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="mt-[58px] px-margin-mobile py-stack-gap-lg max-w-3xl mx-auto space-y-stack-gap-lg md:mt-[70px]">
+<!-- Status Card -->
+<section aria-labelledby="status-heading" class="bg-[#E8F5E9] border border-primary/20 rounded-xl overflow-hidden shadow-sm">
+<div class="bg-primary text-on-primary px-4 py-3 flex justify-between items-center">
+<div>
+<h2 class="font-label-lg text-label-lg opacity-90 uppercase tracking-wider" id="status-heading">Token ID | टोकन आईडी</h2>
+<p class="font-headline-md text-headline-md mt-1">#KP-2026-8492</p>
+</div>
+<div class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label-md text-label-md font-bold flex items-center gap-1 border border-secondary">
+<span class="material-symbols-outlined text-[18px]">sync</span> Active
+                </div>
+</div>
+<div class="p-6 text-center">
+<p class="font-body-md text-on-surface-variant mb-1">Current Stage | वर्तमान चरण</p>
+<h3 class="font-headline-lg text-headline-lg text-primary">In Mandi Queue</h3>
+<p class="font-body-lg text-body-lg text-primary-container mt-1 font-medium">मंडी कतार में</p>
+</div>
+</section>
+<!-- Metrics Grid -->
+<section aria-label="Real-time Metrics" class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-lowest border-2 border-surface-variant rounded-xl p-4 flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-primary-container text-3xl mb-2" style="font-variation-settings: 'FILL' 1;">directions_car</span>
+<p class="font-headline-md text-headline-md text-primary">12</p>
+<p class="font-label-md text-label-md text-on-surface-variant mt-1">Vehicles Ahead<br><span class="text-xs">आगे के वाहन</span></p>
+</div>
+<div class="bg-surface-container-lowest border-2 border-secondary rounded-xl p-4 flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-secondary text-3xl mb-2" style="font-variation-settings: 'FILL' 1;">schedule</span>
+<p class="font-headline-md text-headline-md text-on-surface">~15 mins</p>
+<p class="font-label-md text-label-md text-on-surface-variant mt-1">Est. Wait<br><span class="text-xs">अनुमानित प्रतीक्षा</span></p>
+</div>
+<div class="col-span-2 bg-surface-container-lowest border-2 border-surface-variant rounded-xl p-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container text-3xl bg-surface-container p-2 rounded-lg" style="font-variation-settings: 'FILL' 1;">sensor_door</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">Assigned Gate | आवंटित गेट</p>
+<p class="font-headline-sm text-headline-sm text-on-surface mt-1">Gate 2</p>
+</div>
+</div>
+<div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-on-primary font-headline-md text-headline-md">
+                    2
+                </div>
+</div>
+</section>
+<!-- Vertical Pipeline Stepper -->
+<section aria-label="Process Pipeline" class="bg-surface-container-lowest border border-surface-variant rounded-xl p-6">
+<h3 class="font-headline-sm text-headline-sm text-primary border-b border-surface-variant pb-3 mb-6">Process Status | प्रक्रिया स्थिति</h3>
+<div class="relative pl-6 space-y-8">
+<!-- Line connecting steps -->
+<div class="absolute left-[33px] top-4 bottom-8 w-1 bg-surface-variant rounded-full z-0"></div>
+<!-- Active portion of line -->
+<div class="absolute left-[33px] top-4 h-[30%] w-1 bg-primary rounded-t-full z-0"></div>
+<!-- Step 1: Completed -->
+<div class="relative z-10 flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center shrink-0 border-4 border-surface-container-lowest shadow-sm">
+<span class="material-symbols-outlined text-on-primary text-xl" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface">Slot Confirmed</p>
+<p class="font-body-md text-body-md text-on-surface-variant">स्लॉट की पुष्टि</p>
+</div>
+</div>
+<!-- Step 2: Active -->
+<div class="relative z-10 flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center shrink-0 border-4 border-surface-container-lowest shadow-sm ring-2 ring-secondary ring-offset-2 ring-offset-surface-container-lowest">
+<span class="material-symbols-outlined text-on-secondary-container text-xl" style="font-variation-settings: 'FILL' 1;">pending</span>
+</div>
+<div class="bg-secondary-fixed-dim/20 px-3 py-2 rounded-lg border border-secondary/30 flex-1">
+<p class="font-label-lg text-label-lg text-on-surface font-bold">Gate Entry</p>
+<p class="font-body-md text-body-md text-on-surface-variant">गेट प्रवेश</p>
+<p class="font-label-md text-label-md text-secondary mt-1">In Progress...</p>
+</div>
+</div>
+<!-- Step 3: Pending -->
+<div class="relative z-10 flex items-start gap-4 opacity-50">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center shrink-0 border-4 border-surface-container-lowest">
+<span class="material-symbols-outlined text-on-surface-variant text-xl">science</span>
+</div>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface">Quality Check</p>
+<p class="font-body-md text-body-md text-on-surface-variant">गुणवत्ता जांच</p>
+</div>
+</div>
+<!-- Step 4: Pending -->
+<div class="relative z-10 flex items-start gap-4 opacity-50">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center shrink-0 border-4 border-surface-container-lowest">
+<span class="material-symbols-outlined text-on-surface-variant text-xl">scale</span>
+</div>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface">Weighbridge</p>
+<p class="font-body-md text-body-md text-on-surface-variant">धर्मकांटा</p>
+</div>
+</div>
+<!-- Step 5: Pending -->
+<div class="relative z-10 flex items-start gap-4 opacity-50">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center shrink-0 border-4 border-surface-container-lowest">
+<span class="material-symbols-outlined text-on-surface-variant text-xl">payments</span>
+</div>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface">Payment Disbursed</p>
+<p class="font-body-md text-body-md text-on-surface-variant">भुगतान संवितरित</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Vehicle Details -->
+<section class="bg-surface-container border border-surface-variant rounded-xl p-4 flex items-center gap-4">
+<div class="w-16 h-16 bg-surface-variant rounded-lg flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-surface-variant text-3xl">local_shipping</span>
+</div>
+<div class="flex-1">
+<p class="font-label-md text-label-md text-on-surface-variant">Vehicle Details | वाहन विवरण</p>
+<div class="bg-surface-container-lowest border-2 border-outline px-3 py-2 mt-2 inline-block rounded-md">
+<p class="font-headline-md text-headline-md text-on-surface tracking-widest uppercase">PB-10-EH-9821</p>
+</div>
+</div>
+</section>
+
+<!-- Primary Linear Flow Button -->
+<div class="mt-4 mb-20">
+  <button onclick="window.location.href='../procurement_details_quality_weighing_fixed/code.html'" class="w-full h-14 bg-primary hover:bg-primary-container text-on-primary font-bold text-base rounded-xl shadow-lg flex items-center justify-center gap-2 active:scale-95 transition-all cursor-pointer">
+    <span>Proceed to Quality & Weighing / गुणवत्ता जांच →</span>
+  </button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="bg-surface-container-lowest text-on-surface-variant fixed bottom-0 w-full z-50 h-20 border-t border-outline-variant flex justify-around items-center px-2 md:hidden"><a href="../dashboard_bilingual/code.html" aria-label="Home" class="flex flex-col items-center justify-center hover:bg-surface-container-high active:scale-90 transition-all duration-150 w-[72px] h-full"><span class="material-symbols-outlined text-[24px] mb-1">home</span><span class="text-[12px] font-medium">Home</span></a><a href="../live_tracker/code.html" aria-label="Track" class="flex flex-col items-center justify-center text-primary hover:bg-surface-container-high active:scale-90 transition-all duration-150 w-[72px] h-full relative"><div class="absolute top-2 w-12 h-8 bg-secondary-container rounded-full -z-10"></div><span class="material-symbols-outlined text-[24px] mb-1" style="font-variation-settings: 'FILL' 1;">local_shipping</span><span class="text-[12px] font-bold">Track</span></a><a href="../nearby_mandis_updated_icons/code.html" aria-label="Mandis" class="flex flex-col items-center justify-center hover:bg-surface-container-high active:scale-90 transition-all duration-150 w-[72px] h-full"><span class="material-symbols-outlined text-[24px] mb-1">location_on</span><span class="text-[12px] font-medium">Mandis</span></a><a href="../procurement_details_quality_weighing_fixed/code.html" aria-label="Quality" class="flex flex-col items-center justify-center hover:bg-surface-container-high active:scale-90 transition-all duration-150 w-[72px] h-full"><span class="material-symbols-outlined text-[24px] mb-1">high_quality</span><span class="text-[12px] font-medium">Quality</span></a><a href="../my_payments/code.html" aria-label="Payments" class="flex flex-col items-center justify-center hover:bg-surface-container-high active:scale-90 transition-all duration-150 w-[72px] h-full"><span class="material-symbols-outlined text-[24px] mb-1">payments</span><span class="text-[12px] font-medium">Payments</span></a></nav>
+
+
+
+
+</body></html>

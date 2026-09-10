@@ -1,0 +1,11 @@
+{
+  "name": "Kisan Setu",
+  "short_name": "Kisan Setu",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#00342b",
+  "theme_color": "#00342b",
+  "description": "Kisan Setu - Rural Agriculture Procurement & Mandi Token Management",
+  "orientation": "portrait-primary",
+  "prefer_related_applications": false
+}

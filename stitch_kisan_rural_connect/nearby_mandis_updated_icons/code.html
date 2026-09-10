@@ -1,0 +1,281 @@
+<!DOCTYPE html><html lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Nearby Mandis | Kisan Setu</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Noto+Sans:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#131e17",
+                        "on-surface": "#1c1b1b",
+                        "surface-dim": "#dcd9d9",
+                        "on-tertiary-fixed-variant": "#3e4a41",
+                        "on-error-container": "#93000a",
+                        "on-surface-variant": "#3f4945",
+                        "on-secondary-container": "#6f5c00",
+                        "secondary-container": "#fdd400",
+                        "secondary-fixed": "#ffe170",
+                        "surface-tint": "#29695b",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed": "#afefdd",
+                        "on-primary-container": "#7ebdac",
+                        "on-secondary-fixed-variant": "#544600",
+                        "on-primary-fixed": "#00201a",
+                        "error-container": "#ffdad6",
+                        "surface": "#fcf9f8",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#f3f0ef",
+                        "on-primary-fixed-variant": "#065043",
+                        "on-background": "#1c1b1b",
+                        "tertiary-fixed": "#d9e6da",
+                        "tertiary": "#253028",
+                        "surface-container-highest": "#e5e2e1",
+                        "on-error": "#ffffff",
+                        "primary": "#00342b",
+                        "secondary": "#705d00",
+                        "surface-variant": "#e5e2e1",
+                        "surface-container-high": "#ebe7e7",
+                        "primary-fixed-dim": "#94d3c1",
+                        "on-tertiary-container": "#a7b4a9",
+                        "surface-container-low": "#f6f3f2",
+                        "surface-bright": "#fcf9f8",
+                        "tertiary-container": "#3b463e",
+                        "surface-container": "#f0edec",
+                        "background": "#fcf9f8",
+                        "primary-container": "#004d40",
+                        "tertiary-fixed-dim": "#bdcabe",
+                        "inverse-primary": "#94d3c1",
+                        "secondary-fixed-dim": "#e9c400",
+                        "outline": "#707975",
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "inverse-surface": "#313030",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#221b00",
+                        "outline-variant": "#bfc9c4"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter-mobile": "16px",
+                        "margin-mobile": "20px",
+                        "touch-target-min": "56px",
+                        "stack-gap-md": "16px",
+                        "unit": "8px",
+                        "stack-gap-lg": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Be Vietnam Pro"],
+                        "body-md": ["Noto Sans"],
+                        "label-md": ["Be Vietnam Pro"],
+                        "headline-sm": ["Be Vietnam Pro"],
+                        "label-lg": ["Be Vietnam Pro"],
+                        "headline-md": ["Be Vietnam Pro"],
+                        "body-lg": ["Noto Sans"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["28px", { "lineHeight": "36px", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "label-lg": ["16px", { "lineHeight": "20px", "letterSpacing": "0.5px", "fontWeight": "600" }],
+                        "headline-md": ["22px", { "lineHeight": "28px", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "26px", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col pt-touch-target-min pb-24 md:pb-8">
+<!-- Top App Bar -->
+<header class="border-b border-outline-variant w-full top-0 flex items-center px-margin-mobile fixed z-40 transition-colors duration-200 py-2 bg-surface-container-lowest"><div class="flex items-center justify-between w-full max-w-4xl mx-auto">
+  <div class="flex items-center gap-4">
+    <button class="text-primary p-2 rounded-full hover:bg-surface-variant transition-colors">
+      <span class="material-symbols-outlined text-2xl">menu</span>
+    </button>
+    <h1 class="font-headline-md text-headline-md text-primary flex items-center gap-2"><span class="material-symbols-outlined">agriculture</span>Kisan Setu | किसान सेतु</h1>
+  </div>
+  <div class="flex items-center gap-3">
+    <button aria-label="Select Language" class="flex items-center gap-2 px-3 py-1.5 rounded-full border border-outline-variant bg-surface text-on-surface hover:bg-surface-container-low transition-colors active:scale-95">
+      <span class="material-symbols-outlined text-lg">language</span>
+      <span class="font-label-md text-xs">EN/हिन्दी</span>
+    </button>
+    <button class="h-10 w-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center shadow-sm active:scale-95 transition-transform">
+      <span class="material-symbols-outlined">person</span>
+    </button>
+  </div>
+</div></header>
+<!-- Main Content Canvas -->
+<main class="flex-1 px-margin-mobile py-stack-gap-md max-w-4xl mx-auto w-full flex flex-col gap-stack-gap-lg">
+<!-- Header Section -->
+<section class="flex flex-col gap-unit">
+<h1 class="font-headline-lg text-headline-lg text-primary">Nearby Mandis | नज़दीकी मंडियां</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Find the nearest procurement centers and their current wait times.</p>
+</section>
+<!-- Search & Filter Bar -->
+<div class="flex gap-stack-gap-md items-center w-full">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
+<input aria-label="Search Mandis" class="w-full pl-10 pr-4 py-3 rounded-lg border-2 border-outline-variant bg-surface focus:border-primary focus:ring-0 font-body-md text-body-md min-h-[56px]" placeholder="Search by name or district..." type="text">
+</div>
+<button class="bg-surface-container border-2 border-outline-variant text-on-surface px-4 py-3 rounded-lg flex items-center gap-2 min-h-[56px] active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="tune">tune</span>
+<span class="font-label-lg text-label-lg hidden sm:inline">Filters</span>
+</button>
+</div>
+<!-- Mandi List -->
+<div class="flex flex-col gap-stack-gap-md">
+<!-- Recommended Mandi Card (High Contrast) -->
+<article class="bg-[#E8F5E9] border-2 border-primary rounded-xl overflow-hidden shadow-sm relative group">
+<div class="absolute top-0 right-0 bg-secondary-container text-on-secondary-container px-3 py-1 rounded-bl-lg font-label-md text-label-md font-bold flex items-center gap-1 z-10 border-b-2 border-l-2 border-secondary">
+<span class="material-symbols-outlined text-sm" data-icon="star">star</span>
+                    Recommended
+                </div>
+<div class="p-4 sm:p-6 flex flex-col sm:flex-row gap-stack-gap-md h-full">
+<div class="w-full sm:w-1/3 aspect-video sm:aspect-square relative rounded-lg overflow-hidden border border-outline-variant/30 flex-shrink-0 bg-surface-container flex items-center justify-center">
+<!-- Placeholder for map visualization -->
+<div class="bg-cover bg-center w-full h-full absolute inset-0" data-alt="A detailed map visualization showing the route to a rural agricultural market in India. The map should have a clear, high-contrast style with prominent route lines and location pins, suitable for a mobile app interface used outdoors." style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuAbocS7cFi-jyWwp2OymvvkNOPZ9RgozNBpsBO9hP60J5OSpoV3wf_Xes4N69a7dvy3SkfWcTg1xkVRKzEiSves4_lTd07BkDelsDkMPLECrwAyQlzuQ5-JXNCldi6j6HTp65-FnC9UQp-ldArRivZlpPhh0TknRGRse9JbbPjSy_Wz01LpNAWWUpjjobVqcmUqi-Dq60U6Uaz3DeS9uqfjVWMvxNVSbL25VwnC1rn6SAzj1aR8JdmG&quot;);"></div>
+<button aria-label="Open in Maps" class="w-full mt-2 bg-primary-container text-on-primary-container font-label-lg text-label-lg py-3 rounded-lg min-h-[56px] flex items-center justify-center gap-2 active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="directions">directions</span>
+</button>
+</div>
+<div class="flex flex-col flex-1 gap-3 justify-between">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary">Karnal Grain Market | करनाल अनाज मंडी</h2>
+<div class="flex items-center gap-2 text-on-surface-variant mt-1 font-body-md text-body-md">
+<span class="material-symbols-outlined text-lg" data-icon="location_on">location_on</span>
+<span class="">5.2 km away</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-low p-3 rounded-lg border border-outline-variant/50">
+<span class="font-label-md text-label-md text-on-surface-variant block mb-1">Wait Time</span>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-green-600"></div>
+<span class="font-headline-sm text-headline-sm text-on-surface">15 mins</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-3 rounded-lg border border-outline-variant/50">
+<span class="font-label-md text-label-md text-on-surface-variant block mb-1">Capacity</span>
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface">45%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-variant rounded-full mt-1 overflow-hidden">
+<div class="h-full bg-primary" style="width: 45%;"></div>
+</div>
+</div>
+</div>
+<button class="w-full mt-2 bg-primary-container text-on-primary-container font-label-lg text-label-lg py-3 rounded-lg min-h-[56px] flex items-center justify-center gap-2 active:scale-95 transition-all">
+                            Book Slot | स्लॉट बुक करें
+                            <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Standard Mandi Card 1 -->
+<article class="bg-surface border border-outline-variant rounded-xl overflow-hidden shadow-sm hover:border-primary transition-colors">
+<div class="p-4 flex flex-col sm:flex-row gap-stack-gap-md">
+<div class="flex flex-col flex-1 gap-3 justify-center">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Nilokheri Mandi | नीलोखेड़ी मंडी</h3>
+<div class="flex items-center gap-2 text-on-surface-variant mt-1 font-body-md text-body-md">
+<span class="material-symbols-outlined text-lg" data-icon="location_on">location_on</span>
+<span class="">12.8 km away</span>
+</div>
+</div>
+<button aria-label="Open in Maps" class="text-primary p-2 active:scale-95 transition-transform bg-surface-container rounded-full">
+<span class="material-symbols-outlined" data-icon="directions">directions</span>
+</button>
+</div>
+<div class="flex gap-4">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-secondary-container"></div>
+<span class="font-label-lg text-label-lg text-on-surface">45 mins wait</span>
+</div>
+<div class="w-px h-auto bg-outline-variant mx-1"></div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant text-lg" data-icon="storefront">storefront</span>
+<span class="font-label-lg text-label-lg text-on-surface">78% full</span>
+</div>
+</div>
+</div>
+</div>
+</article>
+<!-- Standard Mandi Card 2 -->
+<article class="bg-surface border border-outline-variant rounded-xl overflow-hidden shadow-sm hover:border-primary transition-colors opacity-80">
+<div class="p-4 flex flex-col sm:flex-row gap-stack-gap-md">
+<div class="flex flex-col flex-1 gap-3 justify-center">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Gharaunda Center | घरौंडा केंद्र</h3>
+<div class="flex items-center gap-2 text-on-surface-variant mt-1 font-body-md text-body-md">
+<span class="material-symbols-outlined text-lg" data-icon="location_on">location_on</span>
+<span class="">18.4 km away</span>
+</div>
+</div>
+<button aria-label="Open in Maps" class="text-primary p-2 active:scale-95 transition-transform bg-surface-container rounded-full">
+<span class="material-symbols-outlined" data-icon="directions">directions</span>
+</button>
+</div>
+<div class="flex gap-4">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-error"></div>
+<span class="font-label-lg text-label-lg text-error font-bold">&gt; 2 hrs wait</span>
+</div>
+<div class="w-px h-auto bg-outline-variant mx-1"></div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant text-lg" data-icon="storefront">storefront</span>
+<span class="font-label-lg text-label-lg text-error">95% full</span>
+</div>
+</div>
+</div>
+</div>
+</article>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 h-20 bg-surface dark:bg-surface-container-highest flex justify-around items-center px-2"><button class="flex flex-col items-center justify-center text-on-surface-variant h-full w-1/5 hover:bg-surface-container-high transition-all">
+  <span class="material-symbols-outlined text-2xl mb-1">home</span>
+  <span class="font-label-md text-[10px]">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant h-full w-1/5 hover:bg-surface-container-high transition-all">
+  <span class="material-symbols-outlined text-2xl mb-1">local_shipping</span>
+  <span class="font-label-md text-[10px]">Track</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-primary text-on-primary rounded-xl h-[70%] w-[18%] mx-1 border-2 border-primary shadow-sm active:scale-95 transition-all"><span class="material-symbols-outlined text-[28px] mb-0.5">location_on</span><span class="font-label-md text-[10px] font-bold">Mandis</span></button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant h-full w-1/5 hover:bg-surface-container-high transition-all">
+  <span class="material-symbols-outlined text-2xl mb-1">high_quality</span>
+  <span class="font-label-md text-[10px]">Quality</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant h-full w-1/5 hover:bg-surface-container-high transition-all">
+  <span class="material-symbols-outlined text-2xl mb-1">payments</span>
+  <span class="font-label-md text-[10px]">Payments</span>
+</button></nav>
+
+
+
+
+
+
+
+
+
+
+</body></html>

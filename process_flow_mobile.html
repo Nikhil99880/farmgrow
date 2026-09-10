@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Kisan Setu | 8-Step Process Flow Stepper</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Noto+Sans:wght@400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    body { font-family: 'Noto Sans', sans-serif; background-color: #0F172A; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Be Vietnam Pro', sans-serif; }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    .material-symbols-outlined.fill { font-variation-settings: 'FILL' 1; }
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    @media (min-width: 768px) {
+      .phone-frame {
+        box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7), 0 0 0 12px #1E293B, 0 0 0 14px #334155;
+        border-radius: 44px;
+      }
+    }
+  </style>
+</head>
+<body class="h-full flex items-center justify-center p-0 md:p-6 bg-slate-950 text-slate-100">
+
+  <!-- Mobile Viewport Container -->
+  <div class="phone-frame w-full max-w-[430px] h-full md:h-[880px] bg-[#FCF9F8] text-[#1C1B1B] flex flex-col relative overflow-hidden shadow-2xl">
+    
+    <!-- Top Header -->
+    <header class="bg-[#2E7D32] text-white px-5 py-4 flex items-center justify-between shadow-md shrink-0">
+      <div class="flex items-center gap-2.5">
+        <a href="app.html" class="p-1 rounded-full hover:bg-white/20 text-white transition-colors">
+          <span class="material-symbols-outlined">arrow_back</span>
+        </a>
+        <div>
+          <h1 class="font-bold text-base leading-tight">System Working Flow</h1>
+          <p class="text-[11px] text-[#AFEFDD]">8-Step Mandi Procurement Process</p>
+        </div>
+      </div>
+      <a href="app.html" class="w-8 h-8 rounded-full bg-[#FDD400] text-[#1B5E20] flex items-center justify-center font-bold shadow-sm">
+        <span class="material-symbols-outlined text-lg">home</span>
+      </a>
+    </header>
+
+    <!-- Stepper Timeline Content Area -->
+    <main class="flex-1 overflow-y-auto px-5 py-4 hide-scrollbar space-y-4">
+      
+      <!-- Progress Bar Header Card -->
+      <div class="bg-white border border-[#CFD8DC] rounded-2xl p-4 shadow-sm">
+        <div class="flex justify-between items-center mb-1.5">
+          <span class="text-xs font-extrabold text-[#2E7D32]">Current Stage: Gate Queue</span>
+          <span class="text-xs font-bold text-[#F57F17]">Step 5 of 8 (62%)</span>
+        </div>
+        <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+          <div class="bg-[#2E7D32] h-full rounded-full w-[62.5%]"></div>
+        </div>
+      </div>
+
+      <!-- Vertical Stepper Timeline -->
+      <div class="relative pl-6 space-y-4 before:absolute before:left-3.5 before:top-4 before:bottom-4 before:w-0.5 before:bg-slate-300">
+
+        <!-- STEP 1: Registration (Completed) -->
+        <div class="relative group">
+          <div class="absolute -left-6 top-3 w-5 h-5 rounded-full bg-[#2E7D32] text-white flex items-center justify-center text-[10px] font-bold shadow-sm">✓</div>
+          <div class="bg-[#E8F5E9] border border-[#2E7D32]/40 rounded-2xl p-3.5 shadow-sm flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-white text-[#2E7D32] flex items-center justify-center shadow-xs">
+                <span class="material-symbols-outlined text-xl">person_outline</span>
+              </div>
+              <div>
+                <h3 class="font-bold text-xs text-[#1C1B1B]">1. Registration / पंजीकरण</h3>
+                <p class="text-[10px] text-[#55605A]">Ram Singh • 9876543210</p>
+              </div>
+            </div>
+            <span class="text-[10px] bg-[#2E7D32] text-white font-bold px-2 py-0.5 rounded-full">DONE</span>
+          </div>
+        </div>
+
+        <!-- STEP 2: Crop Details (Completed) -->
+        <div class="relative group">
+          <div class="absolute -left-6 top-3 w-5 h-5 rounded-full bg-[#2E7D32] text-white flex items-center justify-center text-[10px] font-bold shadow-sm">✓</div>
+          <div class="bg-[#E8F5E9] border border-[#2E7D32]/40 rounded-2xl p-3.5 shadow-sm flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-white text-[#2E7D32] flex items-center justify-center shadow-xs">
+                <span class="material-symbols-outlined text-xl">grass</span>
+              </div>
+              <div>
+                <h3 class="font-bold text-xs text-[#1C1B1B]">2. Crop Details / फसल विवरण</h3>
+                <p class="text-[10px] text-[#55605A]">Wheat (गेहूँ) • 50 Quintals</p>
+              </div>
+            </div>
+            <span class="text-[10px] bg-[#2E7D32] text-white font-bold px-2 py-0.5 rounded-full">DONE</span>
+          </div>
+        </div>
+
+        <!-- STEP 3: Slot Booking (Completed) -->
+        <div class="relative group">
+          <div class="absolute -left-6 top-3 w-5 h-5 rounded-full bg-[#2E7D32] text-white flex items-center justify-center text-[10px] font-bold shadow-sm">✓</div>
+          <div class="bg-[#E8F5E9] border border-[#2E7D32]/40 rounded-2xl p-3.5 shadow-sm flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-white text-[#2E7D32] flex items-center justify-center shadow-xs">
+                <span class="material-symbols-outlined text-xl">calendar_month</span>
+              </div>
+              <div>
+                <h3 class="font-bold text-xs text-[#1C1B1B]">3. Slot Booking / स्लॉट बुकिंग</h3>
+                <p class="text-[10px] text-[#55605A]">Sonipat Mandi • Today Morning</p>
+              </div>
+            </div>
+            <span class="text-[10px] bg-[#2E7D32] text-white font-bold px-2 py-0.5 rounded-full">DONE</span>
+          </div>
+        </div>
+
+        <!-- STEP 4: Token Generation (Completed) -->
+        <div class="relative group">
+          <div class="absolute -left-6 top-3 w-5 h-5 rounded-full bg-[#2E7D32] text-white flex items-center justify-center text-[10px] font-bold shadow-sm">✓</div>
+          <div class="bg-[#E8F5E9] border border-[#2E7D32]/40 rounded-2xl p-3.5 shadow-sm flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-white text-[#2E7D32] flex items-center justify-center shadow-xs">
+                <span class="material-symbols-outlined text-xl">qr_code_2</span>
+              </div>
+              <div>
+                <h3 class="font-bold text-xs text-[#1C1B1B]">4. Gate Token / टोकन जारी</h3>
+                <p class="text-[10px] text-[#55605A]">Token #42 Issued (Gate 2)</p>
+              </div>
+            </div>
+            <span class="text-[10px] bg-[#2E7D32] text-white font-bold px-2 py-0.5 rounded-full">DONE</span>
+          </div>
+        </div>
+
+        <!-- STEP 5: Live Queue Tracking (ACTIVE - Amber Glow) -->
+        <div class="relative group">
+          <div class="absolute -left-6 top-3 w-5 h-5 rounded-full bg-[#F57F17] text-white flex items-center justify-center text-[10px] font-bold shadow-md animate-pulse">▶</div>
+          <div class="bg-[#FFF9C4] border-2 border-[#F57F17] rounded-2xl p-4 shadow-md">
+            <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center gap-2.5">
+                <div class="w-10 h-10 rounded-xl bg-[#F57F17] text-white flex items-center justify-center shadow-xs">
+                  <span class="material-symbols-outlined text-xl">local_shipping</span>
+                </div>
+                <div>
+                  <h3 class="font-bold text-xs text-[#1C1B1B]">5. Live Queue / कतार ट्रैकर</h3>
+                  <p class="text-[10px] text-[#5D4037] font-semibold">12 Vehicles Ahead • ~15m Wait</p>
+                </div>
+              </div>
+              <span class="text-[10px] bg-[#F57F17] text-white font-extrabold px-2.5 py-0.5 rounded-full shadow-xs">ACTIVE</span>
+            </div>
+            <a href="app.html" class="w-full mt-2 bg-[#2E7D32] text-white py-2 rounded-xl text-center text-xs font-bold block shadow-xs hover:bg-[#1B5E20]">
+              Open Full Tracker →
+            </a>
+          </div>
+        </div>
+
+        <!-- STEP 6: Quality & Moisture (Upcoming) -->
+        <div class="relative group opacity-75">
+          <div class="absolute -left-6 top-3 w-5 h-5 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center text-[10px] font-bold">6</div>
+          <div class="bg-white border border-[#CFD8DC] rounded-2xl p-3.5 shadow-sm flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-slate-100 text-slate-500 flex items-center justify-center">
+                <span class="material-symbols-outlined text-xl">science</span>
+              </div>
+              <div>
+                <h3 class="font-bold text-xs text-slate-700">6. Quality & Moisture / गुणवत्ता</h3>
+                <p class="text-[10px] text-slate-400">Target Moisture &lt; 14.0%</p>
+              </div>
+            </div>
+            <span class="text-[9px] bg-slate-100 text-slate-500 font-bold px-2 py-0.5 rounded-full">NEXT</span>
+          </div>
+        </div>
+
+        <!-- STEP 7: Electronic Weighing (Upcoming) -->
+        <div class="relative group opacity-75">
+          <div class="absolute -left-6 top-3 w-5 h-5 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center text-[10px] font-bold">7</div>
+          <div class="bg-white border border-[#CFD8DC] rounded-2xl p-3.5 shadow-sm flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-slate-100 text-slate-500 flex items-center justify-center">
+                <span class="material-symbols-outlined text-xl">scale</span>
+              </div>
+              <div>
+                <h3 class="font-bold text-xs text-slate-700">7. Electronic Weighing / धर्मकांटा</h3>
+                <p class="text-[10px] text-slate-400">Gross / Tare / Net Weight</p>
+              </div>
+            </div>
+            <span class="text-[9px] bg-slate-100 text-slate-500 font-bold px-2 py-0.5 rounded-full">UPCOMING</span>
+          </div>
+        </div>
+
+        <!-- STEP 8: Direct Benefit Transfer (Upcoming) -->
+        <div class="relative group opacity-75">
+          <div class="absolute -left-6 top-3 w-5 h-5 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center text-[10px] font-bold">8</div>
+          <div class="bg-white border border-[#CFD8DC] rounded-2xl p-3.5 shadow-sm flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-slate-100 text-slate-500 flex items-center justify-center">
+                <span class="material-symbols-outlined text-xl">payments</span>
+              </div>
+              <div>
+                <h3 class="font-bold text-xs text-slate-700">8. DBT Bank Payment / भुगतान</h3>
+                <p class="text-[10px] text-slate-400">Direct Credit in 24-48 Hours</p>
+              </div>
+            </div>
+            <span class="text-[9px] bg-slate-100 text-slate-500 font-bold px-2 py-0.5 rounded-full">FINAL STEP</span>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+
+    <!-- Bottom Navigation Controls -->
+    <footer class="bg-white border-t border-[#CFD8DC] p-3 flex gap-3 shadow-lg shrink-0">
+      <a href="app.html" class="flex-1 py-3 border-2 border-[#2E7D32] text-[#2E7D32] rounded-xl text-center text-xs font-bold hover:bg-slate-50 active:scale-95 transition-all">
+        Back to Dashboard
+      </a>
+      <a href="app.html" class="flex-1 py-3 bg-[#2E7D32] text-white rounded-xl text-center text-xs font-bold shadow-md hover:bg-[#1B5E20] active:scale-95 transition-all">
+        Next: Tracker →
+      </a>
+    </footer>
+
+  </div>
+
+</body>
+</html>

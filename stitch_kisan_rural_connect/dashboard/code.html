@@ -1,0 +1,241 @@
+<!DOCTYPE html><html lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Kisan Setu - Main Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@500;600;700&amp;family=Noto+Sans:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#131e17",
+                        "surface-bright": "#fcf9f8",
+                        "on-surface": "#1c1b1b",
+                        "surface": "#fcf9f8",
+                        "primary": "#00342b",
+                        "on-primary-fixed-variant": "#065043",
+                        "surface-variant": "#e5e2e1",
+                        "secondary-container": "#fdd400",
+                        "on-primary-fixed": "#00201a",
+                        "on-primary-container": "#7ebdac",
+                        "primary-container": "#004d40",
+                        "inverse-surface": "#313030",
+                        "background": "#fcf9f8",
+                        "outline": "#707975",
+                        "on-background": "#1c1b1b",
+                        "on-tertiary-container": "#a7b4a9",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-container": "#3b463e",
+                        "inverse-on-surface": "#f3f0ef",
+                        "on-secondary-container": "#6f5c00",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#bdcabe",
+                        "on-secondary-fixed": "#221b00",
+                        "tertiary-fixed": "#d9e6da",
+                        "error": "#ba1a1a",
+                        "surface-container-low": "#f6f3f2",
+                        "surface-container": "#f0edec",
+                        "primary-fixed": "#afefdd",
+                        "secondary": "#705d00",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#3e4a41",
+                        "secondary-fixed": "#ffe170",
+                        "tertiary": "#253028",
+                        "outline-variant": "#bfc9c4",
+                        "inverse-primary": "#94d3c1",
+                        "on-primary": "#ffffff",
+                        "surface-container-highest": "#e5e2e1",
+                        "surface-tint": "#29695b",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "primary-fixed-dim": "#94d3c1",
+                        "surface-container-high": "#ebe7e7",
+                        "on-secondary-fixed-variant": "#544600",
+                        "secondary-fixed-dim": "#e9c400",
+                        "surface-dim": "#dcd9d9",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#3f4945"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "gutter-mobile": "16px",
+                        "touch-target-min": "56px",
+                        "stack-gap-md": "16px",
+                        "margin-mobile": "20px",
+                        "stack-gap-lg": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Be Vietnam Pro"],
+                        "headline-md": ["Be Vietnam Pro"],
+                        "label-md": ["Be Vietnam Pro"],
+                        "body-lg": ["Noto Sans"],
+                        "body-md": ["Noto Sans"],
+                        "headline-lg": ["Be Vietnam Pro"],
+                        "label-lg": ["Be Vietnam Pro"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "headline-md": ["22px", { "lineHeight": "28px", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "26px", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["28px", { "lineHeight": "36px", "fontWeight": "700" }],
+                        "label-lg": ["16px", { "lineHeight": "20px", "letterSpacing": "0.5px", "fontWeight": "600" }],
+                        "headline-sm-mobile": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "headline-md-mobile": ["22px", { "lineHeight": "28px", "fontWeight": "700" }],
+                        "label-md-mobile": ["14px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "body-lg-mobile": ["18px", { "lineHeight": "26px", "fontWeight": "500" }],
+                        "body-md-mobile": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "700" }],
+                        "label-lg-mobile": ["16px", { "lineHeight": "20px", "letterSpacing": "0.5px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen pb-24 selection:bg-primary selection:text-on-primary">
+<!-- TopAppBar -->
+<header class="bg-surface border-b border-outline-variant w-full top-0 flex items-center px-margin-mobile h-touch-target-min fixed z-40 transition-colors duration-200">
+<button class="mr-4 text-primary hover:bg-surface-variant p-2 rounded-full transition-colors duration-200 flex items-center justify-center h-10 w-10">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="font-headline-md text-headline-md-mobile font-bold text-primary flex-1">Kisan Setu</h1>
+<button class="flex items-center gap-1 px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container hover:bg-secondary-fixed transition-colors active:scale-95 mr-2 shadow-sm">
+<span class="material-symbols-outlined text-body-md-mobile" data-icon="record_voice_over">record_voice_over</span>
+<span class="font-label-md text-label-md-mobile">Voice Guide / आवाज गाइड</span>
+</button><button class="flex items-center gap-1 px-3 py-1 rounded-full border border-outline text-primary hover:bg-surface-container-low transition-colors active:scale-95" aria-label="Select Language">
+<span class="material-symbols-outlined text-body-md-mobile" data-icon="language">language</span>
+<span class="font-label-md text-label-md-mobile">EN / हिंदी / ਪੰਜਾਬੀ / ગુજ</span>
+</button></header>
+<main class="pt-[72px] px-margin-mobile flex flex-col gap-stack-gap-lg max-w-3xl mx-auto pb-6">
+<!-- Live Queue Status Card -->
+<section class="bg-primary text-on-primary rounded-xl overflow-hidden mt-4 shadow-sm border border-primary-container relative">
+<!-- Background Image -->
+<div class="absolute inset-0 bg-cover bg-center w-full h-full opacity-20 mix-blend-overlay" data-alt="A lush, expansive agricultural field bathed in the golden light of early morning sunrise. The field stretches towards the horizon, showcasing healthy green crops arranged in neat, geometric rows. The sky is a soft gradient of pale yellow to light blue, creating an atmosphere of hope, growth, and natural prosperity. The overall aesthetic is natural, vibrant, and deeply connected to farming life, using warm earthy tones mixed with vivid greens." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC54d8_dW_HpDOiCjlkD7b_zTM6p9jEExn07PD2ywWeKEsKtI2VX2z3hVaXYkNSk1fNX-EsTtb82C-uUPCPtGx-Zu4DuTEww6rBem6Hj5SlIDMEC3QLj0m82MJj15iMug_8kZP200_WBsQqcGxdHA_L1mIeW4mxGZcD_CBHhZroSMXYdkf4mrSIbrV69C4IIFplaIgOsHJvorEFWhKXHMmovy-tzDvdCdTQ5VxuPm_oLVZptkfo9dqK')"></div>
+<div class="p-6 relative z-10 flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<div>
+<h2 class="font-headline-sm text-headline-sm-mobile text-primary-fixed">Live Queue Status</h2>
+<p class="font-body-md text-body-md-mobile text-primary-fixed-dim opacity-90">कतार की स्थिति</p>
+</div>
+<span class="material-symbols-outlined text-4xl text-secondary-container" data-icon="timer">timer</span>
+</div>
+<div class="bg-surface/10 rounded-lg p-4 backdrop-blur-sm border border-surface/20">
+<div class="flex justify-between items-end mb-2">
+<span class="font-headline-lg text-headline-lg-mobile font-bold text-secondary-fixed">3</span>
+<span class="font-label-lg text-label-lg-mobile text-primary-fixed mb-1">people ahead / लोग आगे</span>
+</div>
+<!-- Progress Visualizer -->
+<div class="w-full bg-primary-container h-3 rounded-full overflow-hidden mt-2 border border-primary/50">
+<div class="bg-secondary-container h-full rounded-full" style="width: 70%;"></div>
+</div>
+<p class="font-label-md text-label-md-mobile text-primary-fixed mt-2 text-right">Est. Wait: 45 mins</p>
+</div>
+</div>
+</section>
+<!-- Main Actions Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Book Slot -->
+<button class="bg-surface-bright border-2 border-outline-variant hover:border-primary hover:bg-surface-container-low transition-all duration-200 rounded-xl p-6 flex items-start gap-4 text-left group min-h-[120px]">
+<div class="bg-secondary-container/20 p-4 rounded-full text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-3xl" data-icon="calendar_add_on">calendar_add_on</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md-mobile text-primary font-bold">Book Slot</span>
+<span class="font-body-lg text-body-lg-mobile text-on-surface font-bold">स्लॉट बुक करें</span>
+</div>
+</button>
+<!-- Track Order -->
+<button class="bg-surface-bright border-2 border-outline-variant hover:border-primary hover:bg-surface-container-low transition-all duration-200 rounded-xl p-6 flex items-start gap-4 text-left group min-h-[120px]">
+<div class="bg-secondary-container/20 p-4 rounded-full text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-3xl" data-icon="local_shipping">local_shipping</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md-mobile text-primary font-bold">Track Order</span>
+<span class="font-body-lg text-body-lg-mobile text-on-surface font-bold">ऑर्डर ट्रैक करें</span>
+</div>
+</button>
+<!-- My Payments -->
+<button class="bg-surface-bright border-2 border-outline-variant hover:border-primary hover:bg-surface-container-low transition-all duration-200 rounded-xl p-6 flex items-start gap-4 text-left group min-h-[120px]">
+<div class="bg-secondary-container/20 p-4 rounded-full text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-3xl" data-icon="account_balance_wallet">account_balance_wallet</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md-mobile text-primary font-bold">My Payments</span>
+<span class="font-body-lg text-body-lg-mobile text-on-surface font-bold">मेरे भुगतान</span>
+</div>
+</button>
+<!-- Queue Status -->
+<button class="bg-surface-bright border-2 border-outline-variant hover:border-primary hover:bg-surface-container-low transition-all duration-200 rounded-xl p-6 flex items-start gap-4 text-left group min-h-[120px]">
+<div class="bg-secondary-container/20 p-4 rounded-full text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-3xl" data-icon="groups">groups</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md-mobile text-primary font-bold">Queue History</span>
+<span class="font-body-lg text-body-lg-mobile text-on-surface font-bold">कतार इतिहास</span>
+</div>
+</button>
+</section>
+<!-- Recent Activity Summary (Bonus high-contrast layout) -->
+<section class="mt-4">
+<h3 class="font-headline-sm text-headline-sm-mobile text-primary mb-4 border-l-4 border-secondary-container pl-2">Recent Activity / हाल की गतिविधि</h3>
+<div class="bg-tertiary-fixed border border-primary/20 rounded-xl p-4 flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="bg-primary text-on-primary p-2 rounded-full">
+<span class="material-symbols-outlined" data-icon="check_circle">check_circle</span>
+</div>
+<div>
+<p class="font-label-lg text-label-lg-mobile text-on-tertiary-fixed-variant">Wheat Sale Complete</p>
+<p class="font-body-md text-body-md-mobile text-on-tertiary-fixed-variant opacity-80">Today, 10:30 AM</p>
+</div>
+</div>
+<span class="font-headline-sm text-headline-sm-mobile text-primary font-bold">₹15,400</span>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="bg-surface border-t-2 border-primary-container fixed bottom-0 w-full z-50 flex justify-around items-center h-[80px] px-2 pb-2 md:hidden">
+<!-- Home (Active) -->
+<button class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-xl px-4 py-1 flex-1 max-w-[80px] active:scale-95 transition-transform hover:bg-surface-container-highest">
+<span class="material-symbols-outlined text-2xl" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-lg text-label-lg-mobile text-xs mt-1">Home</span>
+</button>
+<!-- Track -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant flex-1 max-w-[80px] active:scale-95 transition-transform hover:bg-surface-container-highest">
+<span class="material-symbols-outlined text-2xl" data-icon="analytics">analytics</span>
+<span class="font-label-lg text-label-lg-mobile text-xs mt-1">Track</span>
+</button>
+<!-- Payments -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant flex-1 max-w-[80px] active:scale-95 transition-transform hover:bg-surface-container-highest">
+<span class="material-symbols-outlined text-2xl" data-icon="payments">payments</span>
+<span class="font-label-lg text-label-lg-mobile text-xs mt-1">Payments</span>
+</button>
+<!-- Profile -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant flex-1 max-w-[80px] active:scale-95 transition-transform hover:bg-surface-container-highest">
+<span class="material-symbols-outlined text-2xl" data-icon="person">person</span>
+<span class="font-label-lg text-label-lg-mobile text-xs mt-1">Profile</span>
+</button>
+</nav>
+
+
+
+
+
+
+</body></html>
